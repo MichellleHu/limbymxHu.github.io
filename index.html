@@ -62,6 +62,96 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-babel-plugin-import" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/10/babel-plugin-import/" class="article-date">
+  <time datetime="2019-03-10T07:29:34.000Z" itemprop="datePublished">2019-03-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/10/babel-plugin-import/">babel-plugin-import</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>babel-plugin-import 实现组件库中的组件按需加载<br>.babelrc 文件中配置：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"libraryName"</span>: <span class="string">"vant"</span>,</span><br><span class="line">  <span class="attr">"style"</span>: <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/03/10/babel-plugin-import/" data-id="cjt2m97au0002n5kq5dn5oywy" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-利用Access-Control-Allow-Origin响应头解决跨域请求原理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/25/利用Access-Control-Allow-Origin响应头解决跨域请求原理/" class="article-date">
+  <time datetime="2018-06-25T07:26:58.000Z" itemprop="datePublished">2018-06-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/25/利用Access-Control-Allow-Origin响应头解决跨域请求原理/">利用Access-Control-Allow-Origin响应头解决跨域请求原理</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>W3C 提供了跨域请求的标准方案（Cross-Origin Resource Sharing）。<br>IE8、Firefox 3.5 及其以后的版本、Chrome 浏览器、Safari 4 等已经实现了 Cross-Origin Resource Sharing 规范，实现了跨域请求。<br>在服务器响应客户端的时候，带上 Access-Control-Allow-Origin 头信息。</p>
+<p>如果设置 Access-Control-Allow-Origin:*，则允许所有域名的脚本访问该资源。<br>Access-Control-Allow-Origin:<a href="http://www.phpddt.com.com,允许特定的域名访问。" target="_blank" rel="noopener">http://www.phpddt.com.com,允许特定的域名访问。</a></p>
+<h2 id="Cross-Origin-Resource-Sharing-协议介绍"><a href="#Cross-Origin-Resource-Sharing-协议介绍" class="headerlink" title="Cross-Origin Resource Sharing 协议介绍"></a>Cross-Origin Resource Sharing 协议介绍</h2><p>传统的 Ajax 请求只能获取在同一个域名下面的资源，但是 HTML5 打破了这个限制，允许 Ajax 发起跨域的请求。<br>浏览器是可以发起跨域请求的，比如你可以外链一个外域的图片或者脚本。但是 Javascript 脚本是不能获取这些资源的内容的，它只能被浏览器执行或渲染。</p>
+<p>Javascript 先发出跨域请求，<br>然后检查回复的‘Access-Control-Allow-Origin’头。<br>如果这个头允许该外域访问，则 Javascript 可以读取这个回复，否则就被禁止访问。<br>如果请求不是一个简单的 COR，则向外域服务器发送预检验请求，如果回复的头部允许访问，则发送跨域请求，否则禁止。</p>
+<p>下面的 Javascript 会发出预检验请求和真实请求：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;script language=<span class="string">"Javascript"</span> type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">  <span class="keyword">var</span> client = <span class="keyword">new</span> XMLHttpRequest(); client.open(<span class="string">"GET"</span>, <span class="string">"http://bar.org/b"</span>)</span><br><span class="line">  client.setRequestHeader(<span class="string">'Content-Type'</span>,<span class="string">'text/html'</span>) client.onreadystatechange</span><br><span class="line">  = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;<span class="comment">/* do something */</span>&#125;</span><br><span class="line">  client.send()</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+<p>由于“Content-type: text/html”不是一个简单的头，它会先向”<a href="http://bar.org/b&quot;发出一个OPTIONS的HTTP请求。" target="_blank" rel="noopener">http://bar.org/b&quot;发出一个OPTIONS的HTTP请求。</a> 回复可能包含这样的头：</p>
+<p>Access-Control-Allow-Origin: <a href="http://foo.org" target="_blank" rel="noopener">http://foo.org</a></p>
+<p>Access-Control-Max-Age: 3628800</p>
+<p>Access-Control-Allow-Methods: GET，PUT, DELETE</p>
+<p>Access-Control-Allow-Headers: content-type</p>
+<p>“Access-Control-Allow-Origin”表明它允许”<a href="http://foo.org&quot;发起跨域请求" target="_blank" rel="noopener">http://foo.org&quot;发起跨域请求</a></p>
+<p>“Access-Control-Max-Age”表明在 3628800 秒内，不需要再发送预检验请求，可以缓存该结果</p>
+<p>“Access-Control-Allow-Methods”表明它允许 GET、PUT、DELETE 的外域请求</p>
+<p>“Access-Control-Allow-Headers”表明它允许跨域请求包含 content-type 头</p>
+<p>如果预检验请求获得通过，接下来 Javascript 就会发起真实的 COR 请求，过程跟简单的 COR 请求类似。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/06/25/利用Access-Control-Allow-Origin响应头解决跨域请求原理/" data-id="cjt2m97ay0006n5kqn3w4cxki" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-移动web布局适配方法" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/06/10/移动web布局适配方法/" class="article-date">
@@ -103,7 +193,244 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/06/10/移动web布局适配方法/" data-id="cjt2lgmgf0002ikkq1xc7o8i7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/06/10/移动web布局适配方法/" data-id="cjt2m97b00009n5kqkyczpgga" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Mongodb-知识点" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/28/Mongodb-知识点/" class="article-date">
+  <time datetime="2018-05-28T07:45:59.000Z" itemprop="datePublished">2018-05-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/28/Mongodb-知识点/">Mongodb-知识点</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li><p>流行的开发框架 LAMP Linux apache mysql／mongodb PHP</p>
+</li>
+<li><p>Mongodb 的基本概念：mongodb／mongo／索引／集合／复制集／分片数据均衡<br>学会 mongodb 的搭建：<br>部署数据库服务：搭建简单的单机服务——搭建具有冗余容错功能的复制集——搭建大规模数据集群——完成集群的自动部署<br>熟悉 mongodb 的使用：<br>最基本的文档的读写更新删除，<br>各种不同类型的索引的创建与使用，<br>复杂的聚合查询，<br>对数据集合进行分片，<br>在不同分片间维持数据均衡，数据备份与恢复，<br>数据迁移。<br>简单运维：<br>部署 mongodb 集群，<br>处理多种常见的故障：单节点失效，如何恢复工作；数据库意外被杀死如何进行数据恢复；数据库发生拒绝服务时如何排查原因；数据库磁盘快满时如何处理。</p>
+</li>
+<li><p>数据库的概念：有组织的存放数据，按照不同的需求进行查询。</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/05/28/Mongodb-知识点/" data-id="cjt2m97ap0000n5kqzidnexhm" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-koa2-开发过程随记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/24/koa2-开发过程随记/" class="article-date">
+  <time datetime="2018-05-24T07:43:31.000Z" itemprop="datePublished">2018-05-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/24/koa2-开发过程随记/">koa2-开发过程随记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>安装</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm –save 安装到生产环境</span><br><span class="line">npm –save-dev 安装到开发环境</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>请求页面 <a href="http://localhost:3001/为HTTP" target="_blank" rel="noopener">http://localhost:3001/为HTTP</a> GET 请求</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="keyword">async</span> ctx =&gt; &#123;</span><br><span class="line">  <span class="built_in">console</span>.info(ctx);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="attr">request</span>:</span><br><span class="line">   &#123; <span class="attr">method</span>: <span class="string">'GET'</span>,</span><br><span class="line">     url: <span class="string">'/'</span>,</span><br><span class="line">     header:</span><br><span class="line">      &#123; <span class="attr">host</span>: <span class="string">'localhost:3001'</span>,</span><br><span class="line">        connection: <span class="string">'keep-alive'</span>,</span><br><span class="line">        <span class="string">'cache-control'</span>: <span class="string">'max-age=0'</span>,</span><br><span class="line">        <span class="string">'upgrade-insecure-requests'</span>: <span class="string">'1'</span>,</span><br><span class="line">        <span class="string">'user-agent'</span>: <span class="string">'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36'</span>,</span><br><span class="line">        accept: <span class="string">'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8'</span>,</span><br><span class="line">        <span class="string">'accept-encoding'</span>: <span class="string">'gzip, deflate, br'</span>,</span><br><span class="line">        <span class="string">'accept-language'</span>: <span class="string">'zh-CN,zh;q=0.9'</span>,</span><br><span class="line">        cookie: <span class="string">'BIGipServerPOOL_PACLOUD_STGR2017093007195=209847326.34991.0000; BIGipServerPOOL_PACLOUD_STGR2018040304087=461505566.34991.0000'</span> &#125; &#125;,</span><br><span class="line">  response: &#123; <span class="attr">status</span>: <span class="number">404</span>, <span class="attr">message</span>: <span class="string">'Not Found'</span>, <span class="attr">header</span>: &#123;&#125; &#125;,</span><br><span class="line">  app: &#123; <span class="attr">subdomainOffset</span>: <span class="number">2</span>, <span class="attr">proxy</span>: <span class="literal">false</span>, <span class="attr">env</span>: <span class="string">'development'</span> &#125;,</span><br><span class="line">  originalUrl: <span class="string">'/'</span>,</span><br><span class="line">  req: <span class="string">'&lt;original node req&gt;'</span>,</span><br><span class="line">  res: <span class="string">'&lt;original node res&gt;'</span>,</span><br><span class="line">  socket: <span class="string">'&lt;original node socket&gt;'</span> &#125;</span><br><span class="line">&#123; <span class="attr">request</span>:</span><br><span class="line">   &#123; <span class="attr">method</span>: <span class="string">'GET'</span>,</span><br><span class="line">     url: <span class="string">'/favicon.ico'</span>, <span class="comment">// 收藏夹图标</span></span><br><span class="line">     header:</span><br><span class="line">      &#123; <span class="attr">host</span>: <span class="string">'localhost:3001'</span>,</span><br><span class="line">        connection: <span class="string">'keep-alive'</span>,</span><br><span class="line">        <span class="string">'user-agent'</span>: <span class="string">'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36'</span>,</span><br><span class="line">        accept: <span class="string">'image/webp,image/apng,image/*,*/*;q=0.8'</span>,</span><br><span class="line">        referer: <span class="string">'http://localhost:3001/'</span>,</span><br><span class="line">        <span class="string">'accept-encoding'</span>: <span class="string">'gzip, deflate, br'</span>,</span><br><span class="line">        <span class="string">'accept-language'</span>: <span class="string">'zh-CN,zh;q=0.9'</span>,</span><br><span class="line">        cookie: <span class="string">'BIGipServerPOOL_PACLOUD_STGR2017093007195=209847326.34991.0000; BIGipServerPOOL_PACLOUD_STGR2018040304087=461505566.34991.0000'</span> &#125; &#125;,</span><br><span class="line">  response: &#123; <span class="attr">status</span>: <span class="number">404</span>, <span class="attr">message</span>: <span class="string">'Not Found'</span>, <span class="attr">header</span>: &#123;&#125; &#125;,</span><br><span class="line">  app: &#123; <span class="attr">subdomainOffset</span>: <span class="number">2</span>, <span class="attr">proxy</span>: <span class="literal">false</span>, <span class="attr">env</span>: <span class="string">'development'</span> &#125;,</span><br><span class="line">  originalUrl: <span class="string">'/favicon.ico'</span>,</span><br><span class="line">  req: <span class="string">'&lt;original node req&gt;'</span>,</span><br><span class="line">  res: <span class="string">'&lt;original node res&gt;'</span>,</span><br><span class="line">  socket: <span class="string">'&lt;original node socket&gt;'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li><p>await 必须在 async 方法中才可以使用因为 await 访问本身就会造成程序停止堵塞，所以必须在异步方法中才可以使用。</p>
+</li>
+<li><p>npm install –save koa-bodyparser@3<br>@3 版本</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/05/24/koa2-开发过程随记/" data-id="cjt2m97aw0004n5kqfejqno6v" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-webpack-开发过程随记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/23/webpack-开发过程随记/" class="article-date">
+  <time datetime="2018-05-23T07:40:20.000Z" itemprop="datePublished">2018-05-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/23/webpack-开发过程随记/">webpack-开发过程随记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="根据模板生成简单的-html-文件"><a href="#根据模板生成简单的-html-文件" class="headerlink" title="根据模板生成简单的 html 文件"></a>根据模板生成简单的 html 文件</h2><p>使用 webpack 根据模板生成 HTML，首先需要安装插件 html-webpack-plugin。在工程文件夹安装插件命令如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install html-webpack-plugin --save-dev</span><br></pre></td></tr></table></figure>
+<h2 id="新建-webpack-config-js"><a href="#新建-webpack-config-js" class="headerlink" title="新建 webpack.config.js"></a>新建 webpack.config.js</h2><p>名称可以更改，更改后运行时，需指定配置文件名称。例如，配置文件名为 my.webpack.config.js,　则需要在 package.json 文件中，在 scripts 处添加如下代码:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">"scripts": &#123;</span><br><span class="line">"webpack": "webpack --config webapack.config.js --progress --display--modules --colors --dispaly-reason"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译时，需使用 npm run webpack 命令。</p>
+<h2 id="webpack-是支持-AMD、CMD、ES6-模块化编程的"><a href="#webpack-是支持-AMD、CMD、ES6-模块化编程的" class="headerlink" title="webpack 是支持 AMD、CMD、ES6 模块化编程的"></a>webpack 是支持 AMD、CMD、ES6 模块化编程的</h2><p>我们是可以使用 require、exports 来获取、返回模块内容的。</p>
+<p>在 webpack.prod.conf.js，添加如下代码</p>
+<p>我们将原始文件放在 /src/js 文件夹，打包复制后的文件放在 /dist/js 文件夹。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span></span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</span><br><span class="line"><span class="keyword">const</span> utils = <span class="built_in">require</span>(<span class="string">'./utils'</span>)</span><br><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>)</span><br><span class="line"><span class="keyword">const</span> config = <span class="built_in">require</span>(<span class="string">'../config'</span>)</span><br><span class="line"><span class="keyword">const</span> merge = <span class="built_in">require</span>(<span class="string">'webpack-merge'</span>)</span><br><span class="line"><span class="keyword">const</span> baseWebpackConfig = <span class="built_in">require</span>(<span class="string">'./webpack.base.conf'</span>)</span><br><span class="line"><span class="keyword">const</span> CopyWebpackPlugin = <span class="built_in">require</span>(<span class="string">'copy-webpack-plugin'</span>)</span><br><span class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>)</span><br><span class="line"><span class="keyword">const</span> ExtractTextPlugin = <span class="built_in">require</span>(<span class="string">'extract-text-webpack-plugin'</span>)</span><br><span class="line"><span class="keyword">const</span> OptimizeCSSPlugin = <span class="built_in">require</span>(<span class="string">'optimize-css-assets-webpack-plugin'</span>)</span><br><span class="line"><span class="keyword">const</span> UglifyJsPlugin = <span class="built_in">require</span>(<span class="string">'uglifyjs-webpack-plugin'</span>)</span><br><span class="line"><span class="keyword">const</span> env = <span class="built_in">require</span>(<span class="string">'../config/prod.env'</span>)</span><br><span class="line"><span class="keyword">const</span> webpackConfig = merge(baseWebpackConfig, &#123;</span><br><span class="line"><span class="built_in">module</span>: &#123;</span><br><span class="line">rules: utils.styleLoaders(&#123;</span><br><span class="line">sourceMap: config.build.productionSourceMap,</span><br><span class="line">extract: <span class="literal">true</span>,</span><br><span class="line">usePostCSS: <span class="literal">true</span></span><br><span class="line">&#125;)</span><br><span class="line">&#125;,</span><br><span class="line">devtool: config.build.productionSourceMap ? config.build.devtool : <span class="literal">false</span>,</span><br><span class="line">output: &#123;</span><br><span class="line">path: config.build.assetsRoot,</span><br><span class="line">filename: utils.assetsPath(<span class="string">'js/[name].[chunkhash].js'</span>),</span><br><span class="line">chunkFilename: utils.assetsPath(<span class="string">'js/[id].[chunkhash].js'</span>)</span><br><span class="line">&#125;,</span><br><span class="line">plugins: [</span><br><span class="line"><span class="comment">// http://vuejs.github.io/vue-loader/en/workflow/production.html</span></span><br><span class="line"><span class="keyword">new</span> webpack.DefinePlugin(&#123;</span><br><span class="line"><span class="string">'process.env'</span>: env</span><br><span class="line">&#125;),</span><br><span class="line"><span class="keyword">new</span> UglifyJsPlugin(&#123;</span><br><span class="line"><span class="comment">// 压缩 js 文件，内置插件</span></span><br><span class="line">uglifyOptions: &#123;</span><br><span class="line">comcodess: &#123;</span><br><span class="line">warnings: <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;,</span><br><span class="line">sourceMap: config.build.productionSourceMap,</span><br><span class="line">parallel: <span class="literal">true</span></span><br><span class="line">&#125;),</span><br><span class="line"><span class="comment">// extract css into its own file</span></span><br><span class="line"><span class="keyword">new</span> ExtractTextPlugin(&#123;</span><br><span class="line"><span class="comment">// 提取 css 到单独的文件</span></span><br><span class="line">filename: utils.assetsPath(<span class="string">'css/[name].[contenthash].css'</span>),</span><br><span class="line"><span class="comment">// Setting the following option to `false` will not extract CSS from codesplit chunks.</span></span><br><span class="line"><span class="comment">// Their CSS will instead be inserted dynamically with style-loader when the codesplit chunk has been loaded by webpack.</span></span><br><span class="line"><span class="comment">// It's currently set to `true` because we are seeing that sourcemaps are included in the codesplit bundle as well when it's `false`,</span></span><br><span class="line"><span class="comment">// increasing file size: https://github.com/vuejs-templates/webpack/issues/1110</span></span><br><span class="line">allChunks: <span class="literal">true</span></span><br><span class="line">&#125;),</span><br><span class="line"><span class="comment">// Comcodess extracted CSS. We are using this plugin so that possible</span></span><br><span class="line"><span class="comment">// duplicated CSS from different components can be deduped.</span></span><br><span class="line"><span class="keyword">new</span> OptimizeCSSPlugin(&#123;</span><br><span class="line">cssProcessorOptions: config.build.productionSourceMap</span><br><span class="line">? &#123; <span class="attr">safe</span>: <span class="literal">true</span>, <span class="attr">map</span>: &#123; <span class="attr">inline</span>: <span class="literal">false</span> &#125; &#125;</span><br><span class="line">: &#123; <span class="attr">safe</span>: <span class="literal">true</span> &#125;</span><br><span class="line">&#125;),</span><br><span class="line"><span class="comment">// generate dist index.html with correct asset hash for caching.</span></span><br><span class="line"><span class="comment">// you can customize output by editing /index.html</span></span><br><span class="line"><span class="comment">// see https://github.com/ampedandwired/html-webpack-plugin</span></span><br><span class="line"><span class="keyword">new</span> HtmlWebpackPlugin(&#123;</span><br><span class="line">filename: config.build.index,</span><br><span class="line">templateParameters: &#123;</span><br><span class="line">property: <span class="literal">true</span> <span class="comment">// 开发环境需设置为 false</span></span><br><span class="line">&#125;,</span><br><span class="line">title:<span class="string">'这个是 WebPack Demo'</span>,</span><br><span class="line">template: <span class="string">'index.html'</span>,</span><br><span class="line">inject: <span class="literal">true</span>,</span><br><span class="line">minify: &#123;</span><br><span class="line">removeComments: <span class="literal">true</span>, <span class="comment">// 移除 HTML 中的注释</span></span><br><span class="line">collapseWhitespace: <span class="literal">true</span>, <span class="comment">// 删除空白符与换行符</span></span><br><span class="line">removeAttributeQuotes: <span class="literal">true</span></span><br><span class="line"><span class="comment">// more options:</span></span><br><span class="line"><span class="comment">// https://github.com/kangax/html-minifier#options-quick-reference</span></span><br><span class="line">&#125;,</span><br><span class="line"><span class="comment">// necessary to consistently work with multiple chunks via CommonsChunkPlugin</span></span><br><span class="line">chunksSortMode: <span class="string">'dependency'</span></span><br><span class="line">&#125;),</span><br><span class="line"><span class="comment">// keep module.id stable when vendor modules does not change</span></span><br><span class="line"><span class="keyword">new</span> webpack.HashedModuleIdsPlugin(),</span><br><span class="line"><span class="comment">// enable scope hoisting</span></span><br><span class="line"><span class="keyword">new</span> webpack.optimize.ModuleConcatenationPlugin(),</span><br><span class="line"><span class="comment">// split vendor js into its own file</span></span><br><span class="line"><span class="keyword">new</span> webpack.optimize.CommonsChunkPlugin(&#123;</span><br><span class="line">name: <span class="string">'vendor'</span>,</span><br><span class="line">minChunks (<span class="built_in">module</span>) &#123;</span><br><span class="line"><span class="comment">// any required modules inside node_modules are extracted to vendor</span></span><br><span class="line"><span class="keyword">return</span> (</span><br><span class="line"><span class="built_in">module</span>.resource &amp;&amp;</span><br><span class="line">/\.js$/.test(<span class="built_in">module</span>.resource) &amp;&amp;</span><br><span class="line"><span class="built_in">module</span>.resource.indexOf(path.join(\_\_dirname, <span class="string">'../node_modules'</span>)) === <span class="number">0</span></span><br><span class="line">)</span><br><span class="line">&#125;</span><br><span class="line">&#125;),</span><br><span class="line"><span class="comment">// extract webpack runtime and module manifest to its own file in order to</span></span><br><span class="line"><span class="comment">// codevent vendor hash from being updated whenever app bundle is updated</span></span><br><span class="line"><span class="keyword">new</span> webpack.optimize.CommonsChunkPlugin(&#123;</span><br><span class="line">name: <span class="string">'manifest'</span>,</span><br><span class="line">minChunks: <span class="literal">Infinity</span></span><br><span class="line">&#125;),</span><br><span class="line"><span class="comment">// This instance extracts shared chunks from code splitted chunks and bundles them</span></span><br><span class="line"><span class="comment">// in a separate chunk, similar to the vendor chunk</span></span><br><span class="line"><span class="comment">// see: https://webpack.js.org/plugins/commons-chunk-plugin/#extra-async-commons-chunk</span></span><br><span class="line"><span class="keyword">new</span> webpack.optimize.CommonsChunkPlugin(&#123;</span><br><span class="line">name: <span class="string">'app'</span>,</span><br><span class="line"><span class="keyword">async</span>: <span class="string">'vendor-async'</span>,</span><br><span class="line">children: <span class="literal">true</span>,</span><br><span class="line">minChunks: <span class="number">3</span></span><br><span class="line">&#125;),</span><br><span class="line">    <span class="comment">// copy custom static assets</span></span><br><span class="line">    <span class="keyword">new</span> CopyWebpackPlugin([</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="keyword">from</span>: path.resolve(__dirname, <span class="string">'../static'</span>),</span><br><span class="line">        to: config.build.assetsSubDirectory,</span><br><span class="line">        ignore: [<span class="string">'.*'</span>]</span><br><span class="line">      &#125;</span><br><span class="line">    ])</span><br><span class="line">]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">if</span> (config.build.productionGzip) &#123;</span><br><span class="line"><span class="keyword">const</span> ComcodessionWebpackPlugin = <span class="built_in">require</span>(<span class="string">'comcodession-webpack-plugin'</span>) <span class="comment">// 压缩 gzip</span></span><br><span class="line">webpackConfig.plugins.push(</span><br><span class="line"><span class="keyword">new</span> ComcodessionWebpackPlugin(&#123;</span><br><span class="line">asset: <span class="string">'[path].gz[query]'</span>,</span><br><span class="line">algorithm: <span class="string">'gzip'</span>,</span><br><span class="line">test: <span class="keyword">new</span> <span class="built_in">RegExp</span>(</span><br><span class="line"><span class="string">'\\.('</span> + config.build.productionGzipExtensions.join(<span class="string">'|'</span>) + <span class="string">')$'</span></span><br><span class="line">),</span><br><span class="line">threshold: <span class="number">10240</span>,</span><br><span class="line">minRatio: <span class="number">0.8</span></span><br><span class="line">&#125;)</span><br><span class="line">)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (config.build.bundleAnalyzerReport) &#123;</span><br><span class="line"><span class="keyword">const</span> BundleAnalyzerPlugin = <span class="built_in">require</span>(<span class="string">'webpack-bundle-analyzer'</span>)</span><br><span class="line">.BundleAnalyzerPlugin</span><br><span class="line">webpackConfig.plugins.push(<span class="keyword">new</span> BundleAnalyzerPlugin())</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">module</span>.exports = webpackConfig</span><br></pre></td></tr></table></figure>
+<p>我们可以在模板 index.html 书写类似 PHP、ASP.net 的语法格式。</p>
+<p>模板 index.html 文件模板内容</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span> (<span class="attr">htmlWebpackPlugin.options.templateParameters.property</span>)&#123;%&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">base</span> <span class="attr">href</span>=<span class="string">"/abc/"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">%&#125;%</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;<span class="name">%=htmlWebpackPlugin.options.title%</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span></span></span><br><span class="line"><span class="tag">      <span class="attr">type</span>=<span class="string">"text/javascript"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">src</span>=<span class="string">"&lt;%=htmlWebpackPlugin.files.chunks.main.entry%&gt;"</span></span></span><br><span class="line"><span class="tag">    &gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">code</span>&gt;</span></span><br><span class="line">      :<span class="tag">&lt;<span class="name">=JSON.stringify(htmlWebpackPlugin.files[key])</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">%</span> <span class="attr">for</span>(<span class="attr">var</span> <span class="attr">key</span> <span class="attr">in</span> <span class="attr">htmlWebpackPlugin.options</span>)&#123;%&gt;</span> <span class="tag">&lt;<span class="name">%=key</span></span></span><br><span class="line"><span class="tag">      %&gt;</span>:<span class="tag">&lt;<span class="name">%=JSON.stringify(htmlWebpackPlugin.options[key])%</span>&gt;</span> <span class="tag">&lt;<span class="name">%&#125;%</span>&gt;</span> <span class="tag">&lt;<span class="name">%</span> <span class="attr">for</span>(<span class="attr">var</span></span></span><br><span class="line"><span class="tag">      <span class="attr">key</span> <span class="attr">in</span> <span class="attr">htmlWebpackPlugin.files</span>)&#123;%&gt;</span> <span class="tag">&lt;<span class="name">%=key</span></span></span><br><span class="line"><span class="tag">      %&gt;</span>:<span class="tag">&lt;<span class="name">%=JSON.stringify(htmlWebpackPlugin.files[key])%</span>&gt;</span> <span class="tag">&lt;<span class="name">%&#125;%</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">script</span></span></span><br><span class="line"><span class="tag">        <span class="attr">type</span>=<span class="string">"text/javascript"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">src</span>=<span class="string">"&lt;%=htmlWebpackPlugin.files.chunks.a.entry%&gt;"</span></span></span><br><span class="line"><span class="tag">      &gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>运行 webpack，即可生成 HTML 文件 。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/05/23/webpack-开发过程随记/" data-id="cjt2m97az0007n5kqs3ccb9cz" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-vue-开发过程随记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/10/vue-开发过程随记/" class="article-date">
+  <time datetime="2018-04-10T07:36:44.000Z" itemprop="datePublished">2018-04-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/10/vue-开发过程随记/">vue-开发过程随记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>父组件利用 props 往子组件传输数据父组件：<br>注意传递参数时要用—代替驼峰命名，HTML 不区分大小写<br>子组件：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(‘child’, &#123;</span><br><span class="line">// camelCase in JavaScript</span><br><span class="line">props:&#123;myMessage&#125;,</span><br><span class="line">template: ‘‘</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>当 props 中接收的是父组件传递的引用类型（对象或者是数组）时，在子组件中对数据改变时，父组件中的数据也会相应的改变，因为两者是指向的同一地址内存。如果不想子组件的改变影响父组件可以利用深拷贝，将接受的数据进行深拷贝后在子组件中使用，而不直接操作接受的数据。深拷贝可以直接利用 ES6 中的 obj=Object.assign（{},myMessage）（在 computed 中定义），这样子组件的改动将不会影响到父组件。</p>
+<ol start="2">
+<li>ref 属性当 ref 直接定义在 dom 元素上时，则通过 this.\$refs.name 可以获取到 dom 对 dom 进行原生的操作</li>
+</ol>
+<p>通过 this.\$refs 获取到 dom 进行操作（注意 ref 属性的命名不能用驼峰，同时获取的时候也是）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> menuList=<span class="keyword">this</span>.$refs[‘menu-wrapper’].getElementsByClassName(‘menu-list-hook’);<span class="comment">//此处如果用 this.$refs[“menuWrapper”]将获取不到元素</span></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>v-bind = class: item.flag, v-bind= class: item[index]<br>对象或者数组都无法动态关联到 data 中，通过设置 v-bind= class: item === index,即可关联到。</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">el-form-item</span></span></span><br><span class="line"><span class="tag">  <span class="attr">v-for</span>=<span class="string">"(item, key) in fieldCnNames.filter(item =&gt; item.field !== 'pid' &amp;&amp; item.field !== 'created_date' &amp;&amp; item.field !== 'created_by' &amp;&amp; item.field !== 'updated_date' &amp;&amp; item.field !== 'updated_by')"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">:key</span>=<span class="string">"key"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">:label</span>=<span class="string">"item.fieldchnname"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">:prop</span>=<span class="string">"item.field"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">:class</span>=<span class="string">"item.isDifferVal ? 'differ-hightligh' : 'same-normal'"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">:class</span>=<span class="string">"isHighlightObj[item.field] ? 'differ-hightligh' : 'same-normal'"</span></span></span><br><span class="line"><span class="tag">&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">el-input</span></span></span><br><span class="line"><span class="tag">    <span class="attr">clearable</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">change</span>=<span class="string">"val =&gt; handleChange(val, item, key)"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">v-model</span>=<span class="string">"resultDataObj[item.field]"</span></span></span><br><span class="line"><span class="tag">  &gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">el-input</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">el-form-item</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>在 handleChange 中改变 fieldCnNames 中 isDifferVal 的值，可以在 html 中实时跟踪到 val 值的变化。<br>然而，通过 isHighlightObj[item.field]却无法实时跟踪到 val 值的变化。只有当点击或者下次 handleChange 触发时，<br>才会在 html 中跟踪到上一次 val 改变的状态。</p>
+<p>v-for 中必须注意这一点。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// el-input中显示0</span></span><br><span class="line"><span class="keyword">if</span> (formData[item] !== <span class="literal">null</span>) &#123;</span><br><span class="line">  formData[item] = formData[item].toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/04/10/vue-开发过程随记/" data-id="cjt2m97ax0005n5kqs3ux9khi" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-call和apply" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/10/call和apply/" class="article-date">
+  <time datetime="2018-03-10T07:34:20.000Z" itemprop="datePublished">2018-03-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/10/call和apply/">call和apply</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>javascript 中通过 call 或者 apply 用来代替另一个对象调用一个方法，将一个函数的对象上下文从初始的上下文改变为由 thisObj 指定的新对象。简单的说就是改变函数执行的上下文，这是最基本的用法。两个方法基本区别在于传参不同。</p>
+<p>call(obj,arg1,arg2,arg3); call 第一个参数传对象，可以是 null。参数以逗号分开进行传值，参数可以是任何类型。<br>apply(obj,[arg1,arg2,arg3]); apply 第一个参数传对象，参数可以是数组或者 arguments 对象。</p>
+<p>例子：<br>js 数组最大值 max 和最小值 min。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>];</span><br><span class="line">alert(<span class="built_in">Math</span>.max.apply(<span class="literal">null</span>, a));<span class="comment">//最大值</span></span><br><span class="line">alert(<span class="built_in">Math</span>.min.apply(<span class="literal">null</span>, a));<span class="comment">//最小值多维数组</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,[<span class="number">5</span>,<span class="number">6</span>],[<span class="number">1</span>,<span class="number">4</span>,<span class="number">8</span>]];</span><br><span class="line"><span class="keyword">var</span> ta=a.join(“,”).split(“,”);<span class="comment">//转化为一维数组</span></span><br><span class="line">alert(<span class="built_in">Math</span>.max.apply(<span class="literal">null</span>,ta));<span class="comment">//最大值</span></span><br><span class="line">alert(<span class="built_in">Math</span>.min.apply(<span class="literal">null</span>,ta));<span class="comment">//最小值使用链式</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">Array</span>.prototype.max = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="keyword">return</span> <span class="built_in">Math</span>.max.apply(&#123;&#125;,<span class="keyword">this</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Array</span>.prototype.min = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="keyword">return</span> <span class="built_in">Math</span>.min.apply(&#123;&#125;,<span class="keyword">this</span>)</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>].max()<span class="comment">// =&gt; 3</span></span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>].min()<span class="comment">// =&gt; 1</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Array</span>.max = <span class="function"><span class="keyword">function</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>.max.apply(<span class="built_in">Math</span>, array);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Array</span>.min = <span class="function"><span class="keyword">function</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>.min.apply(<span class="built_in">Math</span>, array);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/03/10/call和apply/" data-id="cjt2m97av0003n5kqhu0ov725" class="article-share-link">Share</a>
       
       
     </footer>
@@ -135,7 +462,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>布局的传统解决方案，基于盒状模型，依赖 display 属性 + position 属性 + float 属性。它对于那些特殊布局非常不方便，比如，垂直居中就不容易实现。<br>2009 年，W3C 提出了一种新的方案—-Flex 布局，可以简便、完整、响应式地实现各种页面布局。目前，它已经得到了所有浏览器的支持，这意味着，现在就能很安全地使用这项功能。</p>
+        <h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><p>flexbox：更加优雅的 Web 布局<br>网址：<a href="https://segmentfault.com/a/1190000002616717" target="_blank" rel="noopener">https://segmentfault.com/a/1190000002616717</a><br>flex 弹性布局学习总结<br>网址：<a href="https://www.cnblogs.com/nuannuan7362/p/5823381.html" target="_blank" rel="noopener">https://www.cnblogs.com/nuannuan7362/p/5823381.html</a><br>优缺点：<br>兼容性<br>网址： <a href="https://caniuse.com/#search=flex" target="_blank" rel="noopener">https://caniuse.com/#search=flex</a></p>
+<p>布局的传统解决方案，基于盒状模型，依赖 display 属性 + position 属性 + float 属性。它对于那些特殊布局非常不方便，比如，垂直居中就不容易实现。<br>2009 年，W3C 提出了一种新的方案—-Flex 布局，可以简便、完整、响应式地实现各种页面布局。目前，它已经得到了所有浏览器的支持，这意味着，现在就能很安全地使用这项功能。</p>
 <h2 id="Flex-布局是什么？"><a href="#Flex-布局是什么？" class="headerlink" title="Flex 布局是什么？"></a>Flex 布局是什么？</h2><p>任何一个容器都可以指定为 Flex 布局。</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">box</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>行内元素也可以使用 Flex 布局。</p>
@@ -164,7 +492,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/10/20/Flex布局知识点总结/" data-id="cjt2lgmga0000ikkqakq09zry" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/10/20/Flex布局知识点总结/" data-id="cjt2m97at0001n5kqtcmxeigz" class="article-share-link">Share</a>
       
       
     </footer>
@@ -254,7 +582,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/10/17/基于hexo-github搭建一个独立博客/" data-id="cjt2lgmgd0001ikkq9z2ktllm" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/10/17/基于hexo-github搭建一个独立博客/" data-id="cjt2m97az0008n5kqv0y9xbvo" class="article-share-link">Share</a>
       
       
     </footer>
@@ -282,7 +610,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li></ul>
     </div>
   </div>
 
@@ -295,15 +623,23 @@
       <ul>
         
           <li>
+            <a href="/2019/03/10/babel-plugin-import/">babel-plugin-import</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/25/利用Access-Control-Allow-Origin响应头解决跨域请求原理/">利用Access-Control-Allow-Origin响应头解决跨域请求原理</a>
+          </li>
+        
+          <li>
             <a href="/2018/06/10/移动web布局适配方法/">移动web布局适配方法</a>
           </li>
         
           <li>
-            <a href="/2017/10/20/Flex布局知识点总结/">Flex布局知识点总结</a>
+            <a href="/2018/05/28/Mongodb-知识点/">Mongodb-知识点</a>
           </li>
         
           <li>
-            <a href="/2017/10/17/基于hexo-github搭建一个独立博客/">基于hexo+github搭建一个独立博客</a>
+            <a href="/2018/05/24/koa2-开发过程随记/">koa2-开发过程随记</a>
           </li>
         
       </ul>

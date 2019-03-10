@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>call和apply | 技术博客分享平台  --limHu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="javascript 中通过 call 或者 apply 用来代替另一个对象调用一个方法，将一个函数的对象上下文从初始的上下文改变为由 thisObj 指定的新对象。简单的说就是改变函数执行的上下文，这是最基本的用法。两个方法基本区别在于传参不同。 call(obj,arg1,arg2,arg3); call 第一个参数传对象，可以是 null。参数以逗号分开进行传值，参数可以是任何类型。appl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="call和apply">
+<meta property="og:url" content="http://yoursite.com/2018/03/10/call和apply/index.html">
+<meta property="og:site_name" content="技术博客分享平台  --limHu">
+<meta property="og:description" content="javascript 中通过 call 或者 apply 用来代替另一个对象调用一个方法，将一个函数的对象上下文从初始的上下文改变为由 thisObj 指定的新对象。简单的说就是改变函数执行的上下文，这是最基本的用法。两个方法基本区别在于传参不同。 call(obj,arg1,arg2,arg3); call 第一个参数传对象，可以是 null。参数以逗号分开进行传值，参数可以是任何类型。appl">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-03-10T07:35:42.908Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="call和apply">
+<meta name="twitter:description" content="javascript 中通过 call 或者 apply 用来代替另一个对象调用一个方法，将一个函数的对象上下文从初始的上下文改变为由 thisObj 指定的新对象。简单的说就是改变函数执行的上下文，这是最基本的用法。两个方法基本区别在于传参不同。 call(obj,arg1,arg2,arg3); call 第一个参数传对象，可以是 null。参数以逗号分开进行传值，参数可以是任何类型。appl">
+  
+    <link rel="alternate" href="/atom.xml" title="技术博客分享平台  --limHu" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">技术博客分享平台  --limHu</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-call和apply" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/10/call和apply/" class="article-date">
+  <time datetime="2018-03-10T07:34:20.000Z" itemprop="datePublished">2018-03-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      call和apply
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>javascript 中通过 call 或者 apply 用来代替另一个对象调用一个方法，将一个函数的对象上下文从初始的上下文改变为由 thisObj 指定的新对象。简单的说就是改变函数执行的上下文，这是最基本的用法。两个方法基本区别在于传参不同。</p>
+<p>call(obj,arg1,arg2,arg3); call 第一个参数传对象，可以是 null。参数以逗号分开进行传值，参数可以是任何类型。<br>apply(obj,[arg1,arg2,arg3]); apply 第一个参数传对象，参数可以是数组或者 arguments 对象。</p>
+<p>例子：<br>js 数组最大值 max 和最小值 min。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>];</span><br><span class="line">alert(<span class="built_in">Math</span>.max.apply(<span class="literal">null</span>, a));<span class="comment">//最大值</span></span><br><span class="line">alert(<span class="built_in">Math</span>.min.apply(<span class="literal">null</span>, a));<span class="comment">//最小值多维数组</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,[<span class="number">5</span>,<span class="number">6</span>],[<span class="number">1</span>,<span class="number">4</span>,<span class="number">8</span>]];</span><br><span class="line"><span class="keyword">var</span> ta=a.join(“,”).split(“,”);<span class="comment">//转化为一维数组</span></span><br><span class="line">alert(<span class="built_in">Math</span>.max.apply(<span class="literal">null</span>,ta));<span class="comment">//最大值</span></span><br><span class="line">alert(<span class="built_in">Math</span>.min.apply(<span class="literal">null</span>,ta));<span class="comment">//最小值使用链式</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">Array</span>.prototype.max = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="keyword">return</span> <span class="built_in">Math</span>.max.apply(&#123;&#125;,<span class="keyword">this</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Array</span>.prototype.min = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="keyword">return</span> <span class="built_in">Math</span>.min.apply(&#123;&#125;,<span class="keyword">this</span>)</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>].max()<span class="comment">// =&gt; 3</span></span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>].min()<span class="comment">// =&gt; 1</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Array</span>.max = <span class="function"><span class="keyword">function</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>.max.apply(<span class="built_in">Math</span>, array);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Array</span>.min = <span class="function"><span class="keyword">function</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>.min.apply(<span class="built_in">Math</span>, array);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/03/10/call和apply/" data-id="cjt2m97av0003n5kqhu0ov725" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/04/10/vue-开发过程随记/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          vue-开发过程随记
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/10/20/Flex布局知识点总结/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Flex布局知识点总结</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/10/babel-plugin-import/">babel-plugin-import</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/25/利用Access-Control-Allow-Origin响应头解决跨域请求原理/">利用Access-Control-Allow-Origin响应头解决跨域请求原理</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/10/移动web布局适配方法/">移动web布局适配方法</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/28/Mongodb-知识点/">Mongodb-知识点</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/24/koa2-开发过程随记/">koa2-开发过程随记</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

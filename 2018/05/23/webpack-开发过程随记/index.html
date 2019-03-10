@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>webpack-开发过程随记 | 技术博客分享平台  --limHu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="根据模板生成简单的 html 文件使用 webpack 根据模板生成 HTML，首先需要安装插件 html-webpack-plugin。在工程文件夹安装插件命令如下： 1npm install html-webpack-plugin --save-dev 新建 webpack.config.js名称可以更改，更改后运行时，需指定配置文件名称。例如，配置文件名为 my.webpack.config">
+<meta property="og:type" content="article">
+<meta property="og:title" content="webpack-开发过程随记">
+<meta property="og:url" content="http://yoursite.com/2018/05/23/webpack-开发过程随记/index.html">
+<meta property="og:site_name" content="技术博客分享平台  --limHu">
+<meta property="og:description" content="根据模板生成简单的 html 文件使用 webpack 根据模板生成 HTML，首先需要安装插件 html-webpack-plugin。在工程文件夹安装插件命令如下： 1npm install html-webpack-plugin --save-dev 新建 webpack.config.js名称可以更改，更改后运行时，需指定配置文件名称。例如，配置文件名为 my.webpack.config">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-03-10T07:43:08.881Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="webpack-开发过程随记">
+<meta name="twitter:description" content="根据模板生成简单的 html 文件使用 webpack 根据模板生成 HTML，首先需要安装插件 html-webpack-plugin。在工程文件夹安装插件命令如下： 1npm install html-webpack-plugin --save-dev 新建 webpack.config.js名称可以更改，更改后运行时，需指定配置文件名称。例如，配置文件名为 my.webpack.config">
+  
+    <link rel="alternate" href="/atom.xml" title="技术博客分享平台  --limHu" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">技术博客分享平台  --limHu</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-webpack-开发过程随记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/23/webpack-开发过程随记/" class="article-date">
+  <time datetime="2018-05-23T07:40:20.000Z" itemprop="datePublished">2018-05-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      webpack-开发过程随记
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="根据模板生成简单的-html-文件"><a href="#根据模板生成简单的-html-文件" class="headerlink" title="根据模板生成简单的 html 文件"></a>根据模板生成简单的 html 文件</h2><p>使用 webpack 根据模板生成 HTML，首先需要安装插件 html-webpack-plugin。在工程文件夹安装插件命令如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install html-webpack-plugin --save-dev</span><br></pre></td></tr></table></figure>
+<h2 id="新建-webpack-config-js"><a href="#新建-webpack-config-js" class="headerlink" title="新建 webpack.config.js"></a>新建 webpack.config.js</h2><p>名称可以更改，更改后运行时，需指定配置文件名称。例如，配置文件名为 my.webpack.config.js,　则需要在 package.json 文件中，在 scripts 处添加如下代码:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">"scripts": &#123;</span><br><span class="line">"webpack": "webpack --config webapack.config.js --progress --display--modules --colors --dispaly-reason"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译时，需使用 npm run webpack 命令。</p>
+<h2 id="webpack-是支持-AMD、CMD、ES6-模块化编程的"><a href="#webpack-是支持-AMD、CMD、ES6-模块化编程的" class="headerlink" title="webpack 是支持 AMD、CMD、ES6 模块化编程的"></a>webpack 是支持 AMD、CMD、ES6 模块化编程的</h2><p>我们是可以使用 require、exports 来获取、返回模块内容的。</p>
+<p>在 webpack.prod.conf.js，添加如下代码</p>
+<p>我们将原始文件放在 /src/js 文件夹，打包复制后的文件放在 /dist/js 文件夹。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span></span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</span><br><span class="line"><span class="keyword">const</span> utils = <span class="built_in">require</span>(<span class="string">'./utils'</span>)</span><br><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>)</span><br><span class="line"><span class="keyword">const</span> config = <span class="built_in">require</span>(<span class="string">'../config'</span>)</span><br><span class="line"><span class="keyword">const</span> merge = <span class="built_in">require</span>(<span class="string">'webpack-merge'</span>)</span><br><span class="line"><span class="keyword">const</span> baseWebpackConfig = <span class="built_in">require</span>(<span class="string">'./webpack.base.conf'</span>)</span><br><span class="line"><span class="keyword">const</span> CopyWebpackPlugin = <span class="built_in">require</span>(<span class="string">'copy-webpack-plugin'</span>)</span><br><span class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>)</span><br><span class="line"><span class="keyword">const</span> ExtractTextPlugin = <span class="built_in">require</span>(<span class="string">'extract-text-webpack-plugin'</span>)</span><br><span class="line"><span class="keyword">const</span> OptimizeCSSPlugin = <span class="built_in">require</span>(<span class="string">'optimize-css-assets-webpack-plugin'</span>)</span><br><span class="line"><span class="keyword">const</span> UglifyJsPlugin = <span class="built_in">require</span>(<span class="string">'uglifyjs-webpack-plugin'</span>)</span><br><span class="line"><span class="keyword">const</span> env = <span class="built_in">require</span>(<span class="string">'../config/prod.env'</span>)</span><br><span class="line"><span class="keyword">const</span> webpackConfig = merge(baseWebpackConfig, &#123;</span><br><span class="line"><span class="built_in">module</span>: &#123;</span><br><span class="line">rules: utils.styleLoaders(&#123;</span><br><span class="line">sourceMap: config.build.productionSourceMap,</span><br><span class="line">extract: <span class="literal">true</span>,</span><br><span class="line">usePostCSS: <span class="literal">true</span></span><br><span class="line">&#125;)</span><br><span class="line">&#125;,</span><br><span class="line">devtool: config.build.productionSourceMap ? config.build.devtool : <span class="literal">false</span>,</span><br><span class="line">output: &#123;</span><br><span class="line">path: config.build.assetsRoot,</span><br><span class="line">filename: utils.assetsPath(<span class="string">'js/[name].[chunkhash].js'</span>),</span><br><span class="line">chunkFilename: utils.assetsPath(<span class="string">'js/[id].[chunkhash].js'</span>)</span><br><span class="line">&#125;,</span><br><span class="line">plugins: [</span><br><span class="line"><span class="comment">// http://vuejs.github.io/vue-loader/en/workflow/production.html</span></span><br><span class="line"><span class="keyword">new</span> webpack.DefinePlugin(&#123;</span><br><span class="line"><span class="string">'process.env'</span>: env</span><br><span class="line">&#125;),</span><br><span class="line"><span class="keyword">new</span> UglifyJsPlugin(&#123;</span><br><span class="line"><span class="comment">// 压缩 js 文件，内置插件</span></span><br><span class="line">uglifyOptions: &#123;</span><br><span class="line">comcodess: &#123;</span><br><span class="line">warnings: <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;,</span><br><span class="line">sourceMap: config.build.productionSourceMap,</span><br><span class="line">parallel: <span class="literal">true</span></span><br><span class="line">&#125;),</span><br><span class="line"><span class="comment">// extract css into its own file</span></span><br><span class="line"><span class="keyword">new</span> ExtractTextPlugin(&#123;</span><br><span class="line"><span class="comment">// 提取 css 到单独的文件</span></span><br><span class="line">filename: utils.assetsPath(<span class="string">'css/[name].[contenthash].css'</span>),</span><br><span class="line"><span class="comment">// Setting the following option to `false` will not extract CSS from codesplit chunks.</span></span><br><span class="line"><span class="comment">// Their CSS will instead be inserted dynamically with style-loader when the codesplit chunk has been loaded by webpack.</span></span><br><span class="line"><span class="comment">// It's currently set to `true` because we are seeing that sourcemaps are included in the codesplit bundle as well when it's `false`,</span></span><br><span class="line"><span class="comment">// increasing file size: https://github.com/vuejs-templates/webpack/issues/1110</span></span><br><span class="line">allChunks: <span class="literal">true</span></span><br><span class="line">&#125;),</span><br><span class="line"><span class="comment">// Comcodess extracted CSS. We are using this plugin so that possible</span></span><br><span class="line"><span class="comment">// duplicated CSS from different components can be deduped.</span></span><br><span class="line"><span class="keyword">new</span> OptimizeCSSPlugin(&#123;</span><br><span class="line">cssProcessorOptions: config.build.productionSourceMap</span><br><span class="line">? &#123; <span class="attr">safe</span>: <span class="literal">true</span>, <span class="attr">map</span>: &#123; <span class="attr">inline</span>: <span class="literal">false</span> &#125; &#125;</span><br><span class="line">: &#123; <span class="attr">safe</span>: <span class="literal">true</span> &#125;</span><br><span class="line">&#125;),</span><br><span class="line"><span class="comment">// generate dist index.html with correct asset hash for caching.</span></span><br><span class="line"><span class="comment">// you can customize output by editing /index.html</span></span><br><span class="line"><span class="comment">// see https://github.com/ampedandwired/html-webpack-plugin</span></span><br><span class="line"><span class="keyword">new</span> HtmlWebpackPlugin(&#123;</span><br><span class="line">filename: config.build.index,</span><br><span class="line">templateParameters: &#123;</span><br><span class="line">property: <span class="literal">true</span> <span class="comment">// 开发环境需设置为 false</span></span><br><span class="line">&#125;,</span><br><span class="line">title:<span class="string">'这个是 WebPack Demo'</span>,</span><br><span class="line">template: <span class="string">'index.html'</span>,</span><br><span class="line">inject: <span class="literal">true</span>,</span><br><span class="line">minify: &#123;</span><br><span class="line">removeComments: <span class="literal">true</span>, <span class="comment">// 移除 HTML 中的注释</span></span><br><span class="line">collapseWhitespace: <span class="literal">true</span>, <span class="comment">// 删除空白符与换行符</span></span><br><span class="line">removeAttributeQuotes: <span class="literal">true</span></span><br><span class="line"><span class="comment">// more options:</span></span><br><span class="line"><span class="comment">// https://github.com/kangax/html-minifier#options-quick-reference</span></span><br><span class="line">&#125;,</span><br><span class="line"><span class="comment">// necessary to consistently work with multiple chunks via CommonsChunkPlugin</span></span><br><span class="line">chunksSortMode: <span class="string">'dependency'</span></span><br><span class="line">&#125;),</span><br><span class="line"><span class="comment">// keep module.id stable when vendor modules does not change</span></span><br><span class="line"><span class="keyword">new</span> webpack.HashedModuleIdsPlugin(),</span><br><span class="line"><span class="comment">// enable scope hoisting</span></span><br><span class="line"><span class="keyword">new</span> webpack.optimize.ModuleConcatenationPlugin(),</span><br><span class="line"><span class="comment">// split vendor js into its own file</span></span><br><span class="line"><span class="keyword">new</span> webpack.optimize.CommonsChunkPlugin(&#123;</span><br><span class="line">name: <span class="string">'vendor'</span>,</span><br><span class="line">minChunks (<span class="built_in">module</span>) &#123;</span><br><span class="line"><span class="comment">// any required modules inside node_modules are extracted to vendor</span></span><br><span class="line"><span class="keyword">return</span> (</span><br><span class="line"><span class="built_in">module</span>.resource &amp;&amp;</span><br><span class="line">/\.js$/.test(<span class="built_in">module</span>.resource) &amp;&amp;</span><br><span class="line"><span class="built_in">module</span>.resource.indexOf(path.join(\_\_dirname, <span class="string">'../node_modules'</span>)) === <span class="number">0</span></span><br><span class="line">)</span><br><span class="line">&#125;</span><br><span class="line">&#125;),</span><br><span class="line"><span class="comment">// extract webpack runtime and module manifest to its own file in order to</span></span><br><span class="line"><span class="comment">// codevent vendor hash from being updated whenever app bundle is updated</span></span><br><span class="line"><span class="keyword">new</span> webpack.optimize.CommonsChunkPlugin(&#123;</span><br><span class="line">name: <span class="string">'manifest'</span>,</span><br><span class="line">minChunks: <span class="literal">Infinity</span></span><br><span class="line">&#125;),</span><br><span class="line"><span class="comment">// This instance extracts shared chunks from code splitted chunks and bundles them</span></span><br><span class="line"><span class="comment">// in a separate chunk, similar to the vendor chunk</span></span><br><span class="line"><span class="comment">// see: https://webpack.js.org/plugins/commons-chunk-plugin/#extra-async-commons-chunk</span></span><br><span class="line"><span class="keyword">new</span> webpack.optimize.CommonsChunkPlugin(&#123;</span><br><span class="line">name: <span class="string">'app'</span>,</span><br><span class="line"><span class="keyword">async</span>: <span class="string">'vendor-async'</span>,</span><br><span class="line">children: <span class="literal">true</span>,</span><br><span class="line">minChunks: <span class="number">3</span></span><br><span class="line">&#125;),</span><br><span class="line">    <span class="comment">// copy custom static assets</span></span><br><span class="line">    <span class="keyword">new</span> CopyWebpackPlugin([</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="keyword">from</span>: path.resolve(__dirname, <span class="string">'../static'</span>),</span><br><span class="line">        to: config.build.assetsSubDirectory,</span><br><span class="line">        ignore: [<span class="string">'.*'</span>]</span><br><span class="line">      &#125;</span><br><span class="line">    ])</span><br><span class="line">]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">if</span> (config.build.productionGzip) &#123;</span><br><span class="line"><span class="keyword">const</span> ComcodessionWebpackPlugin = <span class="built_in">require</span>(<span class="string">'comcodession-webpack-plugin'</span>) <span class="comment">// 压缩 gzip</span></span><br><span class="line">webpackConfig.plugins.push(</span><br><span class="line"><span class="keyword">new</span> ComcodessionWebpackPlugin(&#123;</span><br><span class="line">asset: <span class="string">'[path].gz[query]'</span>,</span><br><span class="line">algorithm: <span class="string">'gzip'</span>,</span><br><span class="line">test: <span class="keyword">new</span> <span class="built_in">RegExp</span>(</span><br><span class="line"><span class="string">'\\.('</span> + config.build.productionGzipExtensions.join(<span class="string">'|'</span>) + <span class="string">')$'</span></span><br><span class="line">),</span><br><span class="line">threshold: <span class="number">10240</span>,</span><br><span class="line">minRatio: <span class="number">0.8</span></span><br><span class="line">&#125;)</span><br><span class="line">)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (config.build.bundleAnalyzerReport) &#123;</span><br><span class="line"><span class="keyword">const</span> BundleAnalyzerPlugin = <span class="built_in">require</span>(<span class="string">'webpack-bundle-analyzer'</span>)</span><br><span class="line">.BundleAnalyzerPlugin</span><br><span class="line">webpackConfig.plugins.push(<span class="keyword">new</span> BundleAnalyzerPlugin())</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">module</span>.exports = webpackConfig</span><br></pre></td></tr></table></figure>
+<p>我们可以在模板 index.html 书写类似 PHP、ASP.net 的语法格式。</p>
+<p>模板 index.html 文件模板内容</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span> (<span class="attr">htmlWebpackPlugin.options.templateParameters.property</span>)&#123;%&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">base</span> <span class="attr">href</span>=<span class="string">"/abc/"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">%&#125;%</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;<span class="name">%=htmlWebpackPlugin.options.title%</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span></span></span><br><span class="line"><span class="tag">      <span class="attr">type</span>=<span class="string">"text/javascript"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">src</span>=<span class="string">"&lt;%=htmlWebpackPlugin.files.chunks.main.entry%&gt;"</span></span></span><br><span class="line"><span class="tag">    &gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">code</span>&gt;</span></span><br><span class="line">      :<span class="tag">&lt;<span class="name">=JSON.stringify(htmlWebpackPlugin.files[key])</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">%</span> <span class="attr">for</span>(<span class="attr">var</span> <span class="attr">key</span> <span class="attr">in</span> <span class="attr">htmlWebpackPlugin.options</span>)&#123;%&gt;</span> <span class="tag">&lt;<span class="name">%=key</span></span></span><br><span class="line"><span class="tag">      %&gt;</span>:<span class="tag">&lt;<span class="name">%=JSON.stringify(htmlWebpackPlugin.options[key])%</span>&gt;</span> <span class="tag">&lt;<span class="name">%&#125;%</span>&gt;</span> <span class="tag">&lt;<span class="name">%</span> <span class="attr">for</span>(<span class="attr">var</span></span></span><br><span class="line"><span class="tag">      <span class="attr">key</span> <span class="attr">in</span> <span class="attr">htmlWebpackPlugin.files</span>)&#123;%&gt;</span> <span class="tag">&lt;<span class="name">%=key</span></span></span><br><span class="line"><span class="tag">      %&gt;</span>:<span class="tag">&lt;<span class="name">%=JSON.stringify(htmlWebpackPlugin.files[key])%</span>&gt;</span> <span class="tag">&lt;<span class="name">%&#125;%</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">script</span></span></span><br><span class="line"><span class="tag">        <span class="attr">type</span>=<span class="string">"text/javascript"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">src</span>=<span class="string">"&lt;%=htmlWebpackPlugin.files.chunks.a.entry%&gt;"</span></span></span><br><span class="line"><span class="tag">      &gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">code</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>运行 webpack，即可生成 HTML 文件 。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/05/23/webpack-开发过程随记/" data-id="cjt2m97az0007n5kqs3ccb9cz" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/05/24/koa2-开发过程随记/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          koa2-开发过程随记
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/04/10/vue-开发过程随记/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">vue-开发过程随记</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/10/babel-plugin-import/">babel-plugin-import</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/25/利用Access-Control-Allow-Origin响应头解决跨域请求原理/">利用Access-Control-Allow-Origin响应头解决跨域请求原理</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/10/移动web布局适配方法/">移动web布局适配方法</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/28/Mongodb-知识点/">Mongodb-知识点</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/24/koa2-开发过程随记/">koa2-开发过程随记</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

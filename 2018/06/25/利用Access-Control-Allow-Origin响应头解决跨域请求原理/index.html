@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>利用Access-Control-Allow-Origin响应头解决跨域请求原理 | 技术博客分享平台  --limHu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="W3C 提供了跨域请求的标准方案（Cross-Origin Resource Sharing）。IE8、Firefox 3.5 及其以后的版本、Chrome 浏览器、Safari 4 等已经实现了 Cross-Origin Resource Sharing 规范，实现了跨域请求。在服务器响应客户端的时候，带上 Access-Control-Allow-Origin 头信息。 如果设置 Access">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用Access-Control-Allow-Origin响应头解决跨域请求原理">
+<meta property="og:url" content="http://yoursite.com/2018/06/25/利用Access-Control-Allow-Origin响应头解决跨域请求原理/index.html">
+<meta property="og:site_name" content="技术博客分享平台  --limHu">
+<meta property="og:description" content="W3C 提供了跨域请求的标准方案（Cross-Origin Resource Sharing）。IE8、Firefox 3.5 及其以后的版本、Chrome 浏览器、Safari 4 等已经实现了 Cross-Origin Resource Sharing 规范，实现了跨域请求。在服务器响应客户端的时候，带上 Access-Control-Allow-Origin 头信息。 如果设置 Access">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-03-10T07:28:03.167Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="利用Access-Control-Allow-Origin响应头解决跨域请求原理">
+<meta name="twitter:description" content="W3C 提供了跨域请求的标准方案（Cross-Origin Resource Sharing）。IE8、Firefox 3.5 及其以后的版本、Chrome 浏览器、Safari 4 等已经实现了 Cross-Origin Resource Sharing 规范，实现了跨域请求。在服务器响应客户端的时候，带上 Access-Control-Allow-Origin 头信息。 如果设置 Access">
+  
+    <link rel="alternate" href="/atom.xml" title="技术博客分享平台  --limHu" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">技术博客分享平台  --limHu</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-利用Access-Control-Allow-Origin响应头解决跨域请求原理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/25/利用Access-Control-Allow-Origin响应头解决跨域请求原理/" class="article-date">
+  <time datetime="2018-06-25T07:26:58.000Z" itemprop="datePublished">2018-06-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      利用Access-Control-Allow-Origin响应头解决跨域请求原理
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>W3C 提供了跨域请求的标准方案（Cross-Origin Resource Sharing）。<br>IE8、Firefox 3.5 及其以后的版本、Chrome 浏览器、Safari 4 等已经实现了 Cross-Origin Resource Sharing 规范，实现了跨域请求。<br>在服务器响应客户端的时候，带上 Access-Control-Allow-Origin 头信息。</p>
+<p>如果设置 Access-Control-Allow-Origin:*，则允许所有域名的脚本访问该资源。<br>Access-Control-Allow-Origin:<a href="http://www.phpddt.com.com,允许特定的域名访问。" target="_blank" rel="noopener">http://www.phpddt.com.com,允许特定的域名访问。</a></p>
+<h2 id="Cross-Origin-Resource-Sharing-协议介绍"><a href="#Cross-Origin-Resource-Sharing-协议介绍" class="headerlink" title="Cross-Origin Resource Sharing 协议介绍"></a>Cross-Origin Resource Sharing 协议介绍</h2><p>传统的 Ajax 请求只能获取在同一个域名下面的资源，但是 HTML5 打破了这个限制，允许 Ajax 发起跨域的请求。<br>浏览器是可以发起跨域请求的，比如你可以外链一个外域的图片或者脚本。但是 Javascript 脚本是不能获取这些资源的内容的，它只能被浏览器执行或渲染。</p>
+<p>Javascript 先发出跨域请求，<br>然后检查回复的‘Access-Control-Allow-Origin’头。<br>如果这个头允许该外域访问，则 Javascript 可以读取这个回复，否则就被禁止访问。<br>如果请求不是一个简单的 COR，则向外域服务器发送预检验请求，如果回复的头部允许访问，则发送跨域请求，否则禁止。</p>
+<p>下面的 Javascript 会发出预检验请求和真实请求：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;script language=<span class="string">"Javascript"</span> type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">  <span class="keyword">var</span> client = <span class="keyword">new</span> XMLHttpRequest(); client.open(<span class="string">"GET"</span>, <span class="string">"http://bar.org/b"</span>)</span><br><span class="line">  client.setRequestHeader(<span class="string">'Content-Type'</span>,<span class="string">'text/html'</span>) client.onreadystatechange</span><br><span class="line">  = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;<span class="comment">/* do something */</span>&#125;</span><br><span class="line">  client.send()</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+<p>由于“Content-type: text/html”不是一个简单的头，它会先向”<a href="http://bar.org/b&quot;发出一个OPTIONS的HTTP请求。" target="_blank" rel="noopener">http://bar.org/b&quot;发出一个OPTIONS的HTTP请求。</a> 回复可能包含这样的头：</p>
+<p>Access-Control-Allow-Origin: <a href="http://foo.org" target="_blank" rel="noopener">http://foo.org</a></p>
+<p>Access-Control-Max-Age: 3628800</p>
+<p>Access-Control-Allow-Methods: GET，PUT, DELETE</p>
+<p>Access-Control-Allow-Headers: content-type</p>
+<p>“Access-Control-Allow-Origin”表明它允许”<a href="http://foo.org&quot;发起跨域请求" target="_blank" rel="noopener">http://foo.org&quot;发起跨域请求</a></p>
+<p>“Access-Control-Max-Age”表明在 3628800 秒内，不需要再发送预检验请求，可以缓存该结果</p>
+<p>“Access-Control-Allow-Methods”表明它允许 GET、PUT、DELETE 的外域请求</p>
+<p>“Access-Control-Allow-Headers”表明它允许跨域请求包含 content-type 头</p>
+<p>如果预检验请求获得通过，接下来 Javascript 就会发起真实的 COR 请求，过程跟简单的 COR 请求类似。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/06/25/利用Access-Control-Allow-Origin响应头解决跨域请求原理/" data-id="cjt2m97ay0006n5kqn3w4cxki" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/03/10/babel-plugin-import/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          babel-plugin-import
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/06/10/移动web布局适配方法/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">移动web布局适配方法</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/10/babel-plugin-import/">babel-plugin-import</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/25/利用Access-Control-Allow-Origin响应头解决跨域请求原理/">利用Access-Control-Allow-Origin响应头解决跨域请求原理</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/10/移动web布局适配方法/">移动web布局适配方法</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/28/Mongodb-知识点/">Mongodb-知识点</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/24/koa2-开发过程随记/">koa2-开发过程随记</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>koa2-开发过程随记 | 技术博客分享平台  --limHu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="安装  12npm –save 安装到生产环境npm –save-dev 安装到开发环境  请求页面 http://localhost:3001/为HTTP GET 请求  123app.use(async ctx =&amp;gt; &amp;#123;  console.info(ctx);&amp;#125;); 12345678910111213141516171819202122232425262728293">
+<meta property="og:type" content="article">
+<meta property="og:title" content="koa2-开发过程随记">
+<meta property="og:url" content="http://yoursite.com/2018/05/24/koa2-开发过程随记/index.html">
+<meta property="og:site_name" content="技术博客分享平台  --limHu">
+<meta property="og:description" content="安装  12npm –save 安装到生产环境npm –save-dev 安装到开发环境  请求页面 http://localhost:3001/为HTTP GET 请求  123app.use(async ctx =&amp;gt; &amp;#123;  console.info(ctx);&amp;#125;); 12345678910111213141516171819202122232425262728293">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-03-10T07:45:37.841Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="koa2-开发过程随记">
+<meta name="twitter:description" content="安装  12npm –save 安装到生产环境npm –save-dev 安装到开发环境  请求页面 http://localhost:3001/为HTTP GET 请求  123app.use(async ctx =&amp;gt; &amp;#123;  console.info(ctx);&amp;#125;); 12345678910111213141516171819202122232425262728293">
+  
+    <link rel="alternate" href="/atom.xml" title="技术博客分享平台  --limHu" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">技术博客分享平台  --limHu</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-koa2-开发过程随记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/24/koa2-开发过程随记/" class="article-date">
+  <time datetime="2018-05-24T07:43:31.000Z" itemprop="datePublished">2018-05-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      koa2-开发过程随记
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>安装</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm –save 安装到生产环境</span><br><span class="line">npm –save-dev 安装到开发环境</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>请求页面 <a href="http://localhost:3001/为HTTP" target="_blank" rel="noopener">http://localhost:3001/为HTTP</a> GET 请求</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="keyword">async</span> ctx =&gt; &#123;</span><br><span class="line">  <span class="built_in">console</span>.info(ctx);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="attr">request</span>:</span><br><span class="line">   &#123; <span class="attr">method</span>: <span class="string">'GET'</span>,</span><br><span class="line">     url: <span class="string">'/'</span>,</span><br><span class="line">     header:</span><br><span class="line">      &#123; <span class="attr">host</span>: <span class="string">'localhost:3001'</span>,</span><br><span class="line">        connection: <span class="string">'keep-alive'</span>,</span><br><span class="line">        <span class="string">'cache-control'</span>: <span class="string">'max-age=0'</span>,</span><br><span class="line">        <span class="string">'upgrade-insecure-requests'</span>: <span class="string">'1'</span>,</span><br><span class="line">        <span class="string">'user-agent'</span>: <span class="string">'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36'</span>,</span><br><span class="line">        accept: <span class="string">'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8'</span>,</span><br><span class="line">        <span class="string">'accept-encoding'</span>: <span class="string">'gzip, deflate, br'</span>,</span><br><span class="line">        <span class="string">'accept-language'</span>: <span class="string">'zh-CN,zh;q=0.9'</span>,</span><br><span class="line">        cookie: <span class="string">'BIGipServerPOOL_PACLOUD_STGR2017093007195=209847326.34991.0000; BIGipServerPOOL_PACLOUD_STGR2018040304087=461505566.34991.0000'</span> &#125; &#125;,</span><br><span class="line">  response: &#123; <span class="attr">status</span>: <span class="number">404</span>, <span class="attr">message</span>: <span class="string">'Not Found'</span>, <span class="attr">header</span>: &#123;&#125; &#125;,</span><br><span class="line">  app: &#123; <span class="attr">subdomainOffset</span>: <span class="number">2</span>, <span class="attr">proxy</span>: <span class="literal">false</span>, <span class="attr">env</span>: <span class="string">'development'</span> &#125;,</span><br><span class="line">  originalUrl: <span class="string">'/'</span>,</span><br><span class="line">  req: <span class="string">'&lt;original node req&gt;'</span>,</span><br><span class="line">  res: <span class="string">'&lt;original node res&gt;'</span>,</span><br><span class="line">  socket: <span class="string">'&lt;original node socket&gt;'</span> &#125;</span><br><span class="line">&#123; <span class="attr">request</span>:</span><br><span class="line">   &#123; <span class="attr">method</span>: <span class="string">'GET'</span>,</span><br><span class="line">     url: <span class="string">'/favicon.ico'</span>, <span class="comment">// 收藏夹图标</span></span><br><span class="line">     header:</span><br><span class="line">      &#123; <span class="attr">host</span>: <span class="string">'localhost:3001'</span>,</span><br><span class="line">        connection: <span class="string">'keep-alive'</span>,</span><br><span class="line">        <span class="string">'user-agent'</span>: <span class="string">'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36'</span>,</span><br><span class="line">        accept: <span class="string">'image/webp,image/apng,image/*,*/*;q=0.8'</span>,</span><br><span class="line">        referer: <span class="string">'http://localhost:3001/'</span>,</span><br><span class="line">        <span class="string">'accept-encoding'</span>: <span class="string">'gzip, deflate, br'</span>,</span><br><span class="line">        <span class="string">'accept-language'</span>: <span class="string">'zh-CN,zh;q=0.9'</span>,</span><br><span class="line">        cookie: <span class="string">'BIGipServerPOOL_PACLOUD_STGR2017093007195=209847326.34991.0000; BIGipServerPOOL_PACLOUD_STGR2018040304087=461505566.34991.0000'</span> &#125; &#125;,</span><br><span class="line">  response: &#123; <span class="attr">status</span>: <span class="number">404</span>, <span class="attr">message</span>: <span class="string">'Not Found'</span>, <span class="attr">header</span>: &#123;&#125; &#125;,</span><br><span class="line">  app: &#123; <span class="attr">subdomainOffset</span>: <span class="number">2</span>, <span class="attr">proxy</span>: <span class="literal">false</span>, <span class="attr">env</span>: <span class="string">'development'</span> &#125;,</span><br><span class="line">  originalUrl: <span class="string">'/favicon.ico'</span>,</span><br><span class="line">  req: <span class="string">'&lt;original node req&gt;'</span>,</span><br><span class="line">  res: <span class="string">'&lt;original node res&gt;'</span>,</span><br><span class="line">  socket: <span class="string">'&lt;original node socket&gt;'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li><p>await 必须在 async 方法中才可以使用因为 await 访问本身就会造成程序停止堵塞，所以必须在异步方法中才可以使用。</p>
+</li>
+<li><p>npm install –save koa-bodyparser@3<br>@3 版本</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/05/24/koa2-开发过程随记/" data-id="cjt2m97aw0004n5kqfejqno6v" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/05/28/Mongodb-知识点/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Mongodb-知识点
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/05/23/webpack-开发过程随记/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">webpack-开发过程随记</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/10/babel-plugin-import/">babel-plugin-import</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/25/利用Access-Control-Allow-Origin响应头解决跨域请求原理/">利用Access-Control-Allow-Origin响应头解决跨域请求原理</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/10/移动web布局适配方法/">移动web布局适配方法</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/28/Mongodb-知识点/">Mongodb-知识点</a>
+          </li>
+        
+          <li>
+            <a href="/2018/05/24/koa2-开发过程随记/">koa2-开发过程随记</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
