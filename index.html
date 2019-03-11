@@ -62,6 +62,103 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-element-ui-2-6-1-bug记录" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/11/element-ui-2-6-1-bug记录/" class="article-date">
+  <time datetime="2019-03-11T09:53:17.000Z" itemprop="datePublished">2019-03-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/11/element-ui-2-6-1-bug记录/">element-ui 2.6.1 bug记录</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://github.com/ElemeFE/element/issues/14564" target="_blank" rel="noopener">https://github.com/ElemeFE/element/issues/14564</a></p>
+<p>Element UI version<br>2.6.1</p>
+<p>OS/Browsers version<br>XP 系统//Chrome49 版本</p>
+<p>Vue version<br>2.6.8</p>
+<p>Reproduction Link<br><a href="https://jsfiddle.net/mmx38qxw/" target="_blank" rel="noopener">https://jsfiddle.net/mmx38qxw/</a></p>
+<p>Steps to reproduce<br>el-inpu 组件在输入中文时，会自动带出拼音！只有在 XP 系统，Chrome49 环境下会有这个问题！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/03/11/element-ui-2-6-1-bug记录/" data-id="cjt4685fb0001oxkqmla0f0t2" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-web性能优化" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/10/web性能优化/" class="article-date">
+  <time datetime="2019-03-10T08:32:00.000Z" itemprop="datePublished">2019-03-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/10/web性能优化/">web性能优化</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="计划与指标"><a href="#计划与指标" class="headerlink" title="计划与指标"></a>计划与指标</h2><ol>
+<li>比你最快的竞争对手快 20%</li>
+</ol>
+<p>根据一项心理学研究，如果希望用户感觉到你们的网站用起来比竞争对手快，那么需要比他们快至少 20%。<br>研究你的主要对手，收集他们的网站在移动和桌面设备上的性能指标，确定超越他们的最低要求。</p>
+<ol start="2">
+<li>在特定限速环境下测试收集数据</li>
+</ol>
+<p>移动设备上，运行速度应该会比在桌面设备上慢 4-5 倍。移动设备上的解析时间通常要比桌面设备长 36%。<br>我们可以通过网络限速以及 CPU 限速在电脑上模拟移动端体验。</p>
+<p>为了能够复现真实用户的浏览器配置，在有条件的情况下可以模拟以下两类环境： 1.没有安装任何插件、应用、防火墙等的电脑环境； 2.用户可能会经常安装的各类软件和使用的浏览器、浏览器插件等的电脑环境；</p>
+<p>在模拟限速时，为了更准确的复现网络限速环境，可以使用 devtools 以外的工具：</p>
+<ul>
+<li>Mac OS 可以用 Network Link Conditioner(<a href="https://nshipster.com/network-link-conditioner/)；" target="_blank" rel="noopener">https://nshipster.com/network-link-conditioner/)；</a></li>
+<li>Windows 可以用 Windows Traffic Shaper；</li>
+<li>Linux 可以用 netem</li>
+</ul>
+<ol start="3">
+<li>首次加载指标</li>
+</ol>
+<p>移动端应用：<br>首次绘制时间 1 秒以内，TTI（交互时间） &lt; 5s（3G），关键文件大小 &lt; 170KB（gzip 压缩后）</p>
+<h2 id="资源优化"><a href="#资源优化" class="headerlink" title="资源优化"></a>资源优化</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/03/10/web性能优化/" data-id="cjt4685fj0007oxkq5n33294w" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-利用Access-Control-Allow-Origin响应头解决跨域请求原理" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/06/25/利用Access-Control-Allow-Origin响应头解决跨域请求原理/" class="article-date">
@@ -104,7 +201,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/06/25/利用Access-Control-Allow-Origin响应头解决跨域请求原理/" data-id="cjt2mf6kx0005pwkqvicyuplt" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/06/25/利用Access-Control-Allow-Origin响应头解决跨域请求原理/" data-id="cjt4685fm000aoxkqlih2daxf" class="article-share-link">Share</a>
       
       
     </footer>
@@ -155,7 +252,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/06/10/移动web布局适配方法/" data-id="cjt2mf6l00009pwkqfrcm76m0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/06/10/移动web布局适配方法/" data-id="cjt4685gj000boxkq15786myz" class="article-share-link">Share</a>
       
       
     </footer>
@@ -199,7 +296,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/28/Mongodb-知识点/" data-id="cjt2mf6ku0002pwkq213a0idi" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/05/28/Mongodb-知识点/" data-id="cjt4685fe0003oxkqswzcflx2" class="article-share-link">Share</a>
       
       
     </footer>
@@ -250,7 +347,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/24/koa2-开发过程随记/" data-id="cjt2mf6kv0003pwkqino8op0q" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/05/24/koa2-开发过程随记/" data-id="cjt4685ff0004oxkqvc8ugv8d" class="article-share-link">Share</a>
       
       
     </footer>
@@ -299,7 +396,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/23/webpack-开发过程随记/" data-id="cjt2mf6kw0004pwkqumsiog4k" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/05/23/webpack-开发过程随记/" data-id="cjt4685fk0008oxkq54yud6gq" class="article-share-link">Share</a>
       
       
     </footer>
@@ -352,7 +449,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/10/vue-开发过程随记/" data-id="cjt2mf6kz0007pwkqwlhgru72" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/10/vue-开发过程随记/" data-id="cjt4685fi0006oxkqs6tg35by" class="article-share-link">Share</a>
       
       
     </footer>
@@ -392,7 +489,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/10/call和apply/" data-id="cjt2mf6ky0006pwkq7n2c5vbw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/10/call和apply/" data-id="cjt4685fg0005oxkqu0xy13c0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -430,159 +527,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/10/babel-plugin-import/" data-id="cjt2mf6ks0001pwkqdx4hacf4" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Flex布局知识点总结" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/10/20/Flex布局知识点总结/" class="article-date">
-  <time datetime="2017-10-20T04:21:32.000Z" itemprop="datePublished">2017-10-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/20/Flex布局知识点总结/">Flex布局知识点总结</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><p>flexbox：更加优雅的 Web 布局<br>网址：<a href="https://segmentfault.com/a/1190000002616717" target="_blank" rel="noopener">https://segmentfault.com/a/1190000002616717</a><br>flex 弹性布局学习总结<br>网址：<a href="https://www.cnblogs.com/nuannuan7362/p/5823381.html" target="_blank" rel="noopener">https://www.cnblogs.com/nuannuan7362/p/5823381.html</a><br>优缺点：<br>兼容性<br>网址： <a href="https://caniuse.com/#search=flex" target="_blank" rel="noopener">https://caniuse.com/#search=flex</a></p>
-<p>布局的传统解决方案，基于盒状模型，依赖 display 属性 + position 属性 + float 属性。它对于那些特殊布局非常不方便，比如，垂直居中就不容易实现。<br>2009 年，W3C 提出了一种新的方案—-Flex 布局，可以简便、完整、响应式地实现各种页面布局。目前，它已经得到了所有浏览器的支持，这意味着，现在就能很安全地使用这项功能。</p>
-<h2 id="Flex-布局是什么？"><a href="#Flex-布局是什么？" class="headerlink" title="Flex 布局是什么？"></a>Flex 布局是什么？</h2><p>任何一个容器都可以指定为 Flex 布局。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">box</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>行内元素也可以使用 Flex 布局。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: inline-flex;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注意，设为 Flex 布局以后，子元素的 float、clear 和 vertical-align 属性将失效。</p>
-</blockquote>
-<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>容器默认存在两根轴：水平的主轴（main axis）和垂直的交叉轴（cross axis）。主轴的开始位置（与边框的交叉点）叫做 main start，结束位置叫做 main end；交叉轴的开始位置叫做 cross start，结束位置叫做 cross end。</p>
-<h2 id="容器的属性"><a href="#容器的属性" class="headerlink" title="容器的属性"></a>容器的属性</h2><h3 id="flex-direction-属性"><a href="#flex-direction-属性" class="headerlink" title="flex-direction 属性"></a>flex-direction 属性</h3><p>flex-direction 属性决定主轴的方向（即项目的排列方向）。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">flex-direction</span>: row | row-reverse | column | column-reverse;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="flex-wrap-属性"><a href="#flex-wrap-属性" class="headerlink" title="flex-wrap 属性"></a>flex-wrap 属性</h3><p>默认情况下，项目都排在一条线（又称”轴线”）上。flex-wrap 属性定义，如果一条轴线排不下，如何换行。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">flex-wrap</span>: nowrap | wrap | wrap-reverse;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="flex-flow"><a href="#flex-flow" class="headerlink" title="flex-flow"></a>flex-flow</h3><p>flex-flow 属性是 flex-direction 属性和 flex-wrap 属性的简写形式，默认值为 row nowrap</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">flex-flow</span>: &lt;flex-direction&gt; || &lt;flex-wrap&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="justify-content-属性"><a href="#justify-content-属性" class="headerlink" title="justify-content 属性"></a>justify-content 属性</h3><p>justify-content 属性定义了项目在主轴上的对齐方式。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">justify-content</span>: flex-start | flex-end | center | space-between | space-around;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="align-items-属性"><a href="#align-items-属性" class="headerlink" title="align-items 属性"></a>align-items 属性</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">align-items</span>: flex-start | flex-end | center | baseline | stretch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="align-content-属性"><a href="#align-content-属性" class="headerlink" title="align-content 属性"></a>align-content 属性</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">align-content</span>: flex-start | flex-end | center | space-between | space-around |</span><br><span class="line">    stretch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="项目的属性"><a href="#项目的属性" class="headerlink" title="项目的属性"></a>项目的属性</h2><h3 id="order-属性"><a href="#order-属性" class="headerlink" title="order 属性"></a>order 属性</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">order</span>: &lt;integer&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="flex-grow-属性"><a href="#flex-grow-属性" class="headerlink" title="flex-grow 属性"></a>flex-grow 属性</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">flex-grow</span>: &lt;number&gt;; <span class="comment">/* default 0 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="flex-shrink-属性"><a href="#flex-shrink-属性" class="headerlink" title="flex-shrink 属性"></a>flex-shrink 属性</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">flex-shrink</span>: &lt;number&gt;; <span class="comment">/* default 1 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="flex-basis-属性"><a href="#flex-basis-属性" class="headerlink" title="flex-basis 属性"></a>flex-basis 属性</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">flex-basis</span>: &lt;length&gt; | auto; <span class="comment">/* default auto */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="flex-属性"><a href="#flex-属性" class="headerlink" title="flex 属性"></a>flex 属性</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">flex</span>: none | [ &lt; <span class="string">'flex-grow'</span> &gt; &lt; <span class="string">'flex-shrink'</span> &gt;? || &lt; <span class="string">'flex-basis'</span> &gt; ];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="align-self-属性"><a href="#align-self-属性" class="headerlink" title="align-self 属性"></a>align-self 属性</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">align-self</span>: auto | flex-start | flex-end | center | baseline | stretch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/10/20/Flex布局知识点总结/" data-id="cjt2mf6kn0000pwkqkme2acq9" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-基于hexo-github搭建一个独立博客" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/10/17/基于hexo-github搭建一个独立博客/" class="article-date">
-  <time datetime="2017-10-17T06:47:47.000Z" itemprop="datePublished">2017-10-17</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/17/基于hexo-github搭建一个独立博客/">基于hexo+github搭建一个独立博客</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>1.node：用来生成静态页面的 到 Node.js 官网下载相应平台的最新版本，一路安装即可。</p>
-<p>2.git: 把本地的 hexo 内容提交到 github 上去.没有安装的可以看此教程。</p>
-<p>3.github：用来做博客的远程创库、域名、服务器。</p>
-<h2 id="安装-Hexo"><a href="#安装-Hexo" class="headerlink" title="安装 Hexo"></a>安装 Hexo</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install -g hexo</span><br></pre></td></tr></table></figure>
-<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p>终端 cd 到一个你选定的目录（比如创建一个 blog 文件，\$cd blog），执行 hexo init 命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
-<p>在 blog 目录下，执行如下命令，安装 npm：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
-<p>执行如下命令，开启 hexo 服务器：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-<p>此时，浏览器中打开网址<a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a>.</p>
-<h2 id="关联-Github"><a href="#关联-Github" class="headerlink" title="关联 Github"></a>关联 Github</h2><p>本地设置好后，接下来开始关联 Github。</p>
-<h3 id="创建仓库"><a href="#创建仓库" class="headerlink" title="创建仓库"></a>创建仓库</h3><p>登录你的 Github 帐号，新建仓库，名为用户名.github.io 固定写法。</p>
-<p>本地的 blog 文件夹下内容为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">_config.yml</span><br><span class="line">db.json</span><br><span class="line">node_modules</span><br><span class="line">package.json</span><br><span class="line">scaffolds</span><br><span class="line">source</span><br><span class="line">themes</span><br></pre></td></tr></table></figure>
-<p>终端 cd 到 blog 文件夹下，vim 打开_config.yml，命令如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim _config.yml</span><br></pre></td></tr></table></figure>
-<p>打开后往下滑到最后，修改成下边的样子：</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">git</span></span><br><span class="line"><span class="attr">  repository:</span> <span class="attr">https://github.com/test/test.github.io.git</span></span><br><span class="line"><span class="attr">  branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注意：在配置所有的_config.yml 文件时（包括 theme 中的），在所有的冒号:后边都要加一个空格，否则执行 hexo 命令会报错.</p>
-</blockquote>
-<p>在 blog 文件夹目录下执行生成静态页面命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo generate        或者：hexo g</span><br></pre></td></tr></table></figure>
-<p>再执行配置命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy            或者：hexo d</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注意：若执行命令 hexo deploy 仍然报错：无法连接 git 或找不到 git，则执行如下命令来安装 hexo-deployer-git：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-<p>hexo deploy 命令执行成功后，浏览器中打开网址<a href="http://test.github.io（将test换成你的用户名）能看到和打开http://localhost:4000时一样的页面。" target="_blank" rel="noopener">http://test.github.io（将test换成你的用户名）能看到和打开http://localhost:4000时一样的页面。</a></p>
-<h3 id="添加-ssh-key-到-Github"><a href="#添加-ssh-key-到-Github" class="headerlink" title="添加 ssh key 到 Github"></a>添加 ssh key 到 Github</h3><p>为避免每次输入 Github 用户名和密码的麻烦，可参照第二节方法.</p>
-<h4 id="检查-SSH-keys-是否存在-Github"><a href="#检查-SSH-keys-是否存在-Github" class="headerlink" title="检查 SSH keys 是否存在 Github"></a>检查 SSH keys 是否存在 Github</h4><p>执行如下命令，检查 SSH keys 是否存在。如果有文件 id_rsa.pub 或 id_dsa.pub，则直接进入步骤 1.3 将 SSH key 添加到 Github 中，否则进入下一步生成 SSH key。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -al ~/.ssh</span><br></pre></td></tr></table></figure>
-<h4 id="生成新的-ssh-key"><a href="#生成新的-ssh-key" class="headerlink" title="生成新的 ssh key"></a>生成新的 ssh key</h4><p>执行如下命令生成 public/private rsa key pair，注意将 <a href="mailto:your_email@example.com" target="_blank" rel="noopener">your_email@example.com</a> 换成你自己注册 Github 的邮箱地址。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;your_email@example.com&quot;</span><br></pre></td></tr></table></figure>
-<p>默认会在相应路径下（~/.ssh/id_rsa.pub）生成 id_rsa 和 id_rsa.pub 两个文件。</p>
-<h4 id="将-ssh-key-添加到-Github-中"><a href="#将-ssh-key-添加到-Github-中" class="headerlink" title="将 ssh key 添加到 Github 中"></a>将 ssh key 添加到 Github 中</h4><p>Find 前往文件夹~/.ssh/id_rsa.pub 打开 id_rsa.pub 文件，里面的信息即为 SSH key，将这些信息复制到 Github 的 Add SSH key 页面即可。</p>
-<p>进入 Github –&gt; Settings –&gt; SSH keys –&gt; add SSH key:</p>
-<p>Title 里任意添一个标题，将复制的内容粘贴到 Key 里，点击下方 Add key 绿色按钮即可。</p>
-<h3 id="发布文章"><a href="#发布文章" class="headerlink" title="发布文章"></a>发布文章</h3><p>终端 cd 到 blog 文件夹下，执行如下命令新建文章：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new &quot;postName&quot;</span><br></pre></td></tr></table></figure>
-<p>名为 postName.md 的文件会建在目录/blog/source/_posts 下。</p>
-<p>文章编辑完成后，终端 cd 到 blog 文件夹下，执行如下命令来发布:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo generate             //生成静态页面</span><br><span class="line">hexo deploy            //将文章部署到Github</span><br></pre></td></tr></table></figure>
-<h2 id="安装-theme"><a href="#安装-theme" class="headerlink" title="安装 theme"></a>安装 theme</h2><p>你可以到 Hexo 官网主题页去搜寻自己喜欢的 theme。这里以 hexo-theme-next 为例</p>
-<p>终端 cd 到 blog 目录下执行如下命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/iissnan/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
-<p>将 blog 目录下_config.yml 里 theme 的名称 landscape 修改为 next</p>
-<p>终端 cd 到 blog 目录下执行如下命令(每次部署文章的步骤)：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hexo clean           //清除缓存文件 (db.json) 和已生成的静态文件 (public)</span><br><span class="line"></span><br><span class="line">hexo g             //生成缓存和静态文件</span><br><span class="line"></span><br><span class="line">hexo d             //重新部署到服务器</span><br></pre></td></tr></table></figure>
-<p>至于更改 theme 内容，比如名称，描述，头像等去修改 blog/_config.yml 文件和 blog/themes/next/_config.yml 文件中对应的属性名称即可，不要忘记冒号:后加空格。</p>
-<p>参考：<br><a href="https://www.cnblogs.com/MuYunyun/p/5927491.html" target="_blank" rel="noopener">https://www.cnblogs.com/MuYunyun/p/5927491.html</a></p>
-<p><a href="https://hexo.io/zh-cn/" target="_blank" rel="noopener">https://hexo.io/zh-cn/</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/10/17/基于hexo-github搭建一个独立博客/" data-id="cjt2mf6l00008pwkqc13zhgms" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/10/babel-plugin-import/" data-id="cjt4685fc0002oxkqtvosl38d" class="article-share-link">Share</a>
       
       
     </footer>
@@ -593,6 +538,11 @@
 
   
 
+
+  <nav id="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+  </nav>
 
 </section>
         
@@ -610,7 +560,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li></ul>
     </div>
   </div>
 
@@ -623,6 +573,14 @@
       <ul>
         
           <li>
+            <a href="/2019/03/11/element-ui-2-6-1-bug记录/">element-ui 2.6.1 bug记录</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/10/web性能优化/">web性能优化</a>
+          </li>
+        
+          <li>
             <a href="/2018/06/25/利用Access-Control-Allow-Origin响应头解决跨域请求原理/">利用Access-Control-Allow-Origin响应头解决跨域请求原理</a>
           </li>
         
@@ -632,14 +590,6 @@
         
           <li>
             <a href="/2018/05/28/Mongodb-知识点/">Mongodb-知识点</a>
-          </li>
-        
-          <li>
-            <a href="/2018/05/24/koa2-开发过程随记/">koa2-开发过程随记</a>
-          </li>
-        
-          <li>
-            <a href="/2018/05/23/webpack-开发过程随记/">webpack-开发过程随记</a>
           </li>
         
       </ul>
