@@ -5,19 +5,19 @@
   
 
   
-  <title>babel-plugin-import | 技术博客分享平台  --limHu</title>
+  <title>使用JSON web token对用户进行跨域认证 | 技术博客分享平台  --limHu</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="babel-plugin-import 实现组件库中的组件按需加载.babelrc 文件中配置： 1234&amp;#123;  &quot;libraryName&quot;: &quot;vant&quot;,  &quot;style&quot;: true&amp;#125;">
+  <meta name="description" content="当使用一个 API 时，其中一个挑战就是认证（authentication）。在传统的 web 应用中，服务端成功的返回一个响应(response)依赖于两个事件。  通过存储机制保存会话信息(session)。每个会话都有它独特的信息（id），它被用来让未来的请求检索信息。 其次，包含在响应头里面的信息使客户端保存了一个 Cookie。服务器自动的在每个自请求里加上了会话 id，使得服务器可以通">
 <meta property="og:type" content="article">
-<meta property="og:title" content="babel-plugin-import">
-<meta property="og:url" content="http://yoursite.com/2018/03/10/babel-plugin-import/index.html">
+<meta property="og:title" content="使用JSON web token对用户进行跨域认证">
+<meta property="og:url" content="http://yoursite.com/2019/03/11/使用JSON-web-token对用户进行跨域认证/index.html">
 <meta property="og:site_name" content="技术博客分享平台  --limHu">
-<meta property="og:description" content="babel-plugin-import 实现组件库中的组件按需加载.babelrc 文件中配置： 1234&amp;#123;  &quot;libraryName&quot;: &quot;vant&quot;,  &quot;style&quot;: true&amp;#125;">
+<meta property="og:description" content="当使用一个 API 时，其中一个挑战就是认证（authentication）。在传统的 web 应用中，服务端成功的返回一个响应(response)依赖于两个事件。  通过存储机制保存会话信息(session)。每个会话都有它独特的信息（id），它被用来让未来的请求检索信息。 其次，包含在响应头里面的信息使客户端保存了一个 Cookie。服务器自动的在每个自请求里加上了会话 id，使得服务器可以通">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-10T07:53:12.049Z">
+<meta property="og:updated_time" content="2019-03-12T02:48:35.757Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="babel-plugin-import">
-<meta name="twitter:description" content="babel-plugin-import 实现组件库中的组件按需加载.babelrc 文件中配置： 1234&amp;#123;  &quot;libraryName&quot;: &quot;vant&quot;,  &quot;style&quot;: true&amp;#125;">
+<meta name="twitter:title" content="使用JSON web token对用户进行跨域认证">
+<meta name="twitter:description" content="当使用一个 API 时，其中一个挑战就是认证（authentication）。在传统的 web 应用中，服务端成功的返回一个响应(response)依赖于两个事件。  通过存储机制保存会话信息(session)。每个会话都有它独特的信息（id），它被用来让未来的请求检索信息。 其次，包含在响应头里面的信息使客户端保存了一个 Cookie。服务器自动的在每个自请求里加上了会话 id，使得服务器可以通">
   
     <link rel="alternate" href="/atom.xml" title="技术博客分享平台  --limHu" type="application/atom+xml">
   
@@ -64,10 +64,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-babel-plugin-import" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-使用JSON-web-token对用户进行跨域认证" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/03/10/babel-plugin-import/" class="article-date">
-  <time datetime="2018-03-10T07:29:34.000Z" itemprop="datePublished">2018-03-10</time>
+    <a href="/2019/03/11/使用JSON-web-token对用户进行跨域认证/" class="article-date">
+  <time datetime="2019-03-11T02:31:46.000Z" itemprop="datePublished">2019-03-11</time>
 </a>
     
   </div>
@@ -78,7 +78,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      babel-plugin-import
+      使用JSON web token对用户进行跨域认证
     </h1>
   
 
@@ -86,13 +86,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>babel-plugin-import 实现组件库中的组件按需加载<br>.babelrc 文件中配置：</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"libraryName"</span>: <span class="string">"vant"</span>,</span><br><span class="line">  <span class="attr">"style"</span>: <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p>当使用一个 API 时，其中一个挑战就是认证（authentication）。<br>在传统的 web 应用中，服务端成功的返回一个响应(response)依赖于两个事件。</p>
+<ul>
+<li>通过存储机制保存会话信息(session)。每个会话都有它独特的信息（id），它被用来让未来的请求检索信息。</li>
+<li>其次，包含在响应头里面的信息使客户端保存了一个 Cookie。服务器自动的在每个自请求里加上了会话 id，使得服务器可以通过检索 seesion 中的信息来辨别用户。</li>
+</ul>
+<p>JSON web token<br>根据用户请求，服务端根据用户 id 生成具有用户唯一标识的加密 token，并存储在用户信息表中。<br>在用户登录后返回给用户，用户将其存储在 localStorage 中。<br>在之后 API 请求中，在请求 header x-acess-token 中添加 token 信息。<br>服务端获取 token 信息后，首先解密处 token 信息，获得过期时间，是否为管理员用户等，进而进行相应操作。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/10/babel-plugin-import/" data-id="cjt56ffpq00007vkqp2bqko1u" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/11/使用JSON-web-token对用户进行跨域认证/" data-id="cjt56ffq000087vkqp9nsvjd1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -101,19 +105,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/03/10/call和apply/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/03/11/element-ui-2-6-1-bug记录/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          call和apply
+          element-ui 2.6.1 bug记录
         
       </div>
     </a>
   
   
-    <a href="/2017/10/20/Flex布局知识点总结/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/03/10/web性能优化/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Flex布局知识点总结</div>
+      <div class="article-nav-title">web性能优化</div>
     </a>
   
 </nav>
