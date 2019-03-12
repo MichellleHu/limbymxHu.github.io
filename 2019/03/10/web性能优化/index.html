@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="技术博客分享平台  --limHu">
 <meta property="og:description" content="计划与指标 比你最快的竞争对手快 20%  根据一项心理学研究，如果希望用户感觉到你们的网站用起来比竞争对手快，那么需要比他们快至少 20%。研究你的主要对手，收集他们的网站在移动和桌面设备上的性能指标，确定超越他们的最低要求。  在特定限速环境下测试收集数据  移动设备上，运行速度应该会比在桌面设备上慢 4-5 倍。移动设备上的解析时间通常要比桌面设备长 36%。我们可以通过网络限速以及 CPU">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-10T08:37:14.277Z">
+<meta property="og:updated_time" content="2019-03-12T02:28:22.202Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="web性能优化">
 <meta name="twitter:description" content="计划与指标 比你最快的竞争对手快 20%  根据一项心理学研究，如果希望用户感觉到你们的网站用起来比竞争对手快，那么需要比他们快至少 20%。研究你的主要对手，收集他们的网站在移动和桌面设备上的性能指标，确定超越他们的最低要求。  在特定限速环境下测试收集数据  移动设备上，运行速度应该会比在桌面设备上慢 4-5 倍。移动设备上的解析时间通常要比桌面设备长 36%。我们可以通过网络限速以及 CPU">
@@ -105,11 +105,63 @@
 <li>首次加载指标</li>
 </ol>
 <p>移动端应用：<br>首次绘制时间 1 秒以内，TTI（交互时间） &lt; 5s（3G），关键文件大小 &lt; 170KB（gzip 压缩后）</p>
-<h2 id="资源优化"><a href="#资源优化" class="headerlink" title="资源优化"></a>资源优化</h2>
+<h2 id="资源优化"><a href="#资源优化" class="headerlink" title="资源优化"></a>资源优化</h2><ol>
+<li><p>请求资源优化<br>除了常用的 gzip 压缩优化，还可以尝试 Brotli 或 Zopfli。<br>Brotli 只支持 https 站点，并且当资源被压缩到极致时会变得缓慢，因此要考虑收益。<br>也可以考虑使用 Zopfli。任何普通的 Gzip 压缩资源都可以通过 Zopfli 改进的 Deflate 编码达到比 Zlib 的最大压缩率小 3%到 8%的文件大小。问题是压缩文件大约需要耗费 80 倍的时间。这就是为什么在资源上使用 Zopfli 的原因。因为这些资源不会发生太大的变化，只需压缩一次但可以下载多次。</p>
+</li>
+<li><p>使用响应图像和 WebP<br>尽量使用带有 srcset、sizes 属性的响应式图片和元素响应式图片。<br>还可以通过在原生上使用 WebP 图片以及回退到 JPEG 的机制或者使用协议内容的方式中使用 WebP 格式。</p>
+</li>
+<li><p>图像优化<br>当首次加载页面时，特定图片必须加载得更快，可以对其进行一些优化。</p>
+</li>
+<li><p>视频优化<br>重复大量动画用动态 WebP(GIF 作为回退)来代替 video 标签。</p>
+<h2 id="构建优化"><a href="#构建优化" class="headerlink" title="构建优化"></a>构建优化</h2><ol>
+<li><p>确定优先级<br>列出全部的静态资源清单（JavaScript、图片、字体、第三方脚本以及页面上的大模块：例如轮播图、复杂的信息图表和多媒体内容），并将它们分组。</p>
+</li>
+<li><p>解析 JavaScript 是耗时的，所以应设置体积小的 JavaScript 资源</p>
+</li>
+</ol>
+<p>可以用一些工具来分析 js 打包及依赖联系：<br>webpack-bundle-analyzer;<br>Source Map Explorer;<br>Bundle Buddy;<br>Webpack size-plugin;<br>考虑使用 webpack-libs-optimization 删除未使用的方法和 polyfill。<br>考虑使用一些轻量级库来替代重型库，例如用 date-fns 代替 moment.js，从 moment.js 到 date-fns 的转换可能使 3G 和低端手机上的首次绘制时间减少大约 300ms。</p>
+<ol start="3">
+<li><p>摇树和代码分割<br>摇树的核心思想是在执行路径中未使用的任何代码都将从源中删除，减少 js 体积。<br>代码拆分是另一个 webpack 功能，它将代码库拆分为按需加载的“块”。</p>
+</li>
+<li><p>删除未使用的、多余的代码<br>通过使用 devtools 的 coverage 工具（more tools 里）查看代码覆盖使用率；<br>通过 jsinspect 工具查看项目中重复的 js 代码，从而进行合适的优化。</p>
+</li>
+<li><p>客户端渲染还是服务端渲染<br>服务器端渲染的 HTML 可能更快。</p>
+</li>
+</ol>
+<p>6.设置 HTTP 缓存标头<br>仔细检查是否正确设置 expires、max-age、cache-control 和其他 HTTP 缓存头。<br>使用专为指纹静态资源设计的 cache-control: immutable，以避免重新验证。</p>
+<h2 id="交付优化"><a href="#交付优化" class="headerlink" title="交付优化"></a>交付优化</h2><ol>
+<li><p>是否所有额 JS 库都采用了异步加载？<br>请求页面时，浏览器获取 HTML 并构造 DOM，然后获取 CSS 并构造 CSSOM，然后通过匹配 DOM 和 CSSOM 生成渲染树。一旦出现需要解析的 JS，浏览器将停止渲染，直到 JS 被解析完成，从而造成渲染延迟。</p>
+</li>
+<li><p>使用 IntersectionObserver 加载大型组件</p>
+</li>
+<li><p>渐进式加载图片</p>
+</li>
+<li><p>首屏渲染关键 CSS</p>
+</li>
+<li><p>使用 service workers 进行缓存</p>
+</li>
+<li><p>优化 css 渲染性能<br>使用 will-change: transform 来代替开启动画 transform: translate3D()；<br>transform 代替 top、left 等属性变化的动画；<br>为 opacity 的元素添加 pointer-events: none 的属性。</p>
+</li>
+<li><p>优化白屏渲染体验<br>文字排版占位符，loading 动画添加。</p>
+</li>
+<li><p>优化 JS 交互代码<br>通过 devtools 的 performance 检测那些耗性能的代码段，从而尝试对其优化。<br>在浏览器 resize 时考虑是否需要加入节流函数等优化方式。</p>
+</li>
+</ol>
+<h2 id="网络优化"><a href="#网络优化" class="headerlink" title="网络优化"></a>网络优化</h2><ol>
+<li><p>迁移到 HTTPS，然后启用 HTTP/2<br>随着谷歌推进更安全的 web 并最终所有的 HTTP 页面都被 chrome 视为不安全，向 HTTP/2 环境转变已经不可避免。</p>
+</li>
+<li><p>是否优化了各个 API 的性能？<br>测试每个接口的请求速度，分析是否有可减少的请求次数。<br>如果许多资源需要来自 API 的数据，API 可能会成为性能瓶颈。GraphQL 为这些问题提供了高性能的解决方案。</p>
+</li>
+<li><p>接口请求过程是否过长<br>通过 devtools 的 network 工具，可以通过 timeline 来测试接口的请求时间，从而从中找出过程中哪一步骤可能寻在过多的耗时过程。</p>
+</li>
+</ol>
+</li>
+</ol>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/10/web性能优化/" data-id="cjt4685fj0007oxkq5n33294w" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/10/web性能优化/" data-id="cjt55pazg000654kqdppsxle6" class="article-share-link">Share</a>
       
       
     </footer>
