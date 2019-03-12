@@ -98,7 +98,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/12/vue配置路由-权限管理生成动态路由/" data-id="cjt56iki0000793kqu56vsozj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/12/vue配置路由-权限管理生成动态路由/" data-id="cjt57yblh0007cgkqbmom6upz" class="article-share-link">Share</a>
       
       
     </footer>
@@ -140,7 +140,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/11/element-ui-2-6-1-bug记录/" data-id="cjt56ikhx000493kqqzq593du" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/11/element-ui-2-6-1-bug记录/" data-id="cjt57yblg0005cgkqowauxn0s" class="article-share-link">Share</a>
       
       
     </footer>
@@ -182,7 +182,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/11/使用JSON-web-token对用户进行跨域认证/" data-id="cjt56iki2000993kqhf2tv4dn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/11/使用JSON-web-token对用户进行跨域认证/" data-id="cjt57yblk000acgkqqgytqznp" class="article-share-link">Share</a>
       
       
     </footer>
@@ -215,13 +215,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="计划与指标"><a href="#计划与指标" class="headerlink" title="计划与指标"></a>计划与指标</h2><ol>
-<li>比你最快的竞争对手快 20%</li>
-</ol>
-<p>根据一项心理学研究，如果希望用户感觉到你们的网站用起来比竞争对手快，那么需要比他们快至少 20%。<br>研究你的主要对手，收集他们的网站在移动和桌面设备上的性能指标，确定超越他们的最低要求。</p>
-<ol start="2">
-<li>在特定限速环境下测试收集数据</li>
-</ol>
-<p>移动设备上，运行速度应该会比在桌面设备上慢 4-5 倍。移动设备上的解析时间通常要比桌面设备长 36%。<br>我们可以通过网络限速以及 CPU 限速在电脑上模拟移动端体验。</p>
+<li><p>比你最快的竞争对手快 20%<br>根据一项心理学研究，如果希望用户感觉到你们的网站用起来比竞争对手快，那么需要比他们快至少 20%。<br>研究你的主要对手，收集他们的网站在移动和桌面设备上的性能指标，确定超越他们的最低要求。</p>
+</li>
+<li><p>在特定限速环境下测试收集数据<br>移动设备上，运行速度应该会比在桌面设备上慢 4-5 倍。移动设备上的解析时间通常要比桌面设备长 36%。<br>我们可以通过网络限速以及 CPU 限速在电脑上模拟移动端体验。</p>
 <p>为了能够复现真实用户的浏览器配置，在有条件的情况下可以模拟以下两类环境： 1.没有安装任何插件、应用、防火墙等的电脑环境； 2.用户可能会经常安装的各类软件和使用的浏览器、浏览器插件等的电脑环境；</p>
 <p>在模拟限速时，为了更准确的复现网络限速环境，可以使用 devtools 以外的工具：</p>
 <ul>
@@ -229,10 +225,10 @@
 <li>Windows 可以用 Windows Traffic Shaper；</li>
 <li>Linux 可以用 netem</li>
 </ul>
-<ol start="3">
-<li>首次加载指标</li>
+</li>
+<li><p>首次加载指标<br>移动端应用：<br>首次绘制时间 1 秒以内，TTI（交互时间） &lt; 5s（3G），关键文件大小 &lt; 170KB（gzip 压缩后）</p>
+</li>
 </ol>
-<p>移动端应用：<br>首次绘制时间 1 秒以内，TTI（交互时间） &lt; 5s（3G），关键文件大小 &lt; 170KB（gzip 压缩后）</p>
 <h2 id="资源优化"><a href="#资源优化" class="headerlink" title="资源优化"></a>资源优化</h2><ol>
 <li><p>请求资源优化<br>除了常用的 gzip 压缩优化，还可以尝试 Brotli 或 Zopfli。<br>Brotli 只支持 https 站点，并且当资源被压缩到极致时会变得缓慢，因此要考虑收益。<br>也可以考虑使用 Zopfli。任何普通的 Gzip 压缩资源都可以通过 Zopfli 改进的 Deflate 编码达到比 Zlib 的最大压缩率小 3%到 8%的文件大小。问题是压缩文件大约需要耗费 80 倍的时间。这就是为什么在资源上使用 Zopfli 的原因。因为这些资源不会发生太大的变化，只需压缩一次但可以下载多次。</p>
 </li>
@@ -241,22 +237,21 @@
 <li><p>图像优化<br>当首次加载页面时，特定图片必须加载得更快，可以对其进行一些优化。</p>
 </li>
 <li><p>视频优化<br>重复大量动画用动态 WebP(GIF 作为回退)来代替 video 标签。</p>
+</li>
+</ol>
 <h2 id="构建优化"><a href="#构建优化" class="headerlink" title="构建优化"></a>构建优化</h2><ol>
 <li><p>确定优先级<br>列出全部的静态资源清单（JavaScript、图片、字体、第三方脚本以及页面上的大模块：例如轮播图、复杂的信息图表和多媒体内容），并将它们分组。</p>
 </li>
-<li><p>解析 JavaScript 是耗时的，所以应设置体积小的 JavaScript 资源</p>
+<li><p>解析 JavaScript 是耗时的，所以应设置体积小的 JavaScript 资源<br>可以用一些工具来分析 js 打包及依赖联系：<br>webpack-bundle-analyzer;<br>Source Map Explorer;<br>Bundle Buddy;<br>Webpack size-plugin;<br>考虑使用 webpack-libs-optimization 删除未使用的方法和 polyfill。<br>考虑使用一些轻量级库来替代重型库，例如用 date-fns 代替 moment.js，从 moment.js 到 date-fns 的转换可能使 3G 和低端手机上的首次绘制时间减少大约 300ms。</p>
 </li>
-</ol>
-<p>可以用一些工具来分析 js 打包及依赖联系：<br>webpack-bundle-analyzer;<br>Source Map Explorer;<br>Bundle Buddy;<br>Webpack size-plugin;<br>考虑使用 webpack-libs-optimization 删除未使用的方法和 polyfill。<br>考虑使用一些轻量级库来替代重型库，例如用 date-fns 代替 moment.js，从 moment.js 到 date-fns 的转换可能使 3G 和低端手机上的首次绘制时间减少大约 300ms。</p>
-<ol start="3">
 <li><p>摇树和代码分割<br>摇树的核心思想是在执行路径中未使用的任何代码都将从源中删除，减少 js 体积。<br>代码拆分是另一个 webpack 功能，它将代码库拆分为按需加载的“块”。</p>
 </li>
 <li><p>删除未使用的、多余的代码<br>通过使用 devtools 的 coverage 工具（more tools 里）查看代码覆盖使用率；<br>通过 jsinspect 工具查看项目中重复的 js 代码，从而进行合适的优化。</p>
 </li>
 <li><p>客户端渲染还是服务端渲染<br>服务器端渲染的 HTML 可能更快。</p>
+<p>6.设置 HTTP 缓存标头<br>仔细检查是否正确设置 expires、max-age、cache-control 和其他 HTTP 缓存头。<br>使用专为指纹静态资源设计的 cache-control: immutable，以避免重新验证。</p>
 </li>
 </ol>
-<p>6.设置 HTTP 缓存标头<br>仔细检查是否正确设置 expires、max-age、cache-control 和其他 HTTP 缓存头。<br>使用专为指纹静态资源设计的 cache-control: immutable，以避免重新验证。</p>
 <h2 id="交付优化"><a href="#交付优化" class="headerlink" title="交付优化"></a>交付优化</h2><ol>
 <li><p>是否所有额 JS 库都采用了异步加载？<br>请求页面时，浏览器获取 HTML 并构造 DOM，然后获取 CSS 并构造 CSSOM，然后通过匹配 DOM 和 CSSOM 生成渲染树。一旦出现需要解析的 JS，浏览器将停止渲染，直到 JS 被解析完成，从而造成渲染延迟。</p>
 </li>
@@ -283,13 +278,11 @@
 <li><p>接口请求过程是否过长<br>通过 devtools 的 network 工具，可以通过 timeline 来测试接口的请求时间，从而从中找出过程中哪一步骤可能寻在过多的耗时过程。</p>
 </li>
 </ol>
-</li>
-</ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/10/web性能优化/" data-id="cjt56iki3000a93kq5lpj61hr" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/10/web性能优化/" data-id="cjt57yblj0009cgkq37yicv1v" class="article-share-link">Share</a>
       
       
     </footer>
@@ -341,7 +334,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/06/25/利用Access-Control-Allow-Origin响应头解决跨域请求原理/" data-id="cjt56iki5000b93kq5zj6e9js" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/06/25/利用Access-Control-Allow-Origin响应头解决跨域请求原理/" data-id="cjt57yblm000bcgkqu18fcq2m" class="article-share-link">Share</a>
       
       
     </footer>
@@ -392,7 +385,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/06/10/移动web布局适配方法/" data-id="cjt56iki7000d93kq3qfac23x" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/06/10/移动web布局适配方法/" data-id="cjt57yblr000dcgkqbvc2dqqa" class="article-share-link">Share</a>
       
       
     </footer>
@@ -436,7 +429,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/28/Mongodb-知识点/" data-id="cjt56ikhu000193kqgv9k03gd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/05/28/Mongodb-知识点/" data-id="cjt57yblc0001cgkq7ofa3wm9" class="article-share-link">Share</a>
       
       
     </footer>
@@ -487,7 +480,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/24/koa2-开发过程随记/" data-id="cjt56ikhz000593kqtiszy9za" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/05/24/koa2-开发过程随记/" data-id="cjt57yblf0004cgkq4uwirft7" class="article-share-link">Share</a>
       
       
     </footer>
@@ -536,7 +529,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/23/webpack-开发过程随记/" data-id="cjt56iki1000893kqzc154xon" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/05/23/webpack-开发过程随记/" data-id="cjt57ybli0008cgkqdpme0tgx" class="article-share-link">Share</a>
       
       
     </footer>
@@ -589,7 +582,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/10/vue-开发过程随记/" data-id="cjt56iki0000693kqizk6ca42" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/10/vue-开发过程随记/" data-id="cjt57yblh0006cgkqul3wh9mt" class="article-share-link">Share</a>
       
       
     </footer>
