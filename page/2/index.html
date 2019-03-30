@@ -104,7 +104,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/06/25/利用Access-Control-Allow-Origin响应头解决跨域请求原理/" data-id="cjtvav49r000gh5kq5f1bbxks" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/06/25/利用Access-Control-Allow-Origin响应头解决跨域请求原理/" data-id="cjtvbbabp000hlskqk3z7wwp6" class="article-share-link">Share</a>
       
       
     </footer>
@@ -155,7 +155,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/06/10/移动web布局适配方法/" data-id="cjtvav49s000ih5kqxpk950ph" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/06/10/移动web布局适配方法/" data-id="cjtvbbabr000jlskqiwyuwu4m" class="article-share-link">Share</a>
       
       
     </footer>
@@ -199,7 +199,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/28/Mongodb-知识点/" data-id="cjtvav49e0002h5kqpsrgm8tf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/05/28/Mongodb-知识点/" data-id="cjtvbbaba0001lskqfmx6jahb" class="article-share-link">Share</a>
       
       
     </footer>
@@ -250,7 +250,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/24/koa2-开发过程随记/" data-id="cjtvav49h0006h5kqhqmu8q2u" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/05/24/koa2-开发过程随记/" data-id="cjtvbbabg0007lskqs73k3ql5" class="article-share-link">Share</a>
       
       
     </footer>
@@ -299,7 +299,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/23/webpack-开发过程随记/" data-id="cjtvav49o000ch5kqflvrltx9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/05/23/webpack-开发过程随记/" data-id="cjtvbbabo000elskquwg7fxnv" class="article-share-link">Share</a>
       
       
     </footer>
@@ -352,7 +352,71 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/10/vue-开发过程随记/" data-id="cjtvav49j0008h5kq0wi8blmk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/10/vue-开发过程随记/" data-id="cjtvbbabh0008lskqeghp0xco" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-http协议" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/30/http协议/" class="article-date">
+  <time datetime="2018-03-30T09:47:08.000Z" itemprop="datePublished">2018-03-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/30/http协议/">http协议</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="简单的-HTTP-协议"><a href="#简单的-HTTP-协议" class="headerlink" title="简单的 HTTP 协议"></a>简单的 HTTP 协议</h2><h3 id="使用-Cookie-的状态管理"><a href="#使用-Cookie-的状态管理" class="headerlink" title="使用 Cookie 的状态管理"></a>使用 Cookie 的状态管理</h3><p>为了尽快处理大量事务，HTTP 被设计为不保存状态的协议。<br>在多页面切换时，需要保存用户的状态，因此引入了 Cookie 技术。</p>
+<blockquote>
+<p>Cookie 通过在请求和响应报文中写入 Cookie 信息来控制客户端的状态。</p>
+</blockquote>
+<ol>
+<li><p>首先，在没有 Cookie 信息状态下，客户端发出 HTTP 请求。服务器会生成 Cookie，并通过在响应报文中添加 Set-Cookie 的首部字段，来通知客户端保存 Cookie。</p>
+</li>
+<li><p>下次客户端再往服务器发送请求时，客户端会自动在请求报文中加入 Cookie 值后再发送出去。</p>
+</li>
+</ol>
+<h3 id="持久连接节省通信量"><a href="#持久连接节省通信量" class="headerlink" title="持久连接节省通信量"></a>持久连接节省通信量</h3><p>当文档中包含有大量图片时，每进行一次 HTTP 请求就断开 TCP 连接，增加了通信量的开销。</p>
+<p>通过设置 Connection: keep-alive，实现了只要任意一端没有明确提出断开连接，则保持 TCP 连接状态。</p>
+<p>持久连接的益处在于：</p>
+<ul>
+<li>减少 TCP 连接重复建立和断开所造成的额外开销，减轻服务器负担；</li>
+<li>HTTP 请求和响应更快结束，页面能尽快的显示处理。</li>
+</ul>
+<h2 id="返回结果的状态码"><a href="#返回结果的状态码" class="headerlink" title="返回结果的状态码"></a>返回结果的状态码</h2><p>1XX 接收的请求正在处理<br>2XX 请求正常处理完毕<br>3XX 重定向状态码，需要附加操作以完成请求<br>4XX 服务器无法处理请求<br>5XX 服务器处理请求出错</p>
+<p>301 永久重定向<br>302 临时重定向<br>304 服务器资源未改变，可直接使用客户端未过期的缓存<br>404 服务器上没有请求的资源</p>
+<h2 id="HTTP-首部"><a href="#HTTP-首部" class="headerlink" title="HTTP 首部"></a>HTTP 首部</h2><ol>
+<li>通用首部字段</li>
+</ol>
+<p>Connection 连接的管理</p>
+<ol start="2">
+<li>请求首部字段<br>Accept 用户代理可处理的媒体类型<br>Accept-Encoding 优先的内容编码<br>Authorization Web 认证信息</li>
+<li>响应首部字段</li>
+<li>实体首部字段<br>Content-Type 实体主体的媒体类型</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/03/30/http协议/" data-id="cjtvbbabf0006lskqc5yzku87" class="article-share-link">Share</a>
       
       
     </footer>
@@ -392,7 +456,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/10/call和apply/" data-id="cjtvav49g0004h5kq3menz4k0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/10/call和apply/" data-id="cjtvbbabd0003lskqlx06qb26" class="article-share-link">Share</a>
       
       
     </footer>
@@ -430,7 +494,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/10/babel-plugin-import/" data-id="cjtvav49f0003h5kqafvl4bln" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/10/babel-plugin-import/" data-id="cjtvbbabc0002lskquyspugmk" class="article-share-link">Share</a>
       
       
     </footer>
@@ -492,97 +556,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/10/20/Flex布局知识点总结/" data-id="cjtvav49c0001h5kqyylowyyu" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-基于hexo-github搭建一个独立博客" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/10/17/基于hexo-github搭建一个独立博客/" class="article-date">
-  <time datetime="2017-10-17T06:47:47.000Z" itemprop="datePublished">2017-10-17</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/17/基于hexo-github搭建一个独立博客/">基于hexo+github搭建一个独立博客</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>1.node：用来生成静态页面的 到 Node.js 官网下载相应平台的最新版本，一路安装即可。</p>
-<p>2.git: 把本地的 hexo 内容提交到 github 上去.没有安装的可以看此教程。</p>
-<p>3.github：用来做博客的远程创库、域名、服务器。</p>
-<h2 id="安装-Hexo"><a href="#安装-Hexo" class="headerlink" title="安装 Hexo"></a>安装 Hexo</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install -g hexo</span><br></pre></td></tr></table></figure>
-<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p>终端 cd 到一个你选定的目录（比如创建一个 blog 文件，\$cd blog），执行 hexo init 命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
-<p>在 blog 目录下，执行如下命令，安装 npm：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
-<p>执行如下命令，开启 hexo 服务器：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-<p>此时，浏览器中打开网址<a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a>.</p>
-<h2 id="关联-Github"><a href="#关联-Github" class="headerlink" title="关联 Github"></a>关联 Github</h2><p>本地设置好后，接下来开始关联 Github。</p>
-<h3 id="创建仓库"><a href="#创建仓库" class="headerlink" title="创建仓库"></a>创建仓库</h3><p>登录你的 Github 帐号，新建仓库，名为用户名.github.io 固定写法。</p>
-<p>本地的 blog 文件夹下内容为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">_config.yml</span><br><span class="line">db.json</span><br><span class="line">node_modules</span><br><span class="line">package.json</span><br><span class="line">scaffolds</span><br><span class="line">source</span><br><span class="line">themes</span><br></pre></td></tr></table></figure>
-<p>终端 cd 到 blog 文件夹下，vim 打开_config.yml，命令如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim _config.yml</span><br></pre></td></tr></table></figure>
-<p>打开后往下滑到最后，修改成下边的样子：</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">git</span></span><br><span class="line"><span class="attr">  repository:</span> <span class="attr">https://github.com/test/test.github.io.git</span></span><br><span class="line"><span class="attr">  branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注意：在配置所有的_config.yml 文件时（包括 theme 中的），在所有的冒号:后边都要加一个空格，否则执行 hexo 命令会报错.</p>
-</blockquote>
-<p>在 blog 文件夹目录下执行生成静态页面命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo generate        或者：hexo g</span><br></pre></td></tr></table></figure>
-<p>再执行配置命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy            或者：hexo d</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注意：若执行命令 hexo deploy 仍然报错：无法连接 git 或找不到 git，则执行如下命令来安装 hexo-deployer-git：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-<p>hexo deploy 命令执行成功后，浏览器中打开网址<a href="http://test.github.io（将test换成你的用户名）能看到和打开http://localhost:4000时一样的页面。" target="_blank" rel="noopener">http://test.github.io（将test换成你的用户名）能看到和打开http://localhost:4000时一样的页面。</a></p>
-<h3 id="添加-ssh-key-到-Github"><a href="#添加-ssh-key-到-Github" class="headerlink" title="添加 ssh key 到 Github"></a>添加 ssh key 到 Github</h3><p>为避免每次输入 Github 用户名和密码的麻烦，可参照第二节方法.</p>
-<h4 id="检查-SSH-keys-是否存在-Github"><a href="#检查-SSH-keys-是否存在-Github" class="headerlink" title="检查 SSH keys 是否存在 Github"></a>检查 SSH keys 是否存在 Github</h4><p>执行如下命令，检查 SSH keys 是否存在。如果有文件 id_rsa.pub 或 id_dsa.pub，则直接进入步骤 1.3 将 SSH key 添加到 Github 中，否则进入下一步生成 SSH key。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -al ~/.ssh</span><br></pre></td></tr></table></figure>
-<h4 id="生成新的-ssh-key"><a href="#生成新的-ssh-key" class="headerlink" title="生成新的 ssh key"></a>生成新的 ssh key</h4><p>执行如下命令生成 public/private rsa key pair，注意将 <a href="mailto:your_email@example.com" target="_blank" rel="noopener">your_email@example.com</a> 换成你自己注册 Github 的邮箱地址。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;your_email@example.com&quot;</span><br></pre></td></tr></table></figure>
-<p>默认会在相应路径下（~/.ssh/id_rsa.pub）生成 id_rsa 和 id_rsa.pub 两个文件。</p>
-<h4 id="将-ssh-key-添加到-Github-中"><a href="#将-ssh-key-添加到-Github-中" class="headerlink" title="将 ssh key 添加到 Github 中"></a>将 ssh key 添加到 Github 中</h4><p>Find 前往文件夹~/.ssh/id_rsa.pub 打开 id_rsa.pub 文件，里面的信息即为 SSH key，将这些信息复制到 Github 的 Add SSH key 页面即可。</p>
-<p>进入 Github –&gt; Settings –&gt; SSH keys –&gt; add SSH key:</p>
-<p>Title 里任意添一个标题，将复制的内容粘贴到 Key 里，点击下方 Add key 绿色按钮即可。</p>
-<h3 id="发布文章"><a href="#发布文章" class="headerlink" title="发布文章"></a>发布文章</h3><p>终端 cd 到 blog 文件夹下，执行如下命令新建文章：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new &quot;postName&quot;</span><br></pre></td></tr></table></figure>
-<p>名为 postName.md 的文件会建在目录/blog/source/_posts 下。</p>
-<p>文章编辑完成后，终端 cd 到 blog 文件夹下，执行如下命令来发布:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo generate             //生成静态页面</span><br><span class="line">hexo deploy            //将文章部署到Github</span><br></pre></td></tr></table></figure>
-<h2 id="安装-theme"><a href="#安装-theme" class="headerlink" title="安装 theme"></a>安装 theme</h2><p>你可以到 Hexo 官网主题页去搜寻自己喜欢的 theme。这里以 hexo-theme-next 为例</p>
-<p>终端 cd 到 blog 目录下执行如下命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/iissnan/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
-<p>将 blog 目录下_config.yml 里 theme 的名称 landscape 修改为 next</p>
-<p>终端 cd 到 blog 目录下执行如下命令(每次部署文章的步骤)：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hexo clean           //清除缓存文件 (db.json) 和已生成的静态文件 (public)</span><br><span class="line"></span><br><span class="line">hexo g             //生成缓存和静态文件</span><br><span class="line"></span><br><span class="line">hexo d             //重新部署到服务器</span><br></pre></td></tr></table></figure>
-<p>至于更改 theme 内容，比如名称，描述，头像等去修改 blog/_config.yml 文件和 blog/themes/next/_config.yml 文件中对应的属性名称即可，不要忘记冒号:后加空格。</p>
-<p>参考：<br><a href="https://www.cnblogs.com/MuYunyun/p/5927491.html" target="_blank" rel="noopener">https://www.cnblogs.com/MuYunyun/p/5927491.html</a></p>
-<p><a href="https://hexo.io/zh-cn/" target="_blank" rel="noopener">https://hexo.io/zh-cn/</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/10/17/基于hexo-github搭建一个独立博客/" data-id="cjtvav49r000hh5kq532q3ix0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/10/20/Flex布局知识点总结/" data-id="cjtvbbab60000lskqw2cv51ag" class="article-share-link">Share</a>
       
       
     </footer>
@@ -596,7 +570,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
   </nav>
 
 </section>
