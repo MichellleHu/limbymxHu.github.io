@@ -62,6 +62,68 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-上传图片和预览功能" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/12/19/上传图片和预览功能/" class="article-date">
+  <time datetime="2019-12-19T10:00:16.000Z" itemprop="datePublished">2019-12-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/19/上传图片和预览功能/">上传图片和预览功能</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>上传图片：</li>
+</ol>
+<p>原理：input 标签的 uploadFile 功能。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>属性：</p>
+<ul>
+<li>accept 规定能够通过文件上传进行提交的文件类型</li>
+</ul>
+<p>事件：</p>
+<ul>
+<li>onchange 当用户选择或编辑一个文件，file-upload 元素触发 onchange 事件句柄。</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"input-file-wrap"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span></span></span><br><span class="line"><span class="tag">    <span class="attr">type</span>=<span class="string">"file"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">name</span>=<span class="string">"file"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">id</span>=<span class="string">"file"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">class</span>=<span class="string">"inputfile"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">accept</span>=<span class="string">"image/*"</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">change</span>=<span class="string">"onFileChange"</span></span></span><br><span class="line"><span class="tag">  /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"file"</span> <span class="attr">class</span>=<span class="string">"btn"</span>&gt;</span><span class="tag">&lt;<span class="name">i</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span>上传图片<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>图片预览<br>原理：替换 img 的 src。<br>读取 URL 有 filereader 和 URL.createObjectURL 两种预览方式，分别将文件转码为 base64 和 blob 格式。</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">onFileChange(e) &#123;</span><br><span class="line">  <span class="keyword">const</span> el = e.target.files[<span class="number">0</span>];</span><br><span class="line">  <span class="comment">// base64</span></span><br><span class="line">  <span class="keyword">const</span> fr = <span class="keyword">new</span> FileReader();</span><br><span class="line">  fr.readAsDataURL(el);</span><br><span class="line">  fr.onload = <span class="function">(<span class="params">file</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.formParams.files.length &gt; <span class="number">2</span>) &#123;</span><br><span class="line">      <span class="keyword">this</span>.$message(&#123;</span><br><span class="line">        message: <span class="string">'最多上传3张图片'</span>,</span><br><span class="line">        type: <span class="string">'warning'</span>,</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>.formParams.files.push(file.target.result);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="comment">// blob</span></span><br><span class="line">  <span class="comment">/*</span></span><br><span class="line"><span class="comment">  const createObjectURL = blob =&gt; window[window.webkitURL ?</span></span><br><span class="line"><span class="comment">  'webkitURL' : 'URL']['createObjectURL'](blob);</span></span><br><span class="line"><span class="comment">  const newimgdata = createObjectURL(el);</span></span><br><span class="line"><span class="comment">  if (this.fileList.length &gt; 2) &#123;</span></span><br><span class="line"><span class="comment">    this.$message(&#123;</span></span><br><span class="line"><span class="comment">      message: '最多上传3张图片',</span></span><br><span class="line"><span class="comment">      type: 'warning',</span></span><br><span class="line"><span class="comment">    &#125;);</span></span><br><span class="line"><span class="comment">  &#125; else &#123;</span></span><br><span class="line"><span class="comment">    this.fileList.push(newimgdata);</span></span><br><span class="line"><span class="comment">  &#125;</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p>遍历 fileList，预览图片。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-if</span>=<span class="string">"formParams.files.length &gt; 0"</span> <span class="attr">class</span>=<span class="string">"file-list-wrap"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">"(item, index) in formParams.files"</span> <span class="attr">:key</span>=<span class="string">"index"</span> <span class="attr">class</span>=<span class="string">"file-list"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">:src</span>=<span class="string">"item"</span> <span class="attr">width</span>=<span class="string">"60"</span> <span class="attr">height</span>=<span class="string">"60"</span> <span class="attr">alt</span>=<span class="string">""</span> <span class="attr">class</span>=<span class="string">"preview-image"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"icon-circle-close"</span> @<span class="attr">click</span>=<span class="string">"delFile(index)"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>删除图片功能。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">delFile(index) &#123;</span><br><span class="line">  <span class="keyword">this</span>.formParams.files.splice(index, <span class="number">1</span>);</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.input-file-wrap</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: inline-block;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">90px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">30px</span>;</span><br><span class="line">  <span class="attribute">line-height</span>: <span class="number">30px</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">2px</span>;</span><br><span class="line">  <span class="attribute">border-width</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#697280</span>;</span><br><span class="line">  <span class="attribute">margin-left</span>: <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">cursor</span>: pointer;</span><br><span class="line">  .inputfile &#123;</span><br><span class="line">    <span class="selector-tag">opacity</span>: 0;</span><br><span class="line">    <span class="selector-tag">position</span>: <span class="selector-tag">absolute</span>;</span><br><span class="line">    <span class="selector-tag">width</span>: 90<span class="selector-tag">px</span>;</span><br><span class="line">    <span class="selector-tag">height</span>: 30<span class="selector-tag">px</span>;</span><br><span class="line">    <span class="selector-tag">line-height</span>: 30<span class="selector-tag">px</span>;</span><br><span class="line">    <span class="selector-tag">clip</span>: <span class="selector-tag">rect</span>(0 0 0 0);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-class">.btn</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#ffffff</span>;</span><br><span class="line">    <span class="attribute">font-weight</span>: bold;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">13px</span>;</span><br><span class="line">    <span class="attribute">margin-left</span>: <span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">cursor</span>: pointer;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>在 form 中的使用<br>如果想使用浏览器原生特性实现文件上传(如图片)效果，父级的 form 元素有个东西不能丢，就是：enctype=”multipart/form-data” enctype 属性规定在发送到服务器之前应该如何对表单数据进行编码，默认的编码是：”application/x-www-form-urlencoded“。对于普通数据是挺适用的，但是，对于文件什么的，就不能乱编码了，该什么就是什么，只能使用 multipart/form-data 作为 enctype 属性值。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/12/19/上传图片和预览功能/" data-id="cjtvbs90q000kw6kqjnj3yukf" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-vue项目中mixins复用" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/03/29/vue项目中mixins复用/" class="article-date">
@@ -102,7 +164,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/29/vue项目中mixins复用/" data-id="cjtvbps33000futkqie4f0ccu" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/29/vue项目中mixins复用/" data-id="cjtvbs90l000dw6kq5g8k8ycr" class="article-share-link">Share</a>
       
       
     </footer>
@@ -145,7 +207,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/28/vue项目优化/" data-id="cjtvbps34000gutkqreqfozwc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/28/vue项目优化/" data-id="cjtvbs90n000gw6kqrwtfep4e" class="article-share-link">Share</a>
       
       
     </footer>
@@ -182,7 +244,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/26/jenkins-教程/" data-id="cjtvbps2y0009utkqds412e41" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/26/jenkins-教程/" data-id="cjtvbs90h0008w6kqby9ln6hy" class="article-share-link">Share</a>
       
       
     </footer>
@@ -220,7 +282,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/20/React高阶组件/" data-id="cjtvbps2s0002utkqqna4zskx" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/20/React高阶组件/" data-id="cjtvbs90d0003w6kqofbk6w4t" class="article-share-link">Share</a>
       
       
     </footer>
@@ -264,7 +326,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/13/sql查询语句/" data-id="cjtvbps32000dutkqsv1ael3e" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/13/sql查询语句/" data-id="cjtvbs90m000ew6kqz4bbef97" class="article-share-link">Share</a>
       
       
     </footer>
@@ -561,7 +623,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/13/正则表达式总结整理/" data-id="cjtvbps3b000rutkqzw641zpn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/13/正则表达式总结整理/" data-id="cjtvbs90w000tw6kqi3uposnf" class="article-share-link">Share</a>
       
       
     </footer>
@@ -607,7 +669,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/12/vue配置路由-权限管理生成动态路由/" data-id="cjtvbps33000eutkqdjd8tqv4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/12/vue配置路由-权限管理生成动态路由/" data-id="cjtvbs90m000fw6kqjguq9qn3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -649,7 +711,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/11/element-ui-2-6-1-bug记录/" data-id="cjtvbps2x0007utkq59kxmfd0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/11/element-ui-2-6-1-bug记录/" data-id="cjtvbs90i000aw6kqgm5p5i5k" class="article-share-link">Share</a>
       
       
     </footer>
@@ -692,107 +754,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/11/使用JSON-web-token对用户进行跨域认证/" data-id="cjtvbps39000nutkqq1f7zws0" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-web性能优化" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/03/10/web性能优化/" class="article-date">
-  <time datetime="2019-03-10T08:32:00.000Z" itemprop="datePublished">2019-03-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/10/web性能优化/">web性能优化</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="计划与指标"><a href="#计划与指标" class="headerlink" title="计划与指标"></a>计划与指标</h2><ol>
-<li><p>比你最快的竞争对手快 20%<br>根据一项心理学研究，如果希望用户感觉到你们的网站用起来比竞争对手快，那么需要比他们快至少 20%。<br>研究你的主要对手，收集他们的网站在移动和桌面设备上的性能指标，确定超越他们的最低要求。</p>
-</li>
-<li><p>在特定限速环境下测试收集数据<br>移动设备上，运行速度应该会比在桌面设备上慢 4-5 倍。移动设备上的解析时间通常要比桌面设备长 36%。<br>我们可以通过网络限速以及 CPU 限速在电脑上模拟移动端体验。</p>
-<p>为了能够复现真实用户的浏览器配置，在有条件的情况下可以模拟以下两类环境： 1.没有安装任何插件、应用、防火墙等的电脑环境； 2.用户可能会经常安装的各类软件和使用的浏览器、浏览器插件等的电脑环境；</p>
-<p>在模拟限速时，为了更准确的复现网络限速环境，可以使用 devtools 以外的工具：</p>
-<ul>
-<li>Mac OS 可以用 Network Link Conditioner(<a href="https://nshipster.com/network-link-conditioner/)；" target="_blank" rel="noopener">https://nshipster.com/network-link-conditioner/)；</a></li>
-<li>Windows 可以用 Windows Traffic Shaper；</li>
-<li>Linux 可以用 netem</li>
-</ul>
-</li>
-<li><p>首次加载指标<br>移动端应用：<br>首次绘制时间 1 秒以内，TTI（交互时间） &lt; 5s（3G），关键文件大小 &lt; 170KB（gzip 压缩后）</p>
-</li>
-</ol>
-<h2 id="资源优化"><a href="#资源优化" class="headerlink" title="资源优化"></a>资源优化</h2><ol>
-<li><p>请求资源优化<br>除了常用的 gzip 压缩优化，还可以尝试 Brotli 或 Zopfli。<br>Brotli 只支持 https 站点，并且当资源被压缩到极致时会变得缓慢，因此要考虑收益。<br>也可以考虑使用 Zopfli。任何普通的 Gzip 压缩资源都可以通过 Zopfli 改进的 Deflate 编码达到比 Zlib 的最大压缩率小 3%到 8%的文件大小。问题是压缩文件大约需要耗费 80 倍的时间。这就是为什么在资源上使用 Zopfli 的原因。因为这些资源不会发生太大的变化，只需压缩一次但可以下载多次。</p>
-</li>
-<li><p>使用响应图像和 WebP<br>尽量使用带有 srcset、sizes 属性的响应式图片和元素响应式图片。<br>还可以通过在原生上使用 WebP 图片以及回退到 JPEG 的机制或者使用协议内容的方式中使用 WebP 格式。</p>
-</li>
-<li><p>图像优化<br>当首次加载页面时，特定图片必须加载得更快，可以对其进行一些优化。</p>
-</li>
-<li><p>视频优化<br>重复大量动画用动态 WebP(GIF 作为回退)来代替 video 标签。</p>
-</li>
-</ol>
-<h2 id="构建优化"><a href="#构建优化" class="headerlink" title="构建优化"></a>构建优化</h2><ol>
-<li><p>确定优先级<br>列出全部的静态资源清单（JavaScript、图片、字体、第三方脚本以及页面上的大模块：例如轮播图、复杂的信息图表和多媒体内容），并将它们分组。</p>
-</li>
-<li><p>解析 JavaScript 是耗时的，所以应设置体积小的 JavaScript 资源<br>可以用一些工具来分析 js 打包及依赖联系：<br>webpack-bundle-analyzer;<br>Source Map Explorer;<br>Bundle Buddy;<br>Webpack size-plugin;<br>考虑使用 webpack-libs-optimization 删除未使用的方法和 polyfill。<br>考虑使用一些轻量级库来替代重型库，例如用 date-fns 代替 moment.js，从 moment.js 到 date-fns 的转换可能使 3G 和低端手机上的首次绘制时间减少大约 300ms。</p>
-</li>
-<li><p>摇树和代码分割<br>摇树的核心思想是在执行路径中未使用的任何代码都将从源中删除，减少 js 体积。<br>代码拆分是另一个 webpack 功能，它将代码库拆分为按需加载的“块”。</p>
-</li>
-<li><p>删除未使用的、多余的代码<br>通过使用 devtools 的 coverage 工具（more tools 里）查看代码覆盖使用率；<br>通过 jsinspect 工具查看项目中重复的 js 代码，从而进行合适的优化。</p>
-</li>
-<li><p>客户端渲染还是服务端渲染<br>服务器端渲染的 HTML 可能更快。</p>
-<p>6.设置 HTTP 缓存标头<br>仔细检查是否正确设置 expires、max-age、cache-control 和其他 HTTP 缓存头。<br>使用专为指纹静态资源设计的 cache-control: immutable，以避免重新验证。</p>
-</li>
-</ol>
-<h2 id="交付优化"><a href="#交付优化" class="headerlink" title="交付优化"></a>交付优化</h2><ol>
-<li><p>是否所有额 JS 库都采用了异步加载？<br>请求页面时，浏览器获取 HTML 并构造 DOM，然后获取 CSS 并构造 CSSOM，然后通过匹配 DOM 和 CSSOM 生成渲染树。一旦出现需要解析的 JS，浏览器将停止渲染，直到 JS 被解析完成，从而造成渲染延迟。</p>
-</li>
-<li><p>使用 IntersectionObserver 加载大型组件</p>
-</li>
-<li><p>渐进式加载图片</p>
-</li>
-<li><p>首屏渲染关键 CSS</p>
-</li>
-<li><p>使用 service workers 进行缓存</p>
-</li>
-<li><p>优化 css 渲染性能<br>使用 will-change: transform 来代替开启动画 transform: translate3D()；<br>transform 代替 top、left 等属性变化的动画；<br>为 opacity 的元素添加 pointer-events: none 的属性。</p>
-</li>
-<li><p>优化白屏渲染体验<br>文字排版占位符，loading 动画添加。</p>
-</li>
-<li><p>优化 JS 交互代码<br>通过 devtools 的 performance 检测那些耗性能的代码段，从而尝试对其优化。<br>在浏览器 resize 时考虑是否需要加入节流函数等优化方式。</p>
-</li>
-</ol>
-<h2 id="网络优化"><a href="#网络优化" class="headerlink" title="网络优化"></a>网络优化</h2><ol>
-<li><p>迁移到 HTTPS，然后启用 HTTP/2<br>随着谷歌推进更安全的 web 并最终所有的 HTTP 页面都被 chrome 视为不安全，向 HTTP/2 环境转变已经不可避免。</p>
-</li>
-<li><p>是否优化了各个 API 的性能？<br>测试每个接口的请求速度，分析是否有可减少的请求次数。<br>如果许多资源需要来自 API 的数据，API 可能会成为性能瓶颈。GraphQL 为这些问题提供了高性能的解决方案。</p>
-</li>
-<li><p>接口请求过程是否过长<br>通过 devtools 的 network 工具，可以通过 timeline 来测试接口的请求时间，从而从中找出过程中哪一步骤可能寻在过多的耗时过程。</p>
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/10/web性能优化/" data-id="cjtvbps37000lutkqqi6rn8bq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/11/使用JSON-web-token对用户进行跨域认证/" data-id="cjtvbs90s000nw6kq3pmj0j36" class="article-share-link">Share</a>
       
       
     </footer>
@@ -825,7 +787,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li></ul>
     </div>
   </div>
 
@@ -836,6 +798,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2019/12/19/上传图片和预览功能/">上传图片和预览功能</a>
+          </li>
         
           <li>
             <a href="/2019/03/29/vue项目中mixins复用/">vue项目中mixins复用</a>
@@ -851,10 +817,6 @@
         
           <li>
             <a href="/2019/03/20/React高阶组件/">React高阶组件</a>
-          </li>
-        
-          <li>
-            <a href="/2019/03/13/sql查询语句/">sql查询语句</a>
           </li>
         
       </ul>

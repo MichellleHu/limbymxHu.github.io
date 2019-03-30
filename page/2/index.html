@@ -62,6 +62,106 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-web性能优化" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/10/web性能优化/" class="article-date">
+  <time datetime="2019-03-10T08:32:00.000Z" itemprop="datePublished">2019-03-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/10/web性能优化/">web性能优化</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="计划与指标"><a href="#计划与指标" class="headerlink" title="计划与指标"></a>计划与指标</h2><ol>
+<li><p>比你最快的竞争对手快 20%<br>根据一项心理学研究，如果希望用户感觉到你们的网站用起来比竞争对手快，那么需要比他们快至少 20%。<br>研究你的主要对手，收集他们的网站在移动和桌面设备上的性能指标，确定超越他们的最低要求。</p>
+</li>
+<li><p>在特定限速环境下测试收集数据<br>移动设备上，运行速度应该会比在桌面设备上慢 4-5 倍。移动设备上的解析时间通常要比桌面设备长 36%。<br>我们可以通过网络限速以及 CPU 限速在电脑上模拟移动端体验。</p>
+<p>为了能够复现真实用户的浏览器配置，在有条件的情况下可以模拟以下两类环境： 1.没有安装任何插件、应用、防火墙等的电脑环境； 2.用户可能会经常安装的各类软件和使用的浏览器、浏览器插件等的电脑环境；</p>
+<p>在模拟限速时，为了更准确的复现网络限速环境，可以使用 devtools 以外的工具：</p>
+<ul>
+<li>Mac OS 可以用 Network Link Conditioner(<a href="https://nshipster.com/network-link-conditioner/)；" target="_blank" rel="noopener">https://nshipster.com/network-link-conditioner/)；</a></li>
+<li>Windows 可以用 Windows Traffic Shaper；</li>
+<li>Linux 可以用 netem</li>
+</ul>
+</li>
+<li><p>首次加载指标<br>移动端应用：<br>首次绘制时间 1 秒以内，TTI（交互时间） &lt; 5s（3G），关键文件大小 &lt; 170KB（gzip 压缩后）</p>
+</li>
+</ol>
+<h2 id="资源优化"><a href="#资源优化" class="headerlink" title="资源优化"></a>资源优化</h2><ol>
+<li><p>请求资源优化<br>除了常用的 gzip 压缩优化，还可以尝试 Brotli 或 Zopfli。<br>Brotli 只支持 https 站点，并且当资源被压缩到极致时会变得缓慢，因此要考虑收益。<br>也可以考虑使用 Zopfli。任何普通的 Gzip 压缩资源都可以通过 Zopfli 改进的 Deflate 编码达到比 Zlib 的最大压缩率小 3%到 8%的文件大小。问题是压缩文件大约需要耗费 80 倍的时间。这就是为什么在资源上使用 Zopfli 的原因。因为这些资源不会发生太大的变化，只需压缩一次但可以下载多次。</p>
+</li>
+<li><p>使用响应图像和 WebP<br>尽量使用带有 srcset、sizes 属性的响应式图片和元素响应式图片。<br>还可以通过在原生上使用 WebP 图片以及回退到 JPEG 的机制或者使用协议内容的方式中使用 WebP 格式。</p>
+</li>
+<li><p>图像优化<br>当首次加载页面时，特定图片必须加载得更快，可以对其进行一些优化。</p>
+</li>
+<li><p>视频优化<br>重复大量动画用动态 WebP(GIF 作为回退)来代替 video 标签。</p>
+</li>
+</ol>
+<h2 id="构建优化"><a href="#构建优化" class="headerlink" title="构建优化"></a>构建优化</h2><ol>
+<li><p>确定优先级<br>列出全部的静态资源清单（JavaScript、图片、字体、第三方脚本以及页面上的大模块：例如轮播图、复杂的信息图表和多媒体内容），并将它们分组。</p>
+</li>
+<li><p>解析 JavaScript 是耗时的，所以应设置体积小的 JavaScript 资源<br>可以用一些工具来分析 js 打包及依赖联系：<br>webpack-bundle-analyzer;<br>Source Map Explorer;<br>Bundle Buddy;<br>Webpack size-plugin;<br>考虑使用 webpack-libs-optimization 删除未使用的方法和 polyfill。<br>考虑使用一些轻量级库来替代重型库，例如用 date-fns 代替 moment.js，从 moment.js 到 date-fns 的转换可能使 3G 和低端手机上的首次绘制时间减少大约 300ms。</p>
+</li>
+<li><p>摇树和代码分割<br>摇树的核心思想是在执行路径中未使用的任何代码都将从源中删除，减少 js 体积。<br>代码拆分是另一个 webpack 功能，它将代码库拆分为按需加载的“块”。</p>
+</li>
+<li><p>删除未使用的、多余的代码<br>通过使用 devtools 的 coverage 工具（more tools 里）查看代码覆盖使用率；<br>通过 jsinspect 工具查看项目中重复的 js 代码，从而进行合适的优化。</p>
+</li>
+<li><p>客户端渲染还是服务端渲染<br>服务器端渲染的 HTML 可能更快。</p>
+<p>6.设置 HTTP 缓存标头<br>仔细检查是否正确设置 expires、max-age、cache-control 和其他 HTTP 缓存头。<br>使用专为指纹静态资源设计的 cache-control: immutable，以避免重新验证。</p>
+</li>
+</ol>
+<h2 id="交付优化"><a href="#交付优化" class="headerlink" title="交付优化"></a>交付优化</h2><ol>
+<li><p>是否所有额 JS 库都采用了异步加载？<br>请求页面时，浏览器获取 HTML 并构造 DOM，然后获取 CSS 并构造 CSSOM，然后通过匹配 DOM 和 CSSOM 生成渲染树。一旦出现需要解析的 JS，浏览器将停止渲染，直到 JS 被解析完成，从而造成渲染延迟。</p>
+</li>
+<li><p>使用 IntersectionObserver 加载大型组件</p>
+</li>
+<li><p>渐进式加载图片</p>
+</li>
+<li><p>首屏渲染关键 CSS</p>
+</li>
+<li><p>使用 service workers 进行缓存</p>
+</li>
+<li><p>优化 css 渲染性能<br>使用 will-change: transform 来代替开启动画 transform: translate3D()；<br>transform 代替 top、left 等属性变化的动画；<br>为 opacity 的元素添加 pointer-events: none 的属性。</p>
+</li>
+<li><p>优化白屏渲染体验<br>文字排版占位符，loading 动画添加。</p>
+</li>
+<li><p>优化 JS 交互代码<br>通过 devtools 的 performance 检测那些耗性能的代码段，从而尝试对其优化。<br>在浏览器 resize 时考虑是否需要加入节流函数等优化方式。</p>
+</li>
+</ol>
+<h2 id="网络优化"><a href="#网络优化" class="headerlink" title="网络优化"></a>网络优化</h2><ol>
+<li><p>迁移到 HTTPS，然后启用 HTTP/2<br>随着谷歌推进更安全的 web 并最终所有的 HTTP 页面都被 chrome 视为不安全，向 HTTP/2 环境转变已经不可避免。</p>
+</li>
+<li><p>是否优化了各个 API 的性能？<br>测试每个接口的请求速度，分析是否有可减少的请求次数。<br>如果许多资源需要来自 API 的数据，API 可能会成为性能瓶颈。GraphQL 为这些问题提供了高性能的解决方案。</p>
+</li>
+<li><p>接口请求过程是否过长<br>通过 devtools 的 network 工具，可以通过 timeline 来测试接口的请求时间，从而从中找出过程中哪一步骤可能寻在过多的耗时过程。</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/03/10/web性能优化/" data-id="cjtvbs90q000lw6kqwre1vpn6" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-前端项目服务器常用工具" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/12/26/前端项目服务器常用工具/" class="article-date">
@@ -129,7 +229,7 @@ res.end();
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/12/26/前端项目服务器常用工具/" data-id="cjtvbps3a000qutkqrlyqnc3v" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/12/26/前端项目服务器常用工具/" data-id="cjtvbs90v000sw6kqkfhyi54o" class="article-share-link">Share</a>
       
       
     </footer>
@@ -256,7 +356,7 @@ res.end();
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/30/Node中使用Mongodb/" data-id="cjtvbps2t0003utkq2fs6niwq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/30/Node中使用Mongodb/" data-id="cjtvbs90d0002w6kq7w9rvtea" class="article-share-link">Share</a>
       
       
     </footer>
@@ -333,7 +433,7 @@ res.end();
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/07/22/webpack配置-多页应用/" data-id="cjtvbps37000kutkq3q75x7ni" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/07/22/webpack配置-多页应用/" data-id="cjtvbs90r000mw6kqwa01xo6t" class="article-share-link">Share</a>
       
       
     </footer>
@@ -385,7 +485,7 @@ res.end();
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/06/25/利用Access-Control-Allow-Origin响应头解决跨域请求原理/" data-id="cjtvbps39000outkqu8zw7y02" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/06/25/利用Access-Control-Allow-Origin响应头解决跨域请求原理/" data-id="cjtvbs90t000ow6kq40jl78lm" class="article-share-link">Share</a>
       
       
     </footer>
@@ -436,7 +536,7 @@ res.end();
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/06/10/移动web布局适配方法/" data-id="cjtvbps3b000sutkqqyt4k3yj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/06/10/移动web布局适配方法/" data-id="cjtvbs90v000rw6kqdy609c73" class="article-share-link">Share</a>
       
       
     </footer>
@@ -480,7 +580,7 @@ res.end();
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/28/Mongodb-知识点/" data-id="cjtvbps2r0001utkqbwoobec6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/05/28/Mongodb-知识点/" data-id="cjtvbs9080000w6kq0s4150sh" class="article-share-link">Share</a>
       
       
     </footer>
@@ -531,7 +631,7 @@ res.end();
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/24/koa2-开发过程随记/" data-id="cjtvbps2z000autkqxquq8zng" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/05/24/koa2-开发过程随记/" data-id="cjtvbs90h0009w6kqu8kuyl1j" class="article-share-link">Share</a>
       
       
     </footer>
@@ -580,7 +680,7 @@ res.end();
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/23/webpack-开发过程随记/" data-id="cjtvbps35000hutkqyqzy79kv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/05/23/webpack-开发过程随记/" data-id="cjtvbs90o000hw6kqld2sqk48" class="article-share-link">Share</a>
       
       
     </footer>
@@ -633,71 +733,7 @@ res.end();
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/10/vue-开发过程随记/" data-id="cjtvbps31000cutkq5f4bnrm2" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-http协议" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/03/30/http协议/" class="article-date">
-  <time datetime="2018-03-30T09:47:08.000Z" itemprop="datePublished">2018-03-30</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/30/http协议/">http协议</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="简单的-HTTP-协议"><a href="#简单的-HTTP-协议" class="headerlink" title="简单的 HTTP 协议"></a>简单的 HTTP 协议</h2><h3 id="使用-Cookie-的状态管理"><a href="#使用-Cookie-的状态管理" class="headerlink" title="使用 Cookie 的状态管理"></a>使用 Cookie 的状态管理</h3><p>为了尽快处理大量事务，HTTP 被设计为不保存状态的协议。<br>在多页面切换时，需要保存用户的状态，因此引入了 Cookie 技术。</p>
-<blockquote>
-<p>Cookie 通过在请求和响应报文中写入 Cookie 信息来控制客户端的状态。</p>
-</blockquote>
-<ol>
-<li><p>首先，在没有 Cookie 信息状态下，客户端发出 HTTP 请求。服务器会生成 Cookie，并通过在响应报文中添加 Set-Cookie 的首部字段，来通知客户端保存 Cookie。</p>
-</li>
-<li><p>下次客户端再往服务器发送请求时，客户端会自动在请求报文中加入 Cookie 值后再发送出去。</p>
-</li>
-</ol>
-<h3 id="持久连接节省通信量"><a href="#持久连接节省通信量" class="headerlink" title="持久连接节省通信量"></a>持久连接节省通信量</h3><p>当文档中包含有大量图片时，每进行一次 HTTP 请求就断开 TCP 连接，增加了通信量的开销。</p>
-<p>通过设置 Connection: keep-alive，实现了只要任意一端没有明确提出断开连接，则保持 TCP 连接状态。</p>
-<p>持久连接的益处在于：</p>
-<ul>
-<li>减少 TCP 连接重复建立和断开所造成的额外开销，减轻服务器负担；</li>
-<li>HTTP 请求和响应更快结束，页面能尽快的显示处理。</li>
-</ul>
-<h2 id="返回结果的状态码"><a href="#返回结果的状态码" class="headerlink" title="返回结果的状态码"></a>返回结果的状态码</h2><p>1XX 接收的请求正在处理<br>2XX 请求正常处理完毕<br>3XX 重定向状态码，需要附加操作以完成请求<br>4XX 服务器无法处理请求<br>5XX 服务器处理请求出错</p>
-<p>301 永久重定向<br>302 临时重定向<br>304 服务器资源未改变，可直接使用客户端未过期的缓存<br>404 服务器上没有请求的资源</p>
-<h2 id="HTTP-首部"><a href="#HTTP-首部" class="headerlink" title="HTTP 首部"></a>HTTP 首部</h2><ol>
-<li>通用首部字段</li>
-</ol>
-<p>Connection 连接的管理</p>
-<ol start="2">
-<li>请求首部字段<br>Accept 用户代理可处理的媒体类型<br>Accept-Encoding 优先的内容编码<br>Authorization Web 认证信息</li>
-<li>响应首部字段</li>
-<li>实体首部字段<br>Content-Type 实体主体的媒体类型</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/30/http协议/" data-id="cjtvbps2x0008utkq6wo4zt2u" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/10/vue-开发过程随记/" data-id="cjtvbs90k000cw6kqnlzflvy6" class="article-share-link">Share</a>
       
       
     </footer>
@@ -730,7 +766,7 @@ res.end();
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li></ul>
     </div>
   </div>
 
@@ -741,6 +777,10 @@ res.end();
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2019/12/19/上传图片和预览功能/">上传图片和预览功能</a>
+          </li>
         
           <li>
             <a href="/2019/03/29/vue项目中mixins复用/">vue项目中mixins复用</a>
@@ -756,10 +796,6 @@ res.end();
         
           <li>
             <a href="/2019/03/20/React高阶组件/">React高阶组件</a>
-          </li>
-        
-          <li>
-            <a href="/2019/03/13/sql查询语句/">sql查询语句</a>
           </li>
         
       </ul>

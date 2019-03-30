@@ -62,6 +62,70 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-http协议" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/30/http协议/" class="article-date">
+  <time datetime="2018-03-30T09:47:08.000Z" itemprop="datePublished">2018-03-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/30/http协议/">http协议</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="简单的-HTTP-协议"><a href="#简单的-HTTP-协议" class="headerlink" title="简单的 HTTP 协议"></a>简单的 HTTP 协议</h2><h3 id="使用-Cookie-的状态管理"><a href="#使用-Cookie-的状态管理" class="headerlink" title="使用 Cookie 的状态管理"></a>使用 Cookie 的状态管理</h3><p>为了尽快处理大量事务，HTTP 被设计为不保存状态的协议。<br>在多页面切换时，需要保存用户的状态，因此引入了 Cookie 技术。</p>
+<blockquote>
+<p>Cookie 通过在请求和响应报文中写入 Cookie 信息来控制客户端的状态。</p>
+</blockquote>
+<ol>
+<li><p>首先，在没有 Cookie 信息状态下，客户端发出 HTTP 请求。服务器会生成 Cookie，并通过在响应报文中添加 Set-Cookie 的首部字段，来通知客户端保存 Cookie。</p>
+</li>
+<li><p>下次客户端再往服务器发送请求时，客户端会自动在请求报文中加入 Cookie 值后再发送出去。</p>
+</li>
+</ol>
+<h3 id="持久连接节省通信量"><a href="#持久连接节省通信量" class="headerlink" title="持久连接节省通信量"></a>持久连接节省通信量</h3><p>当文档中包含有大量图片时，每进行一次 HTTP 请求就断开 TCP 连接，增加了通信量的开销。</p>
+<p>通过设置 Connection: keep-alive，实现了只要任意一端没有明确提出断开连接，则保持 TCP 连接状态。</p>
+<p>持久连接的益处在于：</p>
+<ul>
+<li>减少 TCP 连接重复建立和断开所造成的额外开销，减轻服务器负担；</li>
+<li>HTTP 请求和响应更快结束，页面能尽快的显示处理。</li>
+</ul>
+<h2 id="返回结果的状态码"><a href="#返回结果的状态码" class="headerlink" title="返回结果的状态码"></a>返回结果的状态码</h2><p>1XX 接收的请求正在处理<br>2XX 请求正常处理完毕<br>3XX 重定向状态码，需要附加操作以完成请求<br>4XX 服务器无法处理请求<br>5XX 服务器处理请求出错</p>
+<p>301 永久重定向<br>302 临时重定向<br>304 服务器资源未改变，可直接使用客户端未过期的缓存<br>404 服务器上没有请求的资源</p>
+<h2 id="HTTP-首部"><a href="#HTTP-首部" class="headerlink" title="HTTP 首部"></a>HTTP 首部</h2><ol>
+<li>通用首部字段</li>
+</ol>
+<p>Connection 连接的管理</p>
+<ol start="2">
+<li>请求首部字段<br>Accept 用户代理可处理的媒体类型<br>Accept-Encoding 优先的内容编码<br>Authorization Web 认证信息</li>
+<li>响应首部字段</li>
+<li>实体首部字段<br>Content-Type 实体主体的媒体类型</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/03/30/http协议/" data-id="cjtvbs90f0006w6kqorvhyfff" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-webpack-配置对象" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/03/25/webpack-配置对象/" class="article-date">
@@ -90,7 +154,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/25/webpack-配置对象/" data-id="cjtvbps35000iutkqzcpddzz4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/25/webpack-配置对象/" data-id="cjtvbs90o000iw6kqd3hhsy23" class="article-share-link">Share</a>
       
       
     </footer>
@@ -130,7 +194,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/10/call和apply/" data-id="cjtvbps2v0005utkqo08vfq7i" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/10/call和apply/" data-id="cjtvbs90e0004w6kqtkh5ub6i" class="article-share-link">Share</a>
       
       
     </footer>
@@ -168,7 +232,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/10/babel-plugin-import/" data-id="cjtvbps2u0004utkqv6y1b1se" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/10/babel-plugin-import/" data-id="cjtvbs90f0005w6kq8x6vu912" class="article-share-link">Share</a>
       
       
     </footer>
@@ -219,7 +283,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/11/30/从用户输入url地址到页面渲染数据中间发生了什么？/" data-id="cjtvbps38000mutkqm7scy73s" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/11/30/从用户输入url地址到页面渲染数据中间发生了什么？/" data-id="cjtvbs90t000pw6kqp8w1ggdv" class="article-share-link">Share</a>
       
       
     </footer>
@@ -281,7 +345,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/10/20/Flex布局知识点总结/" data-id="cjtvbps2n0000utkq5ju4wtyy" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/10/20/Flex布局知识点总结/" data-id="cjtvbs90b0001w6kq5w6op7ww" class="article-share-link">Share</a>
       
       
     </footer>
@@ -371,7 +435,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/10/17/基于hexo-github搭建一个独立博客/" data-id="cjtvbps3a000putkqjkpga8qd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/10/17/基于hexo-github搭建一个独立博客/" data-id="cjtvbs90u000qw6kqdksm16c9" class="article-share-link">Share</a>
       
       
     </footer>
@@ -431,7 +495,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/30/debounce、throttle/" data-id="cjtvbps2w0006utkqtavwc1an" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/07/30/debounce、throttle/" data-id="cjtvbs90g0007w6kqm22uvbd0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -486,7 +550,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/28/webpack插件-extract-text-webpack-plugin/" data-id="cjtvbps36000jutkqylgya65h" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/06/28/webpack插件-extract-text-webpack-plugin/" data-id="cjtvbs90p000jw6kq4qvbhgyo" class="article-share-link">Share</a>
       
       
     </footer>
@@ -538,7 +602,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/26/path-join-和-path-resolve-比较/" data-id="cjtvbps30000butkqu4gzxwgt" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/06/26/path-join-和-path-resolve-比较/" data-id="cjtvbs90j000bw6kq1lvs6047" class="article-share-link">Share</a>
       
       
     </footer>
@@ -571,7 +635,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li></ul>
     </div>
   </div>
 
@@ -582,6 +646,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2019/12/19/上传图片和预览功能/">上传图片和预览功能</a>
+          </li>
         
           <li>
             <a href="/2019/03/29/vue项目中mixins复用/">vue项目中mixins复用</a>
@@ -597,10 +665,6 @@
         
           <li>
             <a href="/2019/03/20/React高阶组件/">React高阶组件</a>
-          </li>
-        
-          <li>
-            <a href="/2019/03/13/sql查询语句/">sql查询语句</a>
           </li>
         
       </ul>
