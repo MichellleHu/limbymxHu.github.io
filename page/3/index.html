@@ -90,7 +90,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/25/webpack-配置对象/" data-id="cjtvbn36p000gsnkqml9ji3i3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/25/webpack-配置对象/" data-id="cjtvbojwu000htqkqolevahmn" class="article-share-link">Share</a>
       
       
     </footer>
@@ -130,7 +130,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/10/call和apply/" data-id="cjtvbn36h0007snkqlihrshtr" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/10/call和apply/" data-id="cjtvbojwc0003tqkqpn4isk3o" class="article-share-link">Share</a>
       
       
     </footer>
@@ -168,7 +168,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/10/babel-plugin-import/" data-id="cjtvbn36f0004snkqam56ccy3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/10/babel-plugin-import/" data-id="cjtvbojwb0002tqkqlxga33hr" class="article-share-link">Share</a>
       
       
     </footer>
@@ -219,7 +219,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/11/30/从用户输入url地址到页面渲染数据中间发生了什么？/" data-id="cjtvbn36r000jsnkqf6w0k9ak" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/11/30/从用户输入url地址到页面渲染数据中间发生了什么？/" data-id="cjtvbojww000ktqkq307x0qpg" class="article-share-link">Share</a>
       
       
     </footer>
@@ -281,7 +281,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/10/20/Flex布局知识点总结/" data-id="cjtvbn3680000snkqdeeveqei" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/10/20/Flex布局知识点总结/" data-id="cjtvbojw50000tqkq4x8i1o63" class="article-share-link">Share</a>
       
       
     </footer>
@@ -371,7 +371,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/10/17/基于hexo-github搭建一个独立博客/" data-id="cjtvbn36t000msnkqxewtk2v7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/10/17/基于hexo-github搭建一个独立博客/" data-id="cjtvbojwz000otqkq2gzcis64" class="article-share-link">Share</a>
       
       
     </footer>
@@ -431,7 +431,62 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/30/debounce、throttle/" data-id="cjtvbn36d0002snkqo8l83g1h" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/07/30/debounce、throttle/" data-id="cjtvbojwj0005tqkqjymj2ps0" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-webpack插件-extract-text-webpack-plugin" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/28/webpack插件-extract-text-webpack-plugin/" class="article-date">
+  <time datetime="2017-06-28T09:57:28.000Z" itemprop="datePublished">2017-06-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/28/webpack插件-extract-text-webpack-plugin/">webpack插件 -- extract-text-webpack-plugin</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="extract-text-webpack-plugin"><a href="#extract-text-webpack-plugin" class="headerlink" title="extract-text-webpack-plugin"></a>extract-text-webpack-plugin</h1><p>该插件的主要是为了抽离 css 样式,防止将样式打包在 js 中引起页面样式加载错乱的现象。<br>生产环境下比较推荐的做法是，使用 ExtractTextPlugin 将样式表抽离成专门的单独文件。这样，样式表将不再依赖于 JavaScrip</p>
+<p>webpack()方式是 node.js API</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</span><br><span class="line"></span><br><span class="line">webpack(</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="comment">// 配置对象</span></span><br><span class="line">    ...webpackConfig</span><br><span class="line">  &#125;,</span><br><span class="line">  (err, stats) =&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (err || stats.hasErrors()) &#123;</span><br><span class="line">      <span class="comment">// 在这里处理错误</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 处理完成</span></span><br><span class="line">  &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>配置对象在<a href="https://www.webpackjs.com/configuration/。具体如下：" target="_blank" rel="noopener">https://www.webpackjs.com/configuration/。具体如下：</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    <span class="comment">// 关于模块配置</span></span><br><span class="line"></span><br><span class="line">    rules: [</span><br><span class="line">      <span class="comment">// 模块规则（配置 loader、解析器等选项）</span></span><br><span class="line"></span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.jsx?$/</span>,</span><br><span class="line">        include: [</span><br><span class="line">          path.resolve(__dirname, <span class="string">"app"</span>)</span><br><span class="line">        ],</span><br><span class="line">        exclude: [</span><br><span class="line">          path.resolve(__dirname, <span class="string">"app/demo-files"</span>)</span><br><span class="line">        ],</span><br><span class="line">        <span class="comment">// 这里是匹配条件，每个选项都接收一个正则表达式或字符串</span></span><br><span class="line">        <span class="comment">// test 和 include 具有相同的作用，都是必须匹配选项</span></span><br><span class="line">        <span class="comment">// exclude 是必不匹配选项（优先于 test 和 include）</span></span><br><span class="line">        <span class="comment">// 最佳实践：</span></span><br><span class="line">        <span class="comment">// - 只在 test 和 文件名匹配 中使用正则表达式</span></span><br><span class="line">        <span class="comment">// - 在 include 和 exclude 中使用绝对路径数组</span></span><br><span class="line">        <span class="comment">// - 尽量避免 exclude，更倾向于使用 include</span></span><br><span class="line"></span><br><span class="line">        issuer: &#123; test, include, exclude &#125;,</span><br><span class="line">        <span class="comment">// issuer 条件（导入源）</span></span><br><span class="line"></span><br><span class="line">        enforce: <span class="string">"pre"</span>,</span><br><span class="line">        <span class="comment">// enforce: "post",</span></span><br><span class="line">        <span class="comment">// 标识应用这些规则，即使规则覆盖（高级选项）</span></span><br><span class="line"></span><br><span class="line">        loader: <span class="string">"babel-loader"</span>,</span><br><span class="line">        <span class="comment">// 应该应用的 loader，它相对上下文解析</span></span><br><span class="line">        <span class="comment">// 为了更清晰，`-loader` 后缀在 webpack 2 中不再是可选的</span></span><br><span class="line">        <span class="comment">// 查看 webpack 1 升级指南。</span></span><br><span class="line"></span><br><span class="line">        options: &#123;</span><br><span class="line">          presets: [<span class="string">"es2015"</span>]</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">// loader 的可选项</span></span><br><span class="line">      &#125;,</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">···</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在 webpack 配置对象中配置 extract-text-webpack-plugin 插件。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> merge = <span class="built_in">require</span>(<span class="string">'webpack-merge'</span>);</span><br><span class="line"><span class="keyword">const</span> ExtractTextPlugin = <span class="built_in">require</span>(<span class="string">'extract-text-webpack-plugin'</span>);</span><br><span class="line"><span class="keyword">const</span> utils = <span class="built_in">require</span>(<span class="string">'./utils'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> webpackConfig = merge(baseWebpackConfig, &#123;</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: utils.styleLoaders(&#123;</span><br><span class="line">      <span class="comment">// 生产环境样式的sourceMap统一设置为false</span></span><br><span class="line">      sourceMap: config.build.productionSourceMap, <span class="comment">// false</span></span><br><span class="line">      extract: <span class="literal">true</span>,</span><br><span class="line">      usePostCSS: <span class="literal">true</span>,</span><br><span class="line">    &#125;),</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>extract 属性为 true 时，</p>
+<p><img src="https://user-gold-cdn.xitu.io/2019/2/28/16932e377919b60f?w=1245&amp;h=301&amp;f=png&amp;s=149232" alt><br>extract 属性为 false 时，打包的 css 文件体积减小，而 js 文件体积增大；打包时间变长。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2019/2/28/16932e2903bef9c6?w=1247&amp;h=300&amp;f=png&amp;s=81971" alt><br>util.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Generate loaders for standalone style files (outside of .vue)</span></span><br><span class="line">exports.styleLoaders = <span class="function"><span class="keyword">function</span>(<span class="params">options</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> output = [];</span><br><span class="line">  <span class="keyword">const</span> loaders = exports.cssLoaders(options);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> extension <span class="keyword">in</span> loaders) &#123;</span><br><span class="line">    <span class="keyword">const</span> loader = loaders[extension];</span><br><span class="line">    output.push(&#123;</span><br><span class="line">      test: <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">`\\.<span class="subst">$&#123;extension&#125;</span>$`</span>),</span><br><span class="line">      use: loader</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> output;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">exports.cssLoaders = <span class="function"><span class="keyword">function</span>(<span class="params">options</span>) </span>&#123;</span><br><span class="line">  options = options || &#123;&#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> cssLoader = &#123;</span><br><span class="line">    loader: <span class="string">'css-loader'</span>,</span><br><span class="line">    options: &#123;</span><br><span class="line">      sourceMap: options.sourceMap</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> postcssLoader = &#123;</span><br><span class="line">    loader: <span class="string">'postcss-loader'</span>,</span><br><span class="line">    options: &#123;</span><br><span class="line">      sourceMap: options.sourceMap</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// generate loader string to be used with extract text plugin</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">generateLoaders</span>(<span class="params">loader, loaderOptions</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> loaders = options.usePostCSS</span><br><span class="line">      ? [cssLoader, postcssLoader]</span><br><span class="line">      : [cssLoader];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (loader) &#123;</span><br><span class="line">      loaders.push(&#123;</span><br><span class="line">        loader: <span class="string">`<span class="subst">$&#123;loader&#125;</span>-loader`</span>,</span><br><span class="line">        options: <span class="built_in">Object</span>.assign(&#123;&#125;, loaderOptions, &#123;</span><br><span class="line">          sourceMap: options.sourceMap</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Extract CSS when that option is specified</span></span><br><span class="line">    <span class="comment">// (which is the case during production build)</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="keyword">if</span> (options.extract) &#123;</span><br><span class="line">      <span class="keyword">return</span> ExtractTextPlugin.extract(&#123;</span><br><span class="line">        use: loaders,</span><br><span class="line">        publicPath: <span class="string">'../../'</span>,</span><br><span class="line">        fallback: <span class="string">'vue-style-loader'</span></span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> [<span class="string">'vue-style-loader'</span>].concat(loaders);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// https://vue-loader.vuejs.org/en/configurations/extract-css.html</span></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="comment">// [css-loader, postcss-loader]</span></span><br><span class="line">    css: generateLoaders(),</span><br><span class="line">    postcss: generateLoaders(),</span><br><span class="line">    <span class="comment">// [less-loader, css-loader, postcss-loader]</span></span><br><span class="line">    less: generateLoaders(<span class="string">'less'</span>),</span><br><span class="line">    <span class="comment">// [sass-loader, css-loader, postcss-loader]</span></span><br><span class="line">    sass: generateLoaders(<span class="string">'sass'</span>, &#123; <span class="attr">indentedSyntax</span>: <span class="literal">true</span> &#125;),</span><br><span class="line">    <span class="comment">// [sass-loader, css-loader, postcss-loader]</span></span><br><span class="line">    scss: generateLoaders(<span class="string">'sass'</span>),</span><br><span class="line">    <span class="comment">// [stylus-loader, css-loader, postcss-loader]</span></span><br><span class="line">    stylus: generateLoaders(<span class="string">'stylus'</span>),</span><br><span class="line">    <span class="comment">// [stylus-loader, css-loader, postcss-loader]</span></span><br><span class="line">    styl: generateLoaders(<span class="string">'stylus'</span>)</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="ExtractTextPlugin-extract"><a href="#ExtractTextPlugin-extract" class="headerlink" title="ExtractTextPlugin.extract"></a>ExtractTextPlugin.extract</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ExtractTextPlugin.extract(options: loader | object)</span><br></pre></td></tr></table></figure>
+<p>ExtractTextPlugin.extract 从一个已存在的 loader 中，创建一个提取(extract) loader。</p>
+<ul>
+<li>options.use 该 loader 将资源转换成一个 CSS 导出模块;</li>
+<li>options.fallback 应用于当 CSS 没有被提取时，此 loader 将资源转换成一个 CSS 导出模块；</li>
+<li>options.publicPath 重写此 loader 的 publicPath 配置</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/06/28/webpack插件-extract-text-webpack-plugin/" data-id="cjtvbojx1000rtqkqa9at08vo" class="article-share-link">Share</a>
       
       
     </footer>
@@ -464,7 +519,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li></ul>
     </div>
   </div>
 
