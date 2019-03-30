@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>webpack配置-多页应用 | 技术博客分享平台  --limHu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一、文件结构build├── build.js├── check-versions.js├── utils.js├── webpack.base.conf.js├── webpack.dev.conf.js├── webpack.prod.conf.js└── webpack_dll.config.jsconfig└── index.jspublic└── static├── iconfont│">
+<meta property="og:type" content="article">
+<meta property="og:title" content="webpack配置-多页应用">
+<meta property="og:url" content="http://yoursite.com/2018/07/22/webpack配置-多页应用/index.html">
+<meta property="og:site_name" content="技术博客分享平台  --limHu">
+<meta property="og:description" content="一、文件结构build├── build.js├── check-versions.js├── utils.js├── webpack.base.conf.js├── webpack.dev.conf.js├── webpack.prod.conf.js└── webpack_dll.config.jsconfig└── index.jspublic└── static├── iconfont│">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-03-30T09:51:40.897Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="webpack配置-多页应用">
+<meta name="twitter:description" content="一、文件结构build├── build.js├── check-versions.js├── utils.js├── webpack.base.conf.js├── webpack.dev.conf.js├── webpack.prod.conf.js└── webpack_dll.config.jsconfig└── index.jspublic└── static├── iconfont│">
+  
+    <link rel="alternate" href="/atom.xml" title="技术博客分享平台  --limHu" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">技术博客分享平台  --limHu</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-webpack配置-多页应用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/07/22/webpack配置-多页应用/" class="article-date">
+  <time datetime="2018-07-22T09:51:18.000Z" itemprop="datePublished">2018-07-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      webpack配置-多页应用
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>一、文件结构<br>build<br>├── build.js<br>├── check-versions.js<br>├── utils.js<br>├── webpack.base.conf.js<br>├── webpack.dev.conf.js<br>├── webpack.prod.conf.js<br>└── webpack_dll.config.js<br>config<br>└── index.js<br>public<br>└── static<br>├── iconfont<br>│ ├── iconfont.css<br>│ ├── iconfont.eot<br>│ ├── iconfont.js<br>│ ├── iconfont.svg<br>│ ├── iconfont.ttf<br>│ └── iconfont.woff<br>└── vendor<br>├── vendor.dll.js<br>└── vendor.manifest.json</p>
+<p>3 directories, 16 files<br>二、具体配置<br>2.1 webpack.base.config<br>2.1.1 入口<br>entry: {<br>home: ‘./src/home’,<br>page2: ‘./src/page2’,<br>},<br>由于本项目为多页应用，固配置入口时有多个入口起点。写法为 key: value 形式，最后会生成多个 chunk，每个 chunk 的名称为 object 键值对中 key 的名称。</p>
+<p>2.1.2 输出<br>output: {<br>path: config.build.assetsRoot,<br>filename: ‘[name].js’,<br>publicPath: process.env.NODE_ENV === ‘production’<br>? config.build.assetsPublicPath<br>: config.dev.assetsPublicPath,<br>},<br>所有静态文件会输出到 dist 文件夹下。</p>
+<p>2.1.3 Resolve<br>resolve: {<br>extensions: [‘.js’, ‘.json’, ‘.jsx’, ‘.less’]<br>},<br>resolve 配置寻找模块的规则。</p>
+<p>2.1.4 loader<br>test: /.(js|jsx)\$/,<br>loader: ‘eslint-loader’,<br>enforce: ‘pre’, // 前置 loader,会优先执行<br>include: [resolve(‘src’)], // 对 src 文件夹下的代码进行 eslint 规则验证<br>options: {<br>formatter: require(‘eslint-friendly-formatter’),<br>emitWarning: !config.dev.showEslintErrorsInOverlay<br>}<br>2.1.5 动态链接库(结合 2.2)<br>plugins: [<br>new webpack.DllReferencePlugin({<br>manifest: require(‘../public/static/vendor/vendor.manifest.json’),<br>}),<br>],<br>2.2 webpack_dll.config<br>const vendor = [<br>‘react’,<br>‘react-dom’,<br>‘prop-types’,<br>‘react-router’,<br>‘react-helmet’,<br>‘mobx’,<br>‘mobx-react’,<br>‘antd’,<br>‘axios’,<br>];</p>
+<p>const dllConfig = {<br>mode: ‘none’,<br>entry: {<br>vendor,<br>},<br>output: {<br>filename: ‘[name].dll.js’,<br>path: path.resolve(<strong>dirname, ‘../public/static’, ‘vendor’),<br>library: ‘<em>dll</em>[name]’,<br>publicPath: ‘/dist/‘,<br>},<br>plugins: [<br>new webpack.DllPlugin({<br>name: ‘<em>dll</em>[name]’,<br>path: path.join(</strong>dirname, ‘../public/static’, ‘vendor/[name].manifest.json’),<br>}),<br>],<br>}</p>
+<p>module.exports = (env, argv) =&gt; {<br>if (argv.mode === ‘production’) {<br>dllConfig.plugins.push(<br>new UglifyJsPlugin({<br>uglifyOptions: {<br>compress: {<br>warnings: false<br>},<br>output: {<br>comments: false,<br>beautify: false,<br>},<br>},<br>sourceMap: false,<br>parallel: true<br>})<br>);<br>}</p>
+<p>return dllConfig;<br>};<br>将’react’、 ‘react-dom’、’prop-types’、’react-router’、’react-helmet’、’mobx’、’mobx-react’、’antd’、’axios’这些基础依赖模块抽离出来，打包到一个单独的.dll 文件中，当需要导入以上模块时，会直接去动态链接库中获取，不会再次打包。<br>DllPlugin 插件：用于打包动态链接库文件。<br>DllReferencePlugin 插件：用于在主配置文件中引入 DllPlugin 插件打包好的.dll 文件。(见 2.1.5)<br>文件最后返回一个函数是为了区分环境，生产环境中使用的.dll 文件需要压缩。<br>2.2 开发环境<br>2.2.1 mode<br>module.exports = {</p>
+<ul>
+<li>mode: ‘development’</li>
+</ul>
+<ul>
+<li>devtool: ‘eval’,</li>
+<li>plugins: [</li>
+<li>new webpack.NamedModulesPlugin(),</li>
+<li>new webpack.NamedChunksPlugin(),</li>
+<li>new webpack.DefinePlugin({ “process.env.NODE_ENV”: JSON.stringify(“development”) }),</li>
+<li><p>]<br>}<br>设置 mode 值为 development 后，可以去掉 NamedModulesPlugin、NamedChunksPlugin 以及 DefinePlugin 插件，为其默认行为。</p>
+<p>2.2.2 DevServer 配置注意点<br>由于有多个入口所以 historyApiFallback 的配置也需要配置多个<br>historyApiFallback: {<br>rewrites: [<br>{ from: /^\/home.html/, to: path.posix.join(config.dev.assetsPublicPath, ‘home.html’) },<br>{ from: /^\/page2.html/, to: path.posix.join(config.dev.assetsPublicPath, ‘page2.html’) },<br>{ from: /.*/, to: path.posix.join(config.dev.assetsPublicPath, ‘home.html’) },<br>],<br>},<br>要访问额外的静态资源就需要配置 contentBase, 不然找不到文件<br>contentBase: path.resolve(__dirname, ‘../public’),<br>有多少个入口，就需要配置多少个 HtmlWebpackPlugin 实例。<br>new HtmlWebpackPlugin({<br>filename: ‘home.html’,<br>template: ‘./template.html’,<br>chunks: [‘home’],<br>inject: true,<br>vendor: ‘/static/vendor/vendor.dll.js’,<br>}),<br>new HtmlWebpackPlugin({<br>filename: ‘page2.html’,<br>template: ‘./template.html’,<br>chunks: [‘page2’],<br>inject: true,<br>vendor: ‘/static/vendor/vendor.dll.js’,<br>}),<br>在模板文件中插入.dll 文件的方式为</p>
+<script src="<%= htmlWebpackPlugin.options.vendor %>"></script>
+
+<p>2.3 生产环境<br>2.3.1 mode<br>与开发环境类似，设置 mode 为 production，只是默认行为有所区别。</p>
+</li>
+</ul>
+<p>Sets process.env.NODE_ENV on DefinePlugin to value production. Enables FlagDependencyUsagePlugin, FlagIncludedChunksPlugin, ModuleConcatenationPlugin, NoEmitOnErrorsPlugin, OccurrenceOrderPlugin, SideEffectsFlagPlugin and UglifyJsPlugin.</p>
+<p>2.3.2 抽取公共包<br>webpack4 中不再推荐使用 CommonsChunkPlugin，抽取公共包可以通过设置 optimization 对象中的 splitChunks。</p>
+<p>optimization: {<br>runtimeChunk: {<br>name: ‘manifest’<br>},<br>splitChunks: {<br>chunks: ‘all’, // initial、async 和 all<br>minSize: 30000, // 形成一个新代码块最小的体积<br>minChunks: 1, // 在分割之前，这个代码块最小应该被引用的次数<br>maxAsyncRequests: 5, // 按需加载时候最大的并行请求数<br>maxInitialRequests: 3, // 最大初始化请求数<br>automaticNameDelimiter: ‘~’, // 打包分割符<br>name: ‘commons’,<br>// 打包后的名字<br>cacheGroups: {<br>vendors: {<br>test: /[\/]node_modules[\/]/, //用于控制哪些模块被这个缓存组匹配到、它默认会选择所有的模块<br>priority: -10, //缓存组打包的先后优先级<br>name: ‘vendors’,<br>minSize: 3000<br>},<br>default: {<br>minChunks: 2,<br>priority: -20,<br>minSize: 3000<br>}<br>}<br>},<br>},<br>2.3.3 抽离样式文件<br>webpack4 不再推荐使用 extract-text-webpack-plugin 提取文件，推荐使用 mini-css-extract-plugin。</p>
+<pre><code>new MiniCssExtractPlugin({
+  filename: utils.assetsPath(&apos;css/[name].[contenthash:12].css&apos;),
+  allChunks: true,
+}),
+</code></pre><p>2.3.4 HtmlWebpackPlugin 配置<br>HtmlWebpackPlugin 的配置与开发环境中类似，只是多了压缩部分</p>
+<p>minify: {<br>removeComments: true,<br>collapseWhitespace: true,<br>removeAttributeQuotes: true<br>},<br>2.3.5 不需要 webpack 处理的静态文件<br>我将不需要 webpack 处理的静态文件都放在了 public 文件夹中，例如：字体文件等。这部分文件在打包时只需直接复制到 dist 文件夹中即可</p>
+<pre><code>new CopyWebpackPlugin([
+  {
+    from: path.resolve(__dirname, &apos;../public/static&apos;),
+    to: config.build.assetsSubDirectory,
+    ignore: [&apos;.*&apos;]
+  }
+])
+</code></pre><p>总结<br>由于组织语言能力有限，有写的不明白的可以直接来问我。以上只是对各个配置文件做了简单的介绍，整体风格与 VUE-CLI 一致，个人认为这种书写方式更为清晰易懂，有熟悉 create-react-app 的小伙伴也可以结合两者，做出更好的配置。webpack 还有很多优化的地方，目前我只是加入了动态链接库的配置，接下来我会加入其它的优化点，敬请期待。。。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/07/22/webpack配置-多页应用/" data-id="cjtvbglhk000co8kqmkug4e2s" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/03/10/web性能优化/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          web性能优化
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/06/25/利用Access-Control-Allow-Origin响应头解决跨域请求原理/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">利用Access-Control-Allow-Origin响应头解决跨域请求原理</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/29/vue项目中mixins复用/">vue项目中mixins复用</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/28/vue项目优化/">vue项目优化</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/26/jenkins-教程/">jenkins 教程</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/20/React高阶组件/">React高阶组件</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/13/sql查询语句/">sql查询语句</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
