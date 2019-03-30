@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Node中使用Mongodb | 技术博客分享平台  --limHu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Mongodb Driver(不做介绍)npm install mongodb –save  mongoose2.1 介绍Mongoose 是在 node.js 异步环境下对 mongodb 进行便捷操作的对象模型工具。Mongoose 是 NodeJS 的驱动，不能作为其他语言的驱动。   2.2 特点通过关系型数据库的思想来设计非关系型数据库基于 Mongodb 驱动，简化操作2.3 使用步">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node中使用Mongodb">
+<meta property="og:url" content="http://yoursite.com/2018/11/30/Node中使用Mongodb/index.html">
+<meta property="og:site_name" content="技术博客分享平台  --limHu">
+<meta property="og:description" content="Mongodb Driver(不做介绍)npm install mongodb –save  mongoose2.1 介绍Mongoose 是在 node.js 异步环境下对 mongodb 进行便捷操作的对象模型工具。Mongoose 是 NodeJS 的驱动，不能作为其他语言的驱动。   2.2 特点通过关系型数据库的思想来设计非关系型数据库基于 Mongodb 驱动，简化操作2.3 使用步">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-03-30T09:52:59.023Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Node中使用Mongodb">
+<meta name="twitter:description" content="Mongodb Driver(不做介绍)npm install mongodb –save  mongoose2.1 介绍Mongoose 是在 node.js 异步环境下对 mongodb 进行便捷操作的对象模型工具。Mongoose 是 NodeJS 的驱动，不能作为其他语言的驱动。   2.2 特点通过关系型数据库的思想来设计非关系型数据库基于 Mongodb 驱动，简化操作2.3 使用步">
+  
+    <link rel="alternate" href="/atom.xml" title="技术博客分享平台  --limHu" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">技术博客分享平台  --limHu</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Node中使用Mongodb" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/30/Node中使用Mongodb/" class="article-date">
+  <time datetime="2018-11-30T09:52:20.000Z" itemprop="datePublished">2018-11-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Node中使用Mongodb
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li><p>Mongodb Driver(不做介绍)<br>npm install mongodb –save</p>
+</li>
+<li><p>mongoose<br>2.1 介绍<br>Mongoose 是在 node.js 异步环境下对 mongodb 进行便捷操作的对象模型工具。Mongoose 是 NodeJS 的驱动，不能作为其他语言的驱动。</p>
+</li>
+</ol>
+<p>2.2 特点<br>通过关系型数据库的思想来设计非关系型数据库<br>基于 Mongodb 驱动，简化操作<br>2.3 使用步骤<br>安装 首先确保已经安装了 MongoDB 和 Node.js</p>
+<p>npm install mongoose –save</p>
+<p>引入 mongoose 并连接数据库</p>
+<p>const mongoose = require(‘mongoose’);<br>// 连接到本地 test 数据库<br>// useNewUrlParser 这个属性会在 url 中识别验证用户所需的 db,未升级前不需要指定<br>mongoose.connect(‘mongodb://localhost:27017/test’, { useNewUrlParser: true });</p>
+<p>// 如果有账户密码需要采用下面的连接方式:<br>// mongoose.connect(‘mongodb://用户名:密码@localhost:27017/test’);<br>判断是否连接成功并监听 error</p>
+<p>定义 Schema 数据库中的 Schema 即为数据库对象的集合。schema 是 mongoose 里用到的一种数据模式，可以理解为表结构的定义。每个 schema 会映射到 mongodb 中的一个 collection，它不具备操作数据库的能力。</p>
+<p>// Schema 里面的对象要和数据库集合里面的字段一一对应<br>const UserSchema = new mongoose.Schema({<br>name: String,<br>age: Number,<br>status: Number,<br>});<br>创建数据模型 model 是由 schema 生成的模型，可以对数据库的操作。 Note: mongoose.model(模型名称(首字母大写), Schema, [集合名称]) 如果没有传入第三个参数，则 Mongoose 会自动查找以模型名称的复数形式命名的集合，否则该模型将与第三个参数定义的名称的集合建立连接。<br>The first argument is the singular name of the collection your model is for. Mongoose automatically looks for the plural version of your model name.</p>
+<p>// 模型将会操作 users 这个集合<br>const User = mongoose.model(‘User’, UserSchema);<br>查询集合数据</p>
+<p>User.find({}, (err, docs) =&gt; {<br>if (err) {<br>console.log(err);<br>return;<br>}<br>console.log(docs);<br>})<br>增加数据</p>
+<p>// 实例化 Model, 通过实例化 User Model 创建增加的数据<br>const user = new User({<br>name: ‘Graceji’,<br>age: 18,<br>status: 1,<br>});</p>
+<p>// 执行增加操作<br>user.save((err, user) =&gt; {<br>if (err) {<br>console.log(err);<br>return;<br>}<br>console.log(user.name);<br>});<br>更新数据<br>// 将 name 字段值为’Graceji’的文档的 age 字段值设置为 28<br>User.updateOne({ name: ‘Graceji’ }, { age: 28 }, (err, doc) =&gt; {<br>if (err) {<br>console.log(err);<br>return;<br>}<br>console.log(doc);<br>});<br>删除数据<br>// 删除 name 字段值为’Graceji’的文档<br>User.deleteOne({ name: ‘Graceji’ }, (err, result) =&gt; {<br>if (err) {<br>console.log(err);<br>return;<br>}<br>console.log(result);<br>});</p>
+<ol start="3">
+<li>Schema<br>3.1 Schema 数据类型（ SchemaTypes）<br>mongoose 中支持的合法的 SchemaTypes 如下：</li>
+</ol>
+<p>String<br>Number<br>Date<br>Buffer<br>Boolean<br>Mixed<br>ObjectId<br>Array<br>Decimal128<br>Map 例如:<br>const mongoose = require(‘mongoose’);<br>const Schema = mongoose.Schema;<br>const schema = new Schema({<br>name: String,<br>binary: Buffer,<br>living: Boolean,<br>updated: { type: Date, default: Date.now },<br>age: { type: Number, min: 18, max: 65 },<br>mixed: Schema.Types.Mixed,<br>_someId: Schema.Types.ObjectId,<br>decimal: Schema.Types.Decimal128,<br>array: [],<br>ofString: [String],<br>ofNumber: [Number],<br>ofDates: [Date],<br>ofBuffer: [Buffer],<br>ofBoolean: [Boolean],<br>ofMixed: [Schema.Types.Mixed],<br>ofObjectId: [Schema.Types.ObjectId],<br>ofArrays: [[]],<br>ofArrayOfNumbers: [[Number]],<br>nested: {<br>stuff: { type: String, lowercase: true, trim: true }<br>},<br>map: Map,<br>mapOfString: {<br>type: Map,<br>of: String<br>}<br>})</p>
+<p>// example use</p>
+<p>const Thing = mongoose.model(‘Thing’, schema);</p>
+<p>const m = new Thing;<br>m.name = ‘Statue of Liberty’;<br>m.age = 125;<br>m.updated = new Date;<br>m.binary = Buffer.alloc(0);<br>m.living = false;<br>m.mixed = { any: { thing: ‘i want’ } };<br>/_<br>Since Mixed is a schema-less type, you can change the value to anything else you like, but Mongoose loses the ability to auto detect and save those changes. To “tell” Mongoose that the value of a Mixed type has changed, call the .markModified(path)<br>_/<br>m.markModified(‘mixed’);<br>m._someId = new mongoose.Types.ObjectId;<br>m.array.push(1);<br>m.ofString.push(“strings!”);<br>m.ofNumber.unshift(1,2,3,4);<br>m.ofDates.addToSet(new Date);<br>m.ofBuffer.pop();<br>m.ofMixed = [1, [], ‘three’, { four: 5 }];<br>m.nested.stuff = ‘good’;<br>m.map = new Map([[‘key’, ‘value’]]);<br>m.save(callback);<br>3.2 SchemaType Options<br>可以直接使用以上数据类型来定义一个 schema type，也可以使用有 type 属性的对象来定义。 例如：</p>
+<p>const schema1 = new Schema({<br>test: String // <code>test</code> 为 String 类型<br>});</p>
+<p>const schema2 = new Schema({<br>test: { type: String } // <code>test</code> 为 String 类型<br>});<br>除了 type 属性，也可以指定其它属性。 例如：</p>
+<p>const schema2 = new Schema({<br>test: {<br>type: String,<br>lowercase: true // 将<code>test</code> 转变为小写<br>}<br>});<br>3.2.1 适用于所有 Schema Types 的 option<br>required: boolean or function，如果为 true，则为该属性添加了一个 required validator<br>default: Any or function，设置属性默认值。如果为函数，则函数的返回值为默认值。<br>select: boolean，specifies default projections for queries<br>validate: function, 为属性添加一个 validator function<br>get: function，使用 Object.defineProperty()为属性自定义一个 getter<br>set: function，使用 Object.defineProperty()为属性自定义一个 setter<br>alias: string, 只适用于 mongoose &gt;= 4.10.0 的版本中. Defines a virtual with the given name that gets/sets this path. 以 set 为例说明：<br>const mongoose = require(‘mongoose’);</p>
+<p>mongoose.connect(‘mongodb://localhost:27017/test’, { useNewUrlParser: true });</p>
+<p>const focusSchema = new mongoose.Schema({<br>title: {<br>type: String,<br>trim: true,<br>},<br>pic: {<br>type: String,<br>get: val =&gt; <code>图片地址为${val}</code>,<br>},<br>redirect: {<br>type: String,<br>// 保存数据时对 redirect 字段进行处理<br>set: val =&gt; {<br>// val 为 redirect 字段的值<br>// 该函数的返回值即为 redirect 字段在数据库中实际保存的值<br>const reg = /^(http|https).*/<br>if (!val) return ‘’;<br>if (!reg.test(val)) {<br>return <code>http://${val}</code>;<br>}<br>return val;<br>}<br>},<br>status: {<br>type: Number,<br>default: 1,<br>},<br>});</p>
+<p>const FocusModel = mongoose.model(‘Focus’, focusSchema);</p>
+<p>const focus = new FocusModel({<br>title: ‘focus’,<br>pic: ‘<a href="http://www.xxx.com/x.png&#39;" target="_blank" rel="noopener">www.xxx.com/x.png&#39;</a>,<br>redirect: ‘<a href="http://www.baidu.com&#39;" target="_blank" rel="noopener">www.baidu.com&#39;</a>,<br>});</p>
+<p>focus.save((err) =&gt; {<br>if (err) {<br>console.log(err);<br>return;<br>}<br>FocusModel.find({}, (err, docs) =&gt; {<br>if (err) {<br>console.log(err);<br>return;<br>}<br>// [{<br>// status: 1,<br>// _id: 5badd934ee8e6bbf89d2bb62,<br>// title: ‘focus’,<br>// pic: ‘<a href="http://www.xxx.com/x.png&#39;" target="_blank" rel="noopener">www.xxx.com/x.png&#39;</a>,<br>// redirect: ‘<a href="http://www.baidu.com&#39;" target="_blank" rel="noopener">http://www.baidu.com&#39;</a>,<br>// __v: 0<br>// }]<br>console.log(docs);<br>console.log(focus.pic); // 图片地址为 <a href="http://www.xxx.com/x.png" target="_blank" rel="noopener">www.xxx.com/x.png</a><br>});<br>});<br>Note:</p>
+<p>set 修饰符是在保存数据时对数据进行格式化，最终保存到数据库中的值为 set 函数的返回值<br>get 修饰符是在实例获取数据的时候对数据格式化，不会影响保存到数据库中的值<br>3.2.2 定义索引的 option<br>可以使用 schema type options 来定义 MongoDB indexes</p>
+<p>index: boolean，是否在该属性上定义 index<br>unique: boolean，是否在该属性上定义 unique index<br>sparse: boolean，是否在该属性上定义 sparse index<br>3.2.3 适用于 String 类型的 option<br>lowercase: boolean，是否对属性值调用.toLowerCase()<br>uppercase: boolean，是否对属性值调用.toUpperCase()<br>trim: boolean，是否对属性值调用.trim()<br>match: RegExp，创建了一个 validator 来检查属性值是否匹配正则<br>enum: Array，创建了一个 validator 来检查属性值是否在给定的数组中<br>minlength: Number，创建了一个 validator 来检查属性值的长度是否大于等于给定值<br>maxlength: Number，创建了一个 validator 来检查属性值的长度是否小于等于给定值<br>3.2.4 适用于 Number 类型的 option<br>min: Number，创建了一个 validator 来检查属性值是否大于等于给定值<br>max: Number，创建了一个 validator 来检查属性值是否小于等于给定值<br>3.2.5 适用于 Date 类型的 option<br>min: Date<br>max: Date<br>3.2.6 自定义校验器<br>Mongoose 有很多内置数据校验器：</p>
+<p>所有 SchemaTypes 都有内置的 required 校验器<br>Numbers 类型有 min and max 校验器<br>String 类型有 enum, match, maxlength and minlength 校验器 当内置校验器不能够满足要求时可以通过 SchemaType#validate()自定义校验器。 例如：<br>const userSchema = new mongoose.Schema({<br>name: {<br>type: String,<br>get: v =&gt; {<br>return <code>aoo1${v}</code>;<br>}<br>},<br>age: Number,<br>status: Number,<br>sn: {<br>type: String,<br>match: /^sn(.*)/,<br>validate: {<br>validator: (v) =&gt; (v.length &gt; 10),<br>message: props =&gt; <code>${props.value} 长度不符合要求</code><br>},<br>// 也可直接指定函数<br>// validate: (sn) =&gt; (sn.length &gt; 10),<br>}<br>});<br>若这样添加文档数据</p>
+<p>const user = new UserModel({<br>name: ‘Graceji’,<br>age: 18,<br>status: 1,<br>sn: ‘sn123’<br>});<br>则报错：</p>
+<p>3.3 Schemas<br>Schemas 不仅可以定义文档的结构以及属性的类型，它也可以扩展文档的实例方法以和 Model 的静态方法，定义索引，以及文档生命周期钩子([middleware]。</p>
+<p>3.3.1 扩展 Mongoose Model 的实例方法<br>Models 的实例即为 documents。Documents 有许多内置方法，也可以通过 Schema 来扩展 Model 的实例方法。</p>
+<p>// define a schema<br>const animalSchema = new Schema({ name: String, type: String });</p>
+<p>// 使用 Schema.methods 对象来保存实例方法<br>animalSchema.methods.findSimilarTypes = function(cb) {<br>// this 指向 document<br>return this.model(‘Animal’).find({ type: this.type }, cb);<br>};<br>现在 Animal model 的实例都会有一个 findSimilarTypes 方法。</p>
+<p>const Animal = mongoose.model(‘Animal’, animalSchema);<br>const dog = new Animal({ type: ‘dog’ });</p>
+<p>dog.findSimilarTypes(function(err, dogs) {<br>console.log(dogs);<br>});<br>3.3.2 扩展 Mongoose Model 的静态方法<br>依然使用 animalSchema 为例，为 Model 添加静态方法</p>
+<p>// assign a function to the “statics” object of our animalSchema<br>animalSchema.statics.findByName = function(name, cb) {<br>// this 指向当前的 Model<br>return this.find({ name: new RegExp(name, ‘i’) }, cb);<br>};</p>
+<p>const Animal = mongoose.model(‘Animal’, animalSchema);<br>Animal.findByName(‘fido’, (err, animals) =&gt; {<br>console.log(animals);<br>});<br>Model 扩展实例方法时，不要使用箭头函数(=&gt;)。因为箭头函数会阻止 this 的绑定。</p>
+<ol start="4">
+<li>Mongoose 内置 CURD 方法<br>Deleting：</li>
+</ol>
+<p>Model.deleteMany()<br>Model.deleteOne()<br>Querying：</p>
+<p>Model.find()<br>Model.findById()<br>Model.findByIdAndDelete()<br>Model.findByIdAndRemove()<br>Model.findByIdAndUpdate()<br>Model.findOne()<br>Model.findOneAndDelete()<br>Model.findOneAndRemove()<br>Model.findOneAndUpdate()<br>Updating：</p>
+<p>Model.replaceOne()<br>Model.updateMany()<br>Model.updateOne()</p>
+<ol start="5">
+<li>Mongoose 聚合管道(Aggregate)<br>方法：Model.aggregate( [pipeline], [callback] )</li>
+</ol>
+<p>[pipeline] «Array» aggregation pipeline as an array of objects<br>[callback] «Function»<br>Examples: order.js</p>
+<p>const Schema = mongoose.Schema;</p>
+<p>const orderSchema = new Schema({<br>order_id: String,<br>uid: Number,<br>trade_no: String,<br>all_price: Number,<br>all_num: Number<br>});</p>
+<p>const orders = [{<br>order_id: ‘1’,<br>uid: 10,<br>trade_no:’111’,<br>all_price: 100,<br>all_num: 2,<br>}, {<br>order_id: ‘2’,<br>uid: 7,<br>trade_no: ‘222’,<br>all_price: 90,<br>all_num: 2,<br>}, {<br>order_id: ‘3’,<br>uid: 9,<br>trade_no: ‘333’,<br>all_price: 20,<br>all_num: 6,<br>}];</p>
+<p>const OrderModel = mongoose.model(‘Order’, orderSchema, ‘order’);</p>
+<p>OrderModel.insertMany(orders, (error, docs) =&gt; {<br>if (error) return;<br>console.log(‘插入文档成功’);<br>console.log(docs);<br>});<br>orderItem.js</p>
+<p>const Schema = mongoose.Schema;</p>
+<p>const orderItemSchema = new Schema({<br>order_id: String,<br>title: String,<br>price: Number,<br>num: Number,<br>});</p>
+<p>const orderItems = [{<br>order_id: ‘1’, title: ‘商品鼠标 1’, price: 50, num: 1<br>}, {<br>order_id: ‘1’, title: ‘商品键盘 2’, price: 50, num: 1<br>}, {<br>order_id: ‘1’, title: ‘商品键盘 3’, price: 0, num: 1<br>}, {<br>order_id: ‘2’, title: ‘牛奶’, price: 50, num: 1,<br>}, {<br>order_id: ‘2’, title: ‘酸奶’, price: 40, num: 1<br>}, {<br>order_id: ‘3’, title: ‘矿泉水’, price: 2, num: 5<br>}, {<br>order_id: ‘3’, title: ‘毛巾’, price: 10, num: 1<br>}];</p>
+<p>const OrderItemModel = mongoose.model(‘OrderItem’, orderItemSchema, ‘order_item’);</p>
+<p>OrderItemModel.insertMany(orderItems, (error, docs) =&gt; {<br>if (error) return;<br>console.log(‘插入文档成功’);<br>console.log(docs);<br>});<br>运行以上代码就能插入两张表，分别为 order 和 order_item。</p>
+<p>order 表结构</p>
+<p>order_item 表结构</p>
+<p>两个表关联查询<br>情景一：查询订单，并找到每个订单下对应的所有商品。<br>app.js</p>
+<p>const OrderModel = require(‘./order’);</p>
+<p>// 第一种写法<br>OrderModel.aggregate([<br>{<br>$lookup: {<br>from: ‘order_item’,<br>localField: ‘order_id’,<br>foreignField: ‘order_id’,<br>as: ‘items’,<br>}<br>}<br>], (err, docs) =&gt; {<br>if (err) return;<br>console.log(JSON.stringify(docs));<br>});</p>
+<p>// 第二种写法<br>OrderModel.aggregate([<br>{<br>$lookup: {<br>from: ‘order_item’,<br>localField: ‘order_id’,<br>foreignField: ‘order_id’,<br>as: ‘items’,<br>}<br>}<br>])<br>.then(function (res) {<br>console.log(JSON.stringify(res));<br>});</p>
+<p>// 第三种写法<br>OrderModel<br>.aggregate()<br>.lookup({<br>from: ‘order_item’,<br>localField: ‘order_id’,<br>foreignField: ‘order_id’,<br>as: ‘items’,<br>})<br>.exec(function (err, res) {<br>if (err) return handleError(err);<br>console.log(JSON.stringify(res));<br>});<br>运行结果：</p>
+<p>[{<br>“_id”: “5baf15e985d168faa49a28b7”,<br>“order_id”: “1”,<br>“uid”: 10,<br>“trade_no”: “111”,<br>“all_price”: 100,<br>“all_num”: 2,<br>“<strong>v”: 0,<br>“items”: [{<br>“_id”: “5baf172e609251fb2b5798f7”,<br>“order_id”: “1”,<br>“title”: “商品鼠标 1”,<br>“price”: 50,<br>“num”: 1,<br>“</strong>v”: 0<br>}, {<br>“_id”: “5baf172e609251fb2b5798f8”,<br>“order_id”: “1”,<br>“title”: “商品键盘 2”,<br>“price”: 50,<br>“num”: 1,<br>“<strong>v”: 0<br>}, {<br>“_id”: “5baf172e609251fb2b5798f9”,<br>“order_id”: “1”,<br>“title”: “商品键盘 3”,<br>“price”: 0,<br>“num”: 1,<br>“</strong>v”: 0<br>}]<br>}, {<br>“_id”: “5baf15e985d168faa49a28b8”,<br>“order_id”: “2”,<br>“uid”: 7,<br>“trade_no”: “222”,<br>“all_price”: 90,<br>“all_num”: 2,<br>“<strong>v”: 0,<br>“items”: [{<br>“_id”: “5baf172e609251fb2b5798fa”,<br>“order_id”: “2”,<br>“title”: “牛奶”,<br>“price”: 50,<br>“num”: 1,<br>“</strong>v”: 0<br>}, {<br>“_id”: “5baf172e609251fb2b5798fb”,<br>“order_id”: “2”,<br>“title”: “酸奶”,<br>“price”: 40,<br>“num”: 1,<br>“<strong>v”: 0<br>}]<br>}, {<br>“_id”: “5baf15e985d168faa49a28b9”,<br>“order_id”: “3”,<br>“uid”: 9,<br>“trade_no”: “333”,<br>“all_price”: 20,<br>“all_num”: 6,<br>“</strong>v”: 0,<br>“items”: [{<br>“_id”: “5baf172e609251fb2b5798fc”,<br>“order_id”: “3”,<br>“title”: “矿泉水”,<br>“price”: 2,<br>“num”: 5,<br>“<strong>v”: 0<br>}, {<br>“_id”: “5baf172e609251fb2b5798fd”,<br>“order_id”: “3”,<br>“title”: “毛巾”,<br>“price”: 10,<br>“num”: 1,<br>“</strong>v”: 0<br>}]<br>}]<br>情景二：查询 order_item，找出商品名称是酸奶的商品，并找出该商品对应的订单号以及订单的总价格。</p>
+<p>app.js</p>
+<p>const OrderItemModel = require(‘./orderItem’);</p>
+<p>OrderItemModel<br>.aggregate()<br>.match({<br>‘title’: ‘酸奶’,<br>})<br>.lookup({<br>from: ‘order’,<br>localField: ‘order_id’,<br>foreignField: ‘order_id’,<br>as: ‘order_info’,<br>})<br>.exec(function (err, res) {<br>if (err) return handleError(err);<br>console.log(JSON.stringify(res));<br>});<br>运行结果：</p>
+<p>[{<br>“_id”: “5baf172e609251fb2b5798fb”,<br>“order_id”: “2”,<br>“title”: “酸奶”,<br>“price”: 40,<br>“num”: 1,<br>“<strong>v”: 0,<br>“order_info”: [{<br>“_id”: “5baf15e985d168faa49a28b8”,<br>“order_id”: “2”,<br>“uid”: 7,<br>“trade_no”: “222”,<br>“all_price”: 90,<br>“all_num”: 2,<br>“</strong>v”: 0<br>}]<br>}]<br>多个表关联查询<br>Examples: user.js</p>
+<p>const Schema = mongoose.Schema;</p>
+<p>const userSchema = new Schema({<br>username: String,<br>password: String,<br>age: Number,<br>sex: String,<br>tel: Number,<br>});</p>
+<p>const UserModel = mongoose.model(‘User’, userSchema, ‘user’);</p>
+<p>module.exports = UserModel;<br>article.js</p>
+<p>const Schema = mongoose.Schema;</p>
+<p>const articleSchema = new Schema({<br>title: {<br>type: String,<br>unique: true,<br>},<br>cid: Schema.Types.ObjectId,<br>author_name: {<br>type: String,<br>default: ‘Graceji’,<br>},<br>author_id: Schema.Types.ObjectId,<br>description: String,<br>add_time: Date,<br>content: String,<br>});</p>
+<p>const ArticleModel = mongoose.model(‘Article’, articleSchema, ‘article’);</p>
+<p>module.exports = ArticleModel;<br>articleCate.js</p>
+<p>const Schema = mongoose.Schema;</p>
+<p>const articleCateSchema = new Schema({<br>title: {<br>type: String,<br>unique: true,<br>},<br>description: String,<br>});</p>
+<p>const ArticleCateModel = mongoose.model(‘ArticleCate’, articleCateSchema, ‘article_cate’);</p>
+<p>module.exports = ArticleCateModel;<br>插入数据的过程省略。 情景一：查询文章信息，并显示文章的分类以及作者信息 app.js</p>
+<p>const ArticleModel = require(‘./article’);</p>
+<p>ArticleModel<br>.aggregate()<br>.lookup({<br>from: ‘article_cate’,<br>localField: ‘cid’,<br>foreignField: ‘_id’,<br>as: ‘category_info’,<br>})<br>.lookup({<br>from: ‘user’,<br>localField: ‘author_id’,<br>foreignField: ‘_id’,<br>as: ‘user_info’,<br>})<br>.exec(function (err, res) {<br>if (err) return handleError(err);<br>console.log(JSON.stringify(res));<br>});<br>运行结果</p>
+<p>[{<br>“_id”: “5baf316a271fd1017037d4e2”,<br>“author_name”: “Graceji1”,<br>“title”: “我是一条国际新闻 1”,<br>“cid”: “5baf2debab859800f81fa96b”,<br>“author_id”: “5baf2e292397450118c35d16”,<br>“description”: “我是一条国际新闻的内容 1”,<br>“add_time”: “2018-09-29T08:01:46.655Z”,<br>“content”: “啦啦啦啦啦啦 1”,<br>“<strong>v”: 0,<br>“category_info”: [{<br>“_id”: “5baf2debab859800f81fa96b”,<br>“title”: “国际新闻”,<br>“description”: “这是国际新闻”,<br>“</strong>v”: 0<br>}],<br>“user_info”: [{<br>“_id”: “5baf2e292397450118c35d16”,<br>“username”: “Graceji1”,<br>“password”: “123”,<br>“age”: 18,<br>“sex”: “女”,<br>“tel”: 18717716965,<br>“<strong>v”: 0<br>}]<br>}, {<br>“_id”: “5baf316a271fd1017037d4e3”,<br>“author_name”: “Graceji2”,<br>“title”: “我是一条国际新闻 2”,<br>“cid”: “5baf2debab859800f81fa96b”,<br>“author_id”: “5baf2e292397450118c35d17”,<br>“description”: “我是一条国际新闻的内容 2”,<br>“add_time”: “2018-09-29T08:01:46.655Z”,<br>“content”: “啦啦啦啦啦啦 2”,<br>“<strong>v”: 0,<br>“category_info”: [{<br>“_id”: “5baf2debab859800f81fa96b”,<br>“title”: “国际新闻”,<br>“description”: “这是国际新闻”,<br>“</strong>v”: 0<br>}],<br>“user_info”: [{<br>“_id”: “5baf2e292397450118c35d17”,<br>“username”: “Graceji2”,<br>“password”: “123”,<br>“age”: 28,<br>“sex”: “女”,<br>“tel”: 18717716966,<br>“</strong>v”: 0<br>}]<br>}, {<br>“_id”: “5baf316a271fd1017037d4e4”,<br>“author_name”: “Graceji5”,<br>“title”: “我是一条国内新闻”,<br>“cid”: “5baf2debab859800f81fa96c”,<br>“author_id”: “5baf2e292397450118c35d1a”,<br>“description”: “我是一条国内新闻的内容”,<br>“add_time”: “2018-09-29T08:01:46.655Z”,<br>“content”: “啦啦啦啦啦啦”,<br>“<strong>v”: 0,<br>“category_info”: [{<br>“_id”: “5baf2debab859800f81fa96c”,<br>“title”: “国内新闻”,<br>“description”: “这是国内新闻”,<br>“</strong>v”: 0<br>}],<br>“user_info”: [{<br>“_id”: “5baf2e292397450118c35d1a”,<br>“username”: “Graceji5”,<br>“password”: “123”,<br>“age”: 38,<br>“sex”: “女”,<br>“tel”: 18717716965,<br>“__v”: 0<br>}]<br>}]</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/11/30/Node中使用Mongodb/" data-id="cjtvbicd10002pbkqd6saljd7" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/03/10/web性能优化/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          web性能优化
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/07/22/webpack配置-多页应用/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">webpack配置-多页应用</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/29/vue项目中mixins复用/">vue项目中mixins复用</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/28/vue项目优化/">vue项目优化</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/26/jenkins-教程/">jenkins 教程</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/20/React高阶组件/">React高阶组件</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/13/sql查询语句/">sql查询语句</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
