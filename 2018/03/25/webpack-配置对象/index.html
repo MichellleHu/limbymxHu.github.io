@@ -5,15 +5,19 @@
   
 
   
-  <title>技术博客分享平台  --limHu</title>
+  <title>webpack()配置对象 | 技术博客分享平台  --limHu</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="技术博客分享平台  --limHu">
-<meta property="og:url" content="http://yoursite.com/page/3/index.html">
+  <meta name="description" content="配置对象在https://www.webpackjs.com/configuration/。具体如下： 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787">
+<meta property="og:type" content="article">
+<meta property="og:title" content="webpack()配置对象">
+<meta property="og:url" content="http://yoursite.com/2018/03/25/webpack-配置对象/index.html">
 <meta property="og:site_name" content="技术博客分享平台  --limHu">
+<meta property="og:description" content="配置对象在https://www.webpackjs.com/configuration/。具体如下： 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-03-30T09:56:39.330Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="技术博客分享平台  --limHu">
+<meta name="twitter:title" content="webpack()配置对象">
+<meta name="twitter:description" content="配置对象在https://www.webpackjs.com/configuration/。具体如下： 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787">
   
     <link rel="alternate" href="/atom.xml" title="技术博客分享平台  --limHu" type="application/atom+xml">
   
@@ -60,9 +64,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-webpack-配置对象" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-webpack-配置对象" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/03/25/webpack-配置对象/" class="article-date">
   <time datetime="2018-03-25T09:56:16.000Z" itemprop="datePublished">2018-03-25</time>
@@ -75,8 +77,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/25/webpack-配置对象/">webpack()配置对象</a>
+    <h1 class="article-title" itemprop="name">
+      webpack()配置对象
     </h1>
   
 
@@ -96,357 +98,28 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-call和apply" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/03/10/call和apply/" class="article-date">
-  <time datetime="2018-03-10T07:34:20.000Z" itemprop="datePublished">2018-03-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+    <a href="/2018/03/30/http协议/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/10/call和apply/">call和apply</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>javascript 中通过 call 或者 apply 用来代替另一个对象调用一个方法，将一个函数的对象上下文从初始的上下文改变为由 thisObj 指定的新对象。简单的说就是改变函数执行的上下文，这是最基本的用法。两个方法基本区别在于传参不同。</p>
-<p>call(obj,arg1,arg2,arg3); call 第一个参数传对象，可以是 null。参数以逗号分开进行传值，参数可以是任何类型。<br>apply(obj,[arg1,arg2,arg3]); apply 第一个参数传对象，参数可以是数组或者 arguments 对象。</p>
-<p>例子：<br>js 数组最大值 max 和最小值 min。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>];</span><br><span class="line">alert(<span class="built_in">Math</span>.max.apply(<span class="literal">null</span>, a));<span class="comment">//最大值</span></span><br><span class="line">alert(<span class="built_in">Math</span>.min.apply(<span class="literal">null</span>, a));<span class="comment">//最小值多维数组</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,[<span class="number">5</span>,<span class="number">6</span>],[<span class="number">1</span>,<span class="number">4</span>,<span class="number">8</span>]];</span><br><span class="line"><span class="keyword">var</span> ta=a.join(“,”).split(“,”);<span class="comment">//转化为一维数组</span></span><br><span class="line">alert(<span class="built_in">Math</span>.max.apply(<span class="literal">null</span>,ta));<span class="comment">//最大值</span></span><br><span class="line">alert(<span class="built_in">Math</span>.min.apply(<span class="literal">null</span>,ta));<span class="comment">//最小值使用链式</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">Array</span>.prototype.max = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="keyword">return</span> <span class="built_in">Math</span>.max.apply(&#123;&#125;,<span class="keyword">this</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Array</span>.prototype.min = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="keyword">return</span> <span class="built_in">Math</span>.min.apply(&#123;&#125;,<span class="keyword">this</span>)</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>].max()<span class="comment">// =&gt; 3</span></span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>].min()<span class="comment">// =&gt; 1</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Array</span>.max = <span class="function"><span class="keyword">function</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>.max.apply(<span class="built_in">Math</span>, array);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Array</span>.min = <span class="function"><span class="keyword">function</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>.min.apply(<span class="built_in">Math</span>, array);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/10/call和apply/" data-id="cjtvbn36h0007snkqlihrshtr" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-babel-plugin-import" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/03/10/babel-plugin-import/" class="article-date">
-  <time datetime="2018-03-10T07:29:34.000Z" itemprop="datePublished">2018-03-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+          http协议
         
+      </div>
+    </a>
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/10/babel-plugin-import/">babel-plugin-import</a>
-    </h1>
   
+    <a href="/2018/03/10/call和apply/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">call和apply</div>
+    </a>
+  
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>babel-plugin-import 实现组件库中的组件按需加载<br>.babelrc 文件中配置：</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"libraryName"</span>: <span class="string">"vant"</span>,</span><br><span class="line">  <span class="attr">"style"</span>: <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/10/babel-plugin-import/" data-id="cjtvbn36f0004snkqam56ccy3" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-  
-    <article id="post-从用户输入url地址到页面渲染数据中间发生了什么？" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/11/30/从用户输入url地址到页面渲染数据中间发生了什么？/" class="article-date">
-  <time datetime="2017-11-30T09:48:05.000Z" itemprop="datePublished">2017-11-30</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/30/从用户输入url地址到页面渲染数据中间发生了什么？/">从用户输入url地址到页面渲染数据中间发生了什么？</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>我们都知道互联网是在 TCP/IP 协议族的基础上运作的，http 协议只是其中的一个子集。因此，首先将从 TCP/IP 协议族展开。</p>
-<h2 id="TCP-IP-协议族"><a href="#TCP-IP-协议族" class="headerlink" title="TCP/IP 协议族"></a>TCP/IP 协议族</h2><h3 id="分层管理"><a href="#分层管理" class="headerlink" title="分层管理"></a>分层管理</h3><p>按照层次分为：应用层、传输层、网络层、链路层。好处是分而自治。</p>
-<h2 id="通信传输流"><a href="#通信传输流" class="headerlink" title="通信传输流"></a>通信传输流</h2><p>TCP/IP 协议族进行网络通信时，会通过分层顺序与 Web 服务器进行通信。</p>
-<p>发送端从应用层往下走，接收端则从应用层往上走。</p>
-<p>首先作为发送端的客户端在应用层，通过 http 协议发送想看某一 url 地址的 http 请求。<br>接着，传输层 TCP 协议把从应用层处收到的 http 请求报文进行分割，并在各个豹纹上打上标记序号及端口号发给网络层。<br>在网络层，IP 协议增加作为通信目的地的 MAC 地址后转发给链路层。</p>
-<p>在链路层接收到完整的请求数据为：以太网首部+IP 首部+TCP 首部+http 数据。</p>
-<p>发送端传输数据时，每经过一层会被打上一个属于该层的首部信息。<br>这种把信息包装起来的方法称为封装。</p>
-<p>接收端接收数据时，每经过一层会把对应的首部去掉。<br>接收端的 Web 服务器在链路层接收到数据，按顺序网上层发送。当传输到应用层，才算真正接收到客户端发送过来的请求。</p>
-<h2 id="各种协议在通信传输流中的作用"><a href="#各种协议在通信传输流中的作用" class="headerlink" title="各种协议在通信传输流中的作用"></a>各种协议在通信传输流中的作用</h2><h3 id="DNS-服务（负责域名解析）"><a href="#DNS-服务（负责域名解析）" class="headerlink" title="DNS 服务（负责域名解析）"></a>DNS 服务（负责域名解析）</h3><p>DNS 服务是和 http 协议一样处于应用层的协议，提供域名到 IP 地址的解析服务。<br>DNS 协议提供通过域名查找 IP 地址，或者逆向的从 IP 地址反查域名的服务。</p>
-<h3 id="TCP-协议（确保可靠性）"><a href="#TCP-协议（确保可靠性）" class="headerlink" title="TCP 协议（确保可靠性）"></a>TCP 协议（确保可靠性）</h3><p>TCP 协议为了可靠的传送大数据，将数据进行了分割，并且通过三次握手机制确认数据最终是否送达到接收端。</p>
-<h4 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h4><p>握手过程中使用了 TCP 的标志——SYN 和 ACK。<br>发送端首先发送一个带有 SYN 标志的数据包给对方。<br>接收端收到后，回送一个带有 SYN/ACK 标志的数据包，以表示传达确认信息。<br>发送端再回送一个带有 ACK 标志的数据包，代表握手结束。</p>
-<p>若在握手过程某个阶段莫名中断了，TCP 协议会再次以相同的顺序发送相同的数据包。</p>
-<h3 id="IP-协议（负责传输）"><a href="#IP-协议（负责传输）" class="headerlink" title="IP 协议（负责传输）"></a>IP 协议（负责传输）</h3><p>IP 协议的作用是把数据包传送给对方。<br> 必须满足 IP 地址和 MAC 地址正确。</p>
-<p>IP 地址指明了节点被分配到的地址，MAC 地址是网卡所属的固定地址。<br> IP 地址和 MAC 地址进行配对。<br> IP 地址可以变换，但 MAC 地址基本上不会更改。</p>
-<p>通信双方不在一个局域网时，需要经过多台计算机和网络设备中转才能连接到对方。<br> 中转时，只能利用下一个中转设备的 MAC 地址来搜索下一个中转目标。<br> 根据 IP 地址反查出 MAC 地址的协议是 ARP 协议。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/11/30/从用户输入url地址到页面渲染数据中间发生了什么？/" data-id="cjtvbn36r000jsnkqf6w0k9ak" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Flex布局知识点总结" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/10/20/Flex布局知识点总结/" class="article-date">
-  <time datetime="2017-10-20T04:21:32.000Z" itemprop="datePublished">2017-10-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/20/Flex布局知识点总结/">Flex布局知识点总结</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><p>flexbox：更加优雅的 Web 布局<br>网址：<a href="https://segmentfault.com/a/1190000002616717" target="_blank" rel="noopener">https://segmentfault.com/a/1190000002616717</a><br>flex 弹性布局学习总结<br>网址：<a href="https://www.cnblogs.com/nuannuan7362/p/5823381.html" target="_blank" rel="noopener">https://www.cnblogs.com/nuannuan7362/p/5823381.html</a><br>优缺点：<br>兼容性<br>网址： <a href="https://caniuse.com/#search=flex" target="_blank" rel="noopener">https://caniuse.com/#search=flex</a></p>
-<p>布局的传统解决方案，基于盒状模型，依赖 display 属性 + position 属性 + float 属性。它对于那些特殊布局非常不方便，比如，垂直居中就不容易实现。<br>2009 年，W3C 提出了一种新的方案—-Flex 布局，可以简便、完整、响应式地实现各种页面布局。目前，它已经得到了所有浏览器的支持，这意味着，现在就能很安全地使用这项功能。</p>
-<h2 id="Flex-布局是什么？"><a href="#Flex-布局是什么？" class="headerlink" title="Flex 布局是什么？"></a>Flex 布局是什么？</h2><p>任何一个容器都可以指定为 Flex 布局。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">box</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>行内元素也可以使用 Flex 布局。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: inline-flex;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注意，设为 Flex 布局以后，子元素的 float、clear 和 vertical-align 属性将失效。</p>
-</blockquote>
-<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>容器默认存在两根轴：水平的主轴（main axis）和垂直的交叉轴（cross axis）。主轴的开始位置（与边框的交叉点）叫做 main start，结束位置叫做 main end；交叉轴的开始位置叫做 cross start，结束位置叫做 cross end。</p>
-<h2 id="容器的属性"><a href="#容器的属性" class="headerlink" title="容器的属性"></a>容器的属性</h2><h3 id="flex-direction-属性"><a href="#flex-direction-属性" class="headerlink" title="flex-direction 属性"></a>flex-direction 属性</h3><p>flex-direction 属性决定主轴的方向（即项目的排列方向）。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">flex-direction</span>: row | row-reverse | column | column-reverse;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="flex-wrap-属性"><a href="#flex-wrap-属性" class="headerlink" title="flex-wrap 属性"></a>flex-wrap 属性</h3><p>默认情况下，项目都排在一条线（又称”轴线”）上。flex-wrap 属性定义，如果一条轴线排不下，如何换行。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">flex-wrap</span>: nowrap | wrap | wrap-reverse;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="flex-flow"><a href="#flex-flow" class="headerlink" title="flex-flow"></a>flex-flow</h3><p>flex-flow 属性是 flex-direction 属性和 flex-wrap 属性的简写形式，默认值为 row nowrap</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">flex-flow</span>: &lt;flex-direction&gt; || &lt;flex-wrap&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="justify-content-属性"><a href="#justify-content-属性" class="headerlink" title="justify-content 属性"></a>justify-content 属性</h3><p>justify-content 属性定义了项目在主轴上的对齐方式。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">justify-content</span>: flex-start | flex-end | center | space-between | space-around;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="align-items-属性"><a href="#align-items-属性" class="headerlink" title="align-items 属性"></a>align-items 属性</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">align-items</span>: flex-start | flex-end | center | baseline | stretch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="align-content-属性"><a href="#align-content-属性" class="headerlink" title="align-content 属性"></a>align-content 属性</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">align-content</span>: flex-start | flex-end | center | space-between | space-around |</span><br><span class="line">    stretch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="项目的属性"><a href="#项目的属性" class="headerlink" title="项目的属性"></a>项目的属性</h2><h3 id="order-属性"><a href="#order-属性" class="headerlink" title="order 属性"></a>order 属性</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">order</span>: &lt;integer&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="flex-grow-属性"><a href="#flex-grow-属性" class="headerlink" title="flex-grow 属性"></a>flex-grow 属性</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">flex-grow</span>: &lt;number&gt;; <span class="comment">/* default 0 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="flex-shrink-属性"><a href="#flex-shrink-属性" class="headerlink" title="flex-shrink 属性"></a>flex-shrink 属性</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">flex-shrink</span>: &lt;number&gt;; <span class="comment">/* default 1 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="flex-basis-属性"><a href="#flex-basis-属性" class="headerlink" title="flex-basis 属性"></a>flex-basis 属性</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">flex-basis</span>: &lt;length&gt; | auto; <span class="comment">/* default auto */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="flex-属性"><a href="#flex-属性" class="headerlink" title="flex 属性"></a>flex 属性</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">flex</span>: none | [ &lt; <span class="string">'flex-grow'</span> &gt; &lt; <span class="string">'flex-shrink'</span> &gt;? || &lt; <span class="string">'flex-basis'</span> &gt; ];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="align-self-属性"><a href="#align-self-属性" class="headerlink" title="align-self 属性"></a>align-self 属性</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">align-self</span>: auto | flex-start | flex-end | center | baseline | stretch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/10/20/Flex布局知识点总结/" data-id="cjtvbn3680000snkqdeeveqei" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-基于hexo-github搭建一个独立博客" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/10/17/基于hexo-github搭建一个独立博客/" class="article-date">
-  <time datetime="2017-10-17T06:47:47.000Z" itemprop="datePublished">2017-10-17</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/17/基于hexo-github搭建一个独立博客/">基于hexo+github搭建一个独立博客</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>1.node：用来生成静态页面的 到 Node.js 官网下载相应平台的最新版本，一路安装即可。</p>
-<p>2.git: 把本地的 hexo 内容提交到 github 上去.没有安装的可以看此教程。</p>
-<p>3.github：用来做博客的远程创库、域名、服务器。</p>
-<h2 id="安装-Hexo"><a href="#安装-Hexo" class="headerlink" title="安装 Hexo"></a>安装 Hexo</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install -g hexo</span><br></pre></td></tr></table></figure>
-<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p>终端 cd 到一个你选定的目录（比如创建一个 blog 文件，\$cd blog），执行 hexo init 命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
-<p>在 blog 目录下，执行如下命令，安装 npm：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
-<p>执行如下命令，开启 hexo 服务器：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-<p>此时，浏览器中打开网址<a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a>.</p>
-<h2 id="关联-Github"><a href="#关联-Github" class="headerlink" title="关联 Github"></a>关联 Github</h2><p>本地设置好后，接下来开始关联 Github。</p>
-<h3 id="创建仓库"><a href="#创建仓库" class="headerlink" title="创建仓库"></a>创建仓库</h3><p>登录你的 Github 帐号，新建仓库，名为用户名.github.io 固定写法。</p>
-<p>本地的 blog 文件夹下内容为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">_config.yml</span><br><span class="line">db.json</span><br><span class="line">node_modules</span><br><span class="line">package.json</span><br><span class="line">scaffolds</span><br><span class="line">source</span><br><span class="line">themes</span><br></pre></td></tr></table></figure>
-<p>终端 cd 到 blog 文件夹下，vim 打开_config.yml，命令如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim _config.yml</span><br></pre></td></tr></table></figure>
-<p>打开后往下滑到最后，修改成下边的样子：</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">git</span></span><br><span class="line"><span class="attr">  repository:</span> <span class="attr">https://github.com/test/test.github.io.git</span></span><br><span class="line"><span class="attr">  branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注意：在配置所有的_config.yml 文件时（包括 theme 中的），在所有的冒号:后边都要加一个空格，否则执行 hexo 命令会报错.</p>
-</blockquote>
-<p>在 blog 文件夹目录下执行生成静态页面命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo generate        或者：hexo g</span><br></pre></td></tr></table></figure>
-<p>再执行配置命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy            或者：hexo d</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注意：若执行命令 hexo deploy 仍然报错：无法连接 git 或找不到 git，则执行如下命令来安装 hexo-deployer-git：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-<p>hexo deploy 命令执行成功后，浏览器中打开网址<a href="http://test.github.io（将test换成你的用户名）能看到和打开http://localhost:4000时一样的页面。" target="_blank" rel="noopener">http://test.github.io（将test换成你的用户名）能看到和打开http://localhost:4000时一样的页面。</a></p>
-<h3 id="添加-ssh-key-到-Github"><a href="#添加-ssh-key-到-Github" class="headerlink" title="添加 ssh key 到 Github"></a>添加 ssh key 到 Github</h3><p>为避免每次输入 Github 用户名和密码的麻烦，可参照第二节方法.</p>
-<h4 id="检查-SSH-keys-是否存在-Github"><a href="#检查-SSH-keys-是否存在-Github" class="headerlink" title="检查 SSH keys 是否存在 Github"></a>检查 SSH keys 是否存在 Github</h4><p>执行如下命令，检查 SSH keys 是否存在。如果有文件 id_rsa.pub 或 id_dsa.pub，则直接进入步骤 1.3 将 SSH key 添加到 Github 中，否则进入下一步生成 SSH key。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -al ~/.ssh</span><br></pre></td></tr></table></figure>
-<h4 id="生成新的-ssh-key"><a href="#生成新的-ssh-key" class="headerlink" title="生成新的 ssh key"></a>生成新的 ssh key</h4><p>执行如下命令生成 public/private rsa key pair，注意将 <a href="mailto:your_email@example.com" target="_blank" rel="noopener">your_email@example.com</a> 换成你自己注册 Github 的邮箱地址。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;your_email@example.com&quot;</span><br></pre></td></tr></table></figure>
-<p>默认会在相应路径下（~/.ssh/id_rsa.pub）生成 id_rsa 和 id_rsa.pub 两个文件。</p>
-<h4 id="将-ssh-key-添加到-Github-中"><a href="#将-ssh-key-添加到-Github-中" class="headerlink" title="将 ssh key 添加到 Github 中"></a>将 ssh key 添加到 Github 中</h4><p>Find 前往文件夹~/.ssh/id_rsa.pub 打开 id_rsa.pub 文件，里面的信息即为 SSH key，将这些信息复制到 Github 的 Add SSH key 页面即可。</p>
-<p>进入 Github –&gt; Settings –&gt; SSH keys –&gt; add SSH key:</p>
-<p>Title 里任意添一个标题，将复制的内容粘贴到 Key 里，点击下方 Add key 绿色按钮即可。</p>
-<h3 id="发布文章"><a href="#发布文章" class="headerlink" title="发布文章"></a>发布文章</h3><p>终端 cd 到 blog 文件夹下，执行如下命令新建文章：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new &quot;postName&quot;</span><br></pre></td></tr></table></figure>
-<p>名为 postName.md 的文件会建在目录/blog/source/_posts 下。</p>
-<p>文章编辑完成后，终端 cd 到 blog 文件夹下，执行如下命令来发布:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo generate             //生成静态页面</span><br><span class="line">hexo deploy            //将文章部署到Github</span><br></pre></td></tr></table></figure>
-<h2 id="安装-theme"><a href="#安装-theme" class="headerlink" title="安装 theme"></a>安装 theme</h2><p>你可以到 Hexo 官网主题页去搜寻自己喜欢的 theme。这里以 hexo-theme-next 为例</p>
-<p>终端 cd 到 blog 目录下执行如下命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/iissnan/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
-<p>将 blog 目录下_config.yml 里 theme 的名称 landscape 修改为 next</p>
-<p>终端 cd 到 blog 目录下执行如下命令(每次部署文章的步骤)：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hexo clean           //清除缓存文件 (db.json) 和已生成的静态文件 (public)</span><br><span class="line"></span><br><span class="line">hexo g             //生成缓存和静态文件</span><br><span class="line"></span><br><span class="line">hexo d             //重新部署到服务器</span><br></pre></td></tr></table></figure>
-<p>至于更改 theme 内容，比如名称，描述，头像等去修改 blog/_config.yml 文件和 blog/themes/next/_config.yml 文件中对应的属性名称即可，不要忘记冒号:后加空格。</p>
-<p>参考：<br><a href="https://www.cnblogs.com/MuYunyun/p/5927491.html" target="_blank" rel="noopener">https://www.cnblogs.com/MuYunyun/p/5927491.html</a></p>
-<p><a href="https://hexo.io/zh-cn/" target="_blank" rel="noopener">https://hexo.io/zh-cn/</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/10/17/基于hexo-github搭建一个独立博客/" data-id="cjtvbn36t000msnkqxewtk2v7" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-debounce、throttle" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/07/30/debounce、throttle/" class="article-date">
-  <time datetime="2017-07-30T09:55:14.000Z" itemprop="datePublished">2017-07-30</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/30/debounce、throttle/">debounce、throttle</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>场景<br>以下场景往往由于事件频繁被触发，因而频繁执行 DOM 操作、资源加载等重行为，导致 UI 停顿甚至浏览器崩溃。</p>
-<p>window 对象的 resize、scroll 事件<br>拖拽时的 mousemove 事件<br>射击游戏中的 mousedown、keydown 事件<br>文字输入、自动完成的 keyup 事件 实际分析一下，实际上并不需要被如此高频的触发。Debounce 和 Throttle 就是为解决上述问题诞生的。<br>Debounce<br>定义：对于频繁调用的动作，设定一个延迟执行时间 n 毫秒，在动作触发的 n 毫秒后执行该动作，若在这 n 毫秒内又调用此动作将重新计算执行时间。<br>function debounce(fn, delay) {<br>let timer = null;<br>return function () {<br>const context = this;<br>const args = arguments;<br>if(timer) {<br>clearTimeout(timer);<br>}<br>timer = setTimeout(function() {<br>fn.apply(context, args);<br>}, delay);<br>}<br>}<br>Throttle<br>定义：对于频繁调用的动作，设定一个最小执行周期（最大执行频率）n 毫秒，当调用动作的时刻大于等于 n 毫秒则执行该动作，然后进入下一个周期。(只允许一个函数在 n 毫秒内执行一次)</p>
-<pre><code>function throttle(fn, delay) {
-  let pre = +new Date();
-  let timer = null;
-  return function () {
-    const context = this;
-    const args = arguments;
-    const cur = +new Date();
-    if(timer) {
-      clearTimeout(timer);
-    }
-    if(cur - pre &gt;= delay) {
-      fn.apply(context,args);
-      pre = cur;
-    } else {
-      timer = setTimeout(function() {
-        fn.apply(context, args);
-      }, delay);
-    };
-  }
-}
-</code></pre><p>requestAnimationFrame<br>requestAnimationFrame 的用法与 settimeout 很相似，只是不需要设置时间间隔而已。requestAnimationFrame 使用一个回调函数作为参数，这个回调函数会在浏览器重绘之前调用。它返回一个整数，表示定时器的编号，这个值可以传递给 cancelAnimationFrame 用于取消这个函数的执行.<br>// 使用<br>var timer = requestAnimationFrame(function(){<br>console.log(0);<br>});</p>
-<p>// 取消调用<br>cancelAnimationFrame(timer);<br>相比 setTimeout 函数： 1.采用系统时间间隔，即屏幕刷新率，大多数为 60hz 即约 16.6ms。requestAnimationFrame 的步伐跟着系统的刷新步伐走。它能保证回调函数在屏幕每一次的刷新间隔中只被执行一次，这样就不会引起丢帧现象，也不会导致动画出现卡顿的问题。比 setTimeout 和 setInterval 准确，它们的内在运行机制决定了时间间隔参数实际上只是指定了把动画代码添加到浏览器事件队列中以等待执行的时间。 2.requestAnimationFrame 是由浏览器专门为动画提供的 API，在运行时浏览器会自动优化方法的调用，并且如果页面不是激活状态下的话，动画会自动暂停，有效节省了 CPU 开销。 3.使用它也是一种函数节流。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/30/debounce、throttle/" data-id="cjtvbn36d0002snkqo8l83g1h" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
-
-  <nav id="page-nav">
-    
-    <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
-  </nav>
 
 </section>
         
