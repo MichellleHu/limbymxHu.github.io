@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>path.join 和 path.resolve 比较 | 技术博客分享平台  --limHu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="__dirname  指向的是当前文件的绝对路径。作用： 解决不同操作系统的路径不同问题。  path.join(path1，path2，path3…….)  作用：将路径片段使用特定的分隔符（window：\; apple: /）连接起来形成路径，并规范化生成的路径。若任意一个路径片段类型错误，会报错。 123456789101112131415161718const path = requi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="path.join 和 path.resolve 比较">
+<meta property="og:url" content="http://yoursite.com/2017/06/26/path-join-和-path-resolve-比较/index.html">
+<meta property="og:site_name" content="技术博客分享平台  --limHu">
+<meta property="og:description" content="__dirname  指向的是当前文件的绝对路径。作用： 解决不同操作系统的路径不同问题。  path.join(path1，path2，path3…….)  作用：将路径片段使用特定的分隔符（window：\; apple: /）连接起来形成路径，并规范化生成的路径。若任意一个路径片段类型错误，会报错。 123456789101112131415161718const path = requi">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-03-30T09:58:51.818Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="path.join 和 path.resolve 比较">
+<meta name="twitter:description" content="__dirname  指向的是当前文件的绝对路径。作用： 解决不同操作系统的路径不同问题。  path.join(path1，path2，path3…….)  作用：将路径片段使用特定的分隔符（window：\; apple: /）连接起来形成路径，并规范化生成的路径。若任意一个路径片段类型错误，会报错。 123456789101112131415161718const path = requi">
+  
+    <link rel="alternate" href="/atom.xml" title="技术博客分享平台  --limHu" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">技术博客分享平台  --limHu</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-path-join-和-path-resolve-比较" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/26/path-join-和-path-resolve-比较/" class="article-date">
+  <time datetime="2017-06-26T09:58:23.000Z" itemprop="datePublished">2017-06-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      path.join 和 path.resolve 比较
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>__dirname</li>
+</ul>
+<p>指向的是当前文件的绝对路径。作用： 解决不同操作系统的路径不同问题。</p>
+<ul>
+<li>path.join(path1，path2，path3…….)</li>
+</ul>
+<p>作用：<br>将路径片段使用特定的分隔符（window：\; apple: /）连接起来形成路径，并规范化生成的路径。<br>若任意一个路径片段类型错误，会报错。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> myPath = path.join(__dirname, <span class="string">'/dist'</span>);</span><br><span class="line"><span class="keyword">let</span> myPath2 = path.join(__dirname, <span class="string">'./dist/static'</span>);</span><br><span class="line"><span class="keyword">let</span> myPath3 = path.join(<span class="string">'/dist'</span>, <span class="string">'static'</span>, <span class="string">'test'</span>, <span class="string">'..'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(__dirname);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(myPath);</span><br><span class="line"><span class="built_in">console</span>.log(myPath2);</span><br><span class="line"><span class="built_in">console</span>.log(myPath3);</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">/Users/limHu/Desktop</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">/Users/limHu/Desktop/dist</span></span><br><span class="line"><span class="comment">/Users/limHu/Desktop/dist/static</span></span><br><span class="line"><span class="comment">/dist/static</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>path.resolve([from…],to)</li>
+</ul>
+<p>作用：把一个路径或路径片段的序列解析为一个绝对路径。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> myPath = path.resolve(__dirname, <span class="string">'/dist/static'</span>);</span><br><span class="line"><span class="keyword">let</span> myPath2 = path.resolve(__dirname, <span class="string">'./dist/static'</span>);</span><br><span class="line"><span class="keyword">let</span> myPath3 = path.resolve(__dirname, <span class="string">'../dist/static'</span>);</span><br><span class="line"><span class="keyword">let</span> myPath4 = path.resolve(<span class="string">'/dist/static'</span>, <span class="string">'/test/a'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(myPath);</span><br><span class="line"><span class="built_in">console</span>.log(myPath2);</span><br><span class="line"><span class="built_in">console</span>.log(myPath3);</span><br><span class="line"><span class="built_in">console</span>.log(myPath4);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">/dist/static</span></span><br><span class="line"><span class="comment">/Users/limHu/Desktop/dist/static</span></span><br><span class="line"><span class="comment">/Users/limHu/dist/static</span></span><br><span class="line"><span class="comment">/test/a</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<p>例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> path1 = path.resolve(__dirname, <span class="string">'../dist'</span>);</span><br><span class="line"><span class="keyword">const</span> path2 = <span class="string">'static'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> path3 = path.join(path1, path2);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(__dirname);</span><br><span class="line"><span class="comment">// /Users/limHu/Desktop</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(path3);</span><br><span class="line"><span class="comment">// /Users/limHu/dist/static</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/06/26/path-join-和-path-resolve-比较/" data-id="cjtvbps30000butkqu4gzxwgt" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/06/28/webpack插件-extract-text-webpack-plugin/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          webpack插件 -- extract-text-webpack-plugin
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/29/vue项目中mixins复用/">vue项目中mixins复用</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/28/vue项目优化/">vue项目优化</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/26/jenkins-教程/">jenkins 教程</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/20/React高阶组件/">React高阶组件</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/13/sql查询语句/">sql查询语句</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

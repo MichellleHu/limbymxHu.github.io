@@ -90,7 +90,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/25/webpack-配置对象/" data-id="cjtvbojwu000htqkqolevahmn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/25/webpack-配置对象/" data-id="cjtvbps35000iutkqzcpddzz4" class="article-share-link">Share</a>
       
       
     </footer>
@@ -130,7 +130,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/10/call和apply/" data-id="cjtvbojwc0003tqkqpn4isk3o" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/10/call和apply/" data-id="cjtvbps2v0005utkqo08vfq7i" class="article-share-link">Share</a>
       
       
     </footer>
@@ -168,7 +168,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/10/babel-plugin-import/" data-id="cjtvbojwb0002tqkqlxga33hr" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/10/babel-plugin-import/" data-id="cjtvbps2u0004utkqv6y1b1se" class="article-share-link">Share</a>
       
       
     </footer>
@@ -219,7 +219,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/11/30/从用户输入url地址到页面渲染数据中间发生了什么？/" data-id="cjtvbojww000ktqkq307x0qpg" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/11/30/从用户输入url地址到页面渲染数据中间发生了什么？/" data-id="cjtvbps38000mutkqm7scy73s" class="article-share-link">Share</a>
       
       
     </footer>
@@ -281,7 +281,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/10/20/Flex布局知识点总结/" data-id="cjtvbojw50000tqkq4x8i1o63" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/10/20/Flex布局知识点总结/" data-id="cjtvbps2n0000utkq5ju4wtyy" class="article-share-link">Share</a>
       
       
     </footer>
@@ -371,7 +371,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/10/17/基于hexo-github搭建一个独立博客/" data-id="cjtvbojwz000otqkq2gzcis64" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/10/17/基于hexo-github搭建一个独立博客/" data-id="cjtvbps3a000putkqjkpga8qd" class="article-share-link">Share</a>
       
       
     </footer>
@@ -431,7 +431,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/30/debounce、throttle/" data-id="cjtvbojwj0005tqkqjymj2ps0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/07/30/debounce、throttle/" data-id="cjtvbps2w0006utkqtavwc1an" class="article-share-link">Share</a>
       
       
     </footer>
@@ -486,7 +486,59 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/28/webpack插件-extract-text-webpack-plugin/" data-id="cjtvbojx1000rtqkqa9at08vo" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/06/28/webpack插件-extract-text-webpack-plugin/" data-id="cjtvbps36000jutkqylgya65h" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-path-join-和-path-resolve-比较" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/26/path-join-和-path-resolve-比较/" class="article-date">
+  <time datetime="2017-06-26T09:58:23.000Z" itemprop="datePublished">2017-06-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/26/path-join-和-path-resolve-比较/">path.join 和 path.resolve 比较</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>__dirname</li>
+</ul>
+<p>指向的是当前文件的绝对路径。作用： 解决不同操作系统的路径不同问题。</p>
+<ul>
+<li>path.join(path1，path2，path3…….)</li>
+</ul>
+<p>作用：<br>将路径片段使用特定的分隔符（window：\; apple: /）连接起来形成路径，并规范化生成的路径。<br>若任意一个路径片段类型错误，会报错。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> myPath = path.join(__dirname, <span class="string">'/dist'</span>);</span><br><span class="line"><span class="keyword">let</span> myPath2 = path.join(__dirname, <span class="string">'./dist/static'</span>);</span><br><span class="line"><span class="keyword">let</span> myPath3 = path.join(<span class="string">'/dist'</span>, <span class="string">'static'</span>, <span class="string">'test'</span>, <span class="string">'..'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(__dirname);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(myPath);</span><br><span class="line"><span class="built_in">console</span>.log(myPath2);</span><br><span class="line"><span class="built_in">console</span>.log(myPath3);</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">/Users/limHu/Desktop</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">/Users/limHu/Desktop/dist</span></span><br><span class="line"><span class="comment">/Users/limHu/Desktop/dist/static</span></span><br><span class="line"><span class="comment">/dist/static</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>path.resolve([from…],to)</li>
+</ul>
+<p>作用：把一个路径或路径片段的序列解析为一个绝对路径。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> myPath = path.resolve(__dirname, <span class="string">'/dist/static'</span>);</span><br><span class="line"><span class="keyword">let</span> myPath2 = path.resolve(__dirname, <span class="string">'./dist/static'</span>);</span><br><span class="line"><span class="keyword">let</span> myPath3 = path.resolve(__dirname, <span class="string">'../dist/static'</span>);</span><br><span class="line"><span class="keyword">let</span> myPath4 = path.resolve(<span class="string">'/dist/static'</span>, <span class="string">'/test/a'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(myPath);</span><br><span class="line"><span class="built_in">console</span>.log(myPath2);</span><br><span class="line"><span class="built_in">console</span>.log(myPath3);</span><br><span class="line"><span class="built_in">console</span>.log(myPath4);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">/dist/static</span></span><br><span class="line"><span class="comment">/Users/limHu/Desktop/dist/static</span></span><br><span class="line"><span class="comment">/Users/limHu/dist/static</span></span><br><span class="line"><span class="comment">/test/a</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<p>例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> path1 = path.resolve(__dirname, <span class="string">'../dist'</span>);</span><br><span class="line"><span class="keyword">const</span> path2 = <span class="string">'static'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> path3 = path.join(path1, path2);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(__dirname);</span><br><span class="line"><span class="comment">// /Users/limHu/Desktop</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(path3);</span><br><span class="line"><span class="comment">// /Users/limHu/dist/static</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/06/26/path-join-和-path-resolve-比较/" data-id="cjtvbps30000butkqu4gzxwgt" class="article-share-link">Share</a>
       
       
     </footer>
