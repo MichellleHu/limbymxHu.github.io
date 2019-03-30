@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>debounce、throttle | 技术博客分享平台  --limHu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="场景以下场景往往由于事件频繁被触发，因而频繁执行 DOM 操作、资源加载等重行为，导致 UI 停顿甚至浏览器崩溃。 window 对象的 resize、scroll 事件拖拽时的 mousemove 事件射击游戏中的 mousedown、keydown 事件文字输入、自动完成的 keyup 事件 实际分析一下，实际上并不需要被如此高频的触发。Debounce 和 Throttle 就是为解决上述问">
+<meta property="og:type" content="article">
+<meta property="og:title" content="debounce、throttle">
+<meta property="og:url" content="http://yoursite.com/2017/07/30/debounce、throttle/index.html">
+<meta property="og:site_name" content="技术博客分享平台  --limHu">
+<meta property="og:description" content="场景以下场景往往由于事件频繁被触发，因而频繁执行 DOM 操作、资源加载等重行为，导致 UI 停顿甚至浏览器崩溃。 window 对象的 resize、scroll 事件拖拽时的 mousemove 事件射击游戏中的 mousedown、keydown 事件文字输入、自动完成的 keyup 事件 实际分析一下，实际上并不需要被如此高频的触发。Debounce 和 Throttle 就是为解决上述问">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-03-30T09:55:31.006Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="debounce、throttle">
+<meta name="twitter:description" content="场景以下场景往往由于事件频繁被触发，因而频繁执行 DOM 操作、资源加载等重行为，导致 UI 停顿甚至浏览器崩溃。 window 对象的 resize、scroll 事件拖拽时的 mousemove 事件射击游戏中的 mousedown、keydown 事件文字输入、自动完成的 keyup 事件 实际分析一下，实际上并不需要被如此高频的触发。Debounce 和 Throttle 就是为解决上述问">
+  
+    <link rel="alternate" href="/atom.xml" title="技术博客分享平台  --limHu" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">技术博客分享平台  --limHu</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-debounce、throttle" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/07/30/debounce、throttle/" class="article-date">
+  <time datetime="2017-07-30T09:55:14.000Z" itemprop="datePublished">2017-07-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      debounce、throttle
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>场景<br>以下场景往往由于事件频繁被触发，因而频繁执行 DOM 操作、资源加载等重行为，导致 UI 停顿甚至浏览器崩溃。</p>
+<p>window 对象的 resize、scroll 事件<br>拖拽时的 mousemove 事件<br>射击游戏中的 mousedown、keydown 事件<br>文字输入、自动完成的 keyup 事件 实际分析一下，实际上并不需要被如此高频的触发。Debounce 和 Throttle 就是为解决上述问题诞生的。<br>Debounce<br>定义：对于频繁调用的动作，设定一个延迟执行时间 n 毫秒，在动作触发的 n 毫秒后执行该动作，若在这 n 毫秒内又调用此动作将重新计算执行时间。<br>function debounce(fn, delay) {<br>let timer = null;<br>return function () {<br>const context = this;<br>const args = arguments;<br>if(timer) {<br>clearTimeout(timer);<br>}<br>timer = setTimeout(function() {<br>fn.apply(context, args);<br>}, delay);<br>}<br>}<br>Throttle<br>定义：对于频繁调用的动作，设定一个最小执行周期（最大执行频率）n 毫秒，当调用动作的时刻大于等于 n 毫秒则执行该动作，然后进入下一个周期。(只允许一个函数在 n 毫秒内执行一次)</p>
+<pre><code>function throttle(fn, delay) {
+  let pre = +new Date();
+  let timer = null;
+  return function () {
+    const context = this;
+    const args = arguments;
+    const cur = +new Date();
+    if(timer) {
+      clearTimeout(timer);
+    }
+    if(cur - pre &gt;= delay) {
+      fn.apply(context,args);
+      pre = cur;
+    } else {
+      timer = setTimeout(function() {
+        fn.apply(context, args);
+      }, delay);
+    };
+  }
+}
+</code></pre><p>requestAnimationFrame<br>requestAnimationFrame 的用法与 settimeout 很相似，只是不需要设置时间间隔而已。requestAnimationFrame 使用一个回调函数作为参数，这个回调函数会在浏览器重绘之前调用。它返回一个整数，表示定时器的编号，这个值可以传递给 cancelAnimationFrame 用于取消这个函数的执行.<br>// 使用<br>var timer = requestAnimationFrame(function(){<br>console.log(0);<br>});</p>
+<p>// 取消调用<br>cancelAnimationFrame(timer);<br>相比 setTimeout 函数： 1.采用系统时间间隔，即屏幕刷新率，大多数为 60hz 即约 16.6ms。requestAnimationFrame 的步伐跟着系统的刷新步伐走。它能保证回调函数在屏幕每一次的刷新间隔中只被执行一次，这样就不会引起丢帧现象，也不会导致动画出现卡顿的问题。比 setTimeout 和 setInterval 准确，它们的内在运行机制决定了时间间隔参数实际上只是指定了把动画代码添加到浏览器事件队列中以等待执行的时间。 2.requestAnimationFrame 是由浏览器专门为动画提供的 API，在运行时浏览器会自动优化方法的调用，并且如果页面不是激活状态下的话，动画会自动暂停，有效节省了 CPU 开销。 3.使用它也是一种函数节流。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/07/30/debounce、throttle/" data-id="cjtvblhsv0004rkkq1og49spg" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/10/17/基于hexo-github搭建一个独立博客/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          基于hexo+github搭建一个独立博客
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/29/vue项目中mixins复用/">vue项目中mixins复用</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/28/vue项目优化/">vue项目优化</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/26/jenkins-教程/">jenkins 教程</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/20/React高阶组件/">React高阶组件</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/13/sql查询语句/">sql查询语句</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

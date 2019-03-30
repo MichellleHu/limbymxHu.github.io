@@ -92,7 +92,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/10/call和apply/" data-id="cjtvbjxv00005qgkq364gcj3s" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/10/call和apply/" data-id="cjtvblhsr0001rkkqkscaq6w7" class="article-share-link">Share</a>
       
       
     </footer>
@@ -130,7 +130,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/03/10/babel-plugin-import/" data-id="cjtvbjxuy0003qgkqhwt8rq81" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/10/babel-plugin-import/" data-id="cjtvblhsu0003rkkqbeijgc3c" class="article-share-link">Share</a>
       
       
     </footer>
@@ -181,7 +181,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/11/30/从用户输入url地址到页面渲染数据中间发生了什么？/" data-id="cjtvbjxvd000kqgkqmfl6x4se" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/11/30/从用户输入url地址到页面渲染数据中间发生了什么？/" data-id="cjtvblht6000grkkqxehlzj1r" class="article-share-link">Share</a>
       
       
     </footer>
@@ -243,7 +243,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/10/20/Flex布局知识点总结/" data-id="cjtvbjxuv0001qgkqzih5f0hp" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/10/20/Flex布局知识点总结/" data-id="cjtvblhst0002rkkqtotrqu65" class="article-share-link">Share</a>
       
       
     </footer>
@@ -333,7 +333,67 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/10/17/基于hexo-github搭建一个独立博客/" data-id="cjtvbjxvf000mqgkq5gsmrwqz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/10/17/基于hexo-github搭建一个独立博客/" data-id="cjtvblhtc000prkkqh9ab8gk1" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-debounce、throttle" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/07/30/debounce、throttle/" class="article-date">
+  <time datetime="2017-07-30T09:55:14.000Z" itemprop="datePublished">2017-07-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/07/30/debounce、throttle/">debounce、throttle</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>场景<br>以下场景往往由于事件频繁被触发，因而频繁执行 DOM 操作、资源加载等重行为，导致 UI 停顿甚至浏览器崩溃。</p>
+<p>window 对象的 resize、scroll 事件<br>拖拽时的 mousemove 事件<br>射击游戏中的 mousedown、keydown 事件<br>文字输入、自动完成的 keyup 事件 实际分析一下，实际上并不需要被如此高频的触发。Debounce 和 Throttle 就是为解决上述问题诞生的。<br>Debounce<br>定义：对于频繁调用的动作，设定一个延迟执行时间 n 毫秒，在动作触发的 n 毫秒后执行该动作，若在这 n 毫秒内又调用此动作将重新计算执行时间。<br>function debounce(fn, delay) {<br>let timer = null;<br>return function () {<br>const context = this;<br>const args = arguments;<br>if(timer) {<br>clearTimeout(timer);<br>}<br>timer = setTimeout(function() {<br>fn.apply(context, args);<br>}, delay);<br>}<br>}<br>Throttle<br>定义：对于频繁调用的动作，设定一个最小执行周期（最大执行频率）n 毫秒，当调用动作的时刻大于等于 n 毫秒则执行该动作，然后进入下一个周期。(只允许一个函数在 n 毫秒内执行一次)</p>
+<pre><code>function throttle(fn, delay) {
+  let pre = +new Date();
+  let timer = null;
+  return function () {
+    const context = this;
+    const args = arguments;
+    const cur = +new Date();
+    if(timer) {
+      clearTimeout(timer);
+    }
+    if(cur - pre &gt;= delay) {
+      fn.apply(context,args);
+      pre = cur;
+    } else {
+      timer = setTimeout(function() {
+        fn.apply(context, args);
+      }, delay);
+    };
+  }
+}
+</code></pre><p>requestAnimationFrame<br>requestAnimationFrame 的用法与 settimeout 很相似，只是不需要设置时间间隔而已。requestAnimationFrame 使用一个回调函数作为参数，这个回调函数会在浏览器重绘之前调用。它返回一个整数，表示定时器的编号，这个值可以传递给 cancelAnimationFrame 用于取消这个函数的执行.<br>// 使用<br>var timer = requestAnimationFrame(function(){<br>console.log(0);<br>});</p>
+<p>// 取消调用<br>cancelAnimationFrame(timer);<br>相比 setTimeout 函数： 1.采用系统时间间隔，即屏幕刷新率，大多数为 60hz 即约 16.6ms。requestAnimationFrame 的步伐跟着系统的刷新步伐走。它能保证回调函数在屏幕每一次的刷新间隔中只被执行一次，这样就不会引起丢帧现象，也不会导致动画出现卡顿的问题。比 setTimeout 和 setInterval 准确，它们的内在运行机制决定了时间间隔参数实际上只是指定了把动画代码添加到浏览器事件队列中以等待执行的时间。 2.requestAnimationFrame 是由浏览器专门为动画提供的 API，在运行时浏览器会自动优化方法的调用，并且如果页面不是激活状态下的话，动画会自动暂停，有效节省了 CPU 开销。 3.使用它也是一种函数节流。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/07/30/debounce、throttle/" data-id="cjtvblhsv0004rkkq1og49spg" class="article-share-link">Share</a>
       
       
     </footer>
@@ -366,7 +426,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li></ul>
     </div>
   </div>
 
